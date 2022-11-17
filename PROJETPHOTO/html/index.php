@@ -10,179 +10,184 @@ if($_SERVER['REQUEST_URI'] === "/login.php"){
     //header('Location: /login.php');
     //die();
 } ?>
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<title></title>
-		<meta name="generator" content="Bluefish 2.2.12" >
-		<meta name="author" content="Eliott" >
-		<meta name="date" content="2022-02-16T13:38:09+0100" >
-		<meta name="copyright" content="">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-		<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
-		<meta http-equiv="content-style-type" content="text/css">
-		<meta http-equiv="expires" content="0">
-		<link href="./CSS/app.css" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-		<header>
+<head>
+<title></title>
+<meta name="generator" content="Bluefish 2.2.12" >
+<meta name="author" content="Eliott" >
+<meta name="date" content="2022-02-16T13:38:09+0100" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="expires" content="0">
+<link href="./CSS/app.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<header>
 			<div id="nom_site">
 				<h1><i><b>Votez !</b></i></h1>
 			</div>
-		</header>
-		<section>
-		  <article id="img_inssert">
-				<form method="post" enctype="multipart/form-data">
-					<div>
-						<label for="image_uploads">Choisissez l'image à télécharger (PNG, JPG)</label>
-						<input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple="" style="opacity: 0;">
-					</div>
-					<div class="preview">
-						<p>Aucun fichier n'est actuellement sélectionné pour le téléchargement</p>
-					</div>
-					<div>
-						<button>Soumettre</button>
-					</div>
-				</form>
-				<script>
-				  const input = document.querySelector('input');
-					const preview = document.querySelector('.preview');
+	</header>
 
-					input.style.opacity = 0;
+<section>
+    <article id="img_inssert">
+		<?php
+			include ("transfert.php");
+			if ( isset($_FILES['fic']) )
+			{
+				transfert();
+			}
+		?>
+		<form method="post" enctype="multipart/form-data">
+			<div>
+				<label for="fic">Choose images to upload (PNG, JPG)</label>
+				<input type="file" id="fic" name="fic" accept=".jpg, .jpeg, .png" multiple="" style="opacity: 0;">
+				<input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+			</div>
+			<div class="preview">
+				<p>No files currently selected for upload</p>
+			</div>
+			<div>
+				<button>Submit</button>
+			</div>
+	</form>
 
-					input.addEventListener('change', updateImageDisplay);
 
-					function updateImageDisplay() {
-					  while(preview.firstChild) {
-					    preview.removeChild(preview.firstChild);
-					  }
+		<script>
+                const input = document.querySelector('input');
+const preview = document.querySelector('.preview');
 
-					  const curFiles = input.files;
-					  if (curFiles.length === 0) {
-					    const para = document.createElement('p');
-					    para.textContent = 'No files currently selected for upload';
-					    preview.appendChild(para);
-					  } 
-					  else {
-					    const list = document.createElement('ol');
-					    preview.appendChild(list);
+input.style.opacity = 0;
 
-					    for (const file of curFiles) {
-					      const listItem = document.createElement('li');
-					      const para = document.createElement('p');
-					      if (validFileType(file)) {
-					        para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
-					        const image = document.createElement('img');
-					        image.src = URL.createObjectURL(file);
+input.addEventListener('change', updateImageDisplay);
 
-								  listItem.appendChild(image);
-								  listItem.appendChild(para);
-								}
-								else {
-								  para.textContent = `Nom du fichier : ${file.name} => Ce n'est pas un type de fichier valide. Mettez à jour votre sélection.`;
-								  listItem.appendChild(para);
-								}
+function updateImageDisplay() {
+  while(preview.firstChild) {
+    preview.removeChild(preview.firstChild);
+  }
 
-								list.appendChild(listItem);
-							}
-						}
-					}
+  const curFiles = input.files;
+  if (curFiles.length === 0) {
+    const para = document.createElement('p');
+    para.textContent = 'No files currently selected for upload';
+    preview.appendChild(para);
+  } else {
+    const list = document.createElement('ol');
+    preview.appendChild(list);
 
-					// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
-					const fileTypes = [
-					  "image/apng",
-					  "image/bmp",
-					  "image/gif",
-					  "image/jpeg",
-					  "image/pjpeg",
-					  "image/png",
-					  "image/svg+xml",
-					  "image/tiff",
-					  "image/webp",
-					  "image/x-icon"
-					];
+    for (const file of curFiles) {
+      const listItem = document.createElement('li');
+      const para = document.createElement('p');
+      if (validFileType(file)) {
+        para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
+        const image = document.createElement('img');
+        image.src = URL.createObjectURL(file);
 
-					function validFileType(file) {
-						return fileTypes.includes(file.type);
-					}
+        listItem.appendChild(image);
+        listItem.appendChild(para);
+      } else {
+        para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+        listItem.appendChild(para);
+      }
 
-					function returnFileSize(number) {
-		  			if (number < 1024) {
-		    			return `${number} bytes`;
-		  			} 
-		  			else if (number >= 1024 && number < 1048576) {
-		    			return `${(number / 1024).toFixed(1)} KB`;
-		  			}
-		  			else if (number >= 1048576) {
-		    			return `${(number / 1048576).toFixed(1)} MB`;
-		  			}
-					}
-				</script>
-			</article>
-			<article>
-				<div id="image1">
-					<span id="votre_id1" class="target">
-					</span>
-					<span id="votre_id2" class="target">
-					</span>
-					<span id="votre_id3" class="target">
-					</span>
-					<span id="votre_id4" class="target">
-					</span>
-					<div class="cadre_diapo">
-						<div class="interieur_diapo">
-							<div class=description>
-								<span>Corvin1</span>
-								<img src="./Images/Guitares/Corvin/3170066.JPG" width="350" height="525" alt="">
-							</div>
-							<div class=description>
-								<span>Corvin2</span>
-								<img src="./Images/Guitares/Corvin/GMP01.jpg" width="350" height="525" alt="">
-							</div>
-							<div class=description>
-								<span>Corvin3</span>
-								<img src="./Images/Guitares/Corvin/P3170071.JPG" width="350" height="525" alt="">
-							</div>
-							<div class=description>
-								<span>Corvin3</span>
-								<img src="./Images/Guitares/Corvin/P3170071.JPG" width="350" height="525" alt="">
-							</div>
-							<div class=description>
-								<span>Corvin3</span>
-								<img src="./Images/Guitares/Corvin/P3170071.JPG" width="350" height="525" alt="">
-							</div>
-						</div>
-						<ul class="navigation_diapo">
-							<li>
-								<a href="#votre_id1">
-									<img src="./Images/Guitares/Corvin/3170066.JPG" width="100" height="150" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#votre_id2">
-									<img src="./Images/Guitares/Corvin/GMP01.jpg" width="100" height="150" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#votre_id3">
-									<img src="./Images/Guitares/Corvin/P3170071.JPG" width="100" height="150" alt="">
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div id="txt_corvin">
-					<h2>Corvin</p></h2><hr style="width: 400px">
-					<br>
-					<br>
-					<br>
-					<b>blabla</b></p>
-				</div>
-			</article>
-		</section>
-	</body>
+      list.appendChild(listItem);
+    }
+  }
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+const fileTypes = [
+  "image/apng",
+  "image/bmp",
+  "image/gif",
+  "image/jpeg",
+  "image/pjpeg",
+  "image/png",
+  "image/svg+xml",
+  "image/tiff",
+  "image/webp",
+  "image/x-icon"
+];
+
+function validFileType(file) {
+  return fileTypes.includes(file.type);
+}
+
+function returnFileSize(number) {
+  if (number < 1024) {
+    return `${number} bytes`;
+  } else if (number >= 1024 && number < 1048576) {
+    return `${(number / 1024).toFixed(1)} KB`;
+  } else if (number >= 1048576) {
+    return `${(number / 1048576).toFixed(1)} MB`;
+  }
+}
+
+            </script>
+
+
+<?php
+    function transfert(){
+        $ret        = false;
+        $img_blob   = '';
+        $img_taille = 0;
+        $img_type   = '';
+        $img_nom    = '';
+        $taille_max = 250000;
+        $ret        = is_uploaded_file($_FILES['fic']['tmp_name']);
+        
+        if (!$ret) {
+            echo "Problème de transfert";
+            return false;
+        } else {
+            // Le fichier a bien été reçu
+            $img_taille = $_FILES['fic']['size'];
+            
+            if ($img_taille > $taille_max) {
+                echo "Trop gros !";
+                return false;
+            }
+
+            $img_type = $_FILES['fic']['type'];
+            $img_nom  = $_FILES['fic']['name'];
+        }
+		$img_type = $_FILES['fic']['type'];
+        $img_nom = $_FILES['fic']['name'];
+        include ("connexion.php");
+        $img_blob = file_get_contents ($_FILES['fic']['tmp_name']);
+        $req = "INSERT INTO images (" .
+                            "img_nom, img_taille, img_type, img_blob " .
+                            ") VALUES (" .
+                            "'" . $img_nom . "', " .
+                            "'" . $img_taille . "', " .
+                            "'" . $img_type . "', " .
+                            "'" . addslashes ($img_blob) . "') "; // N'oublions pas d'échapper le contenu binaire
+        $ret = mysql_query ($req) or die (mysql_error ());
+        return true;
+    }
+?>
+
+
+
+    </article>
+
+    <article>
+		<img src="./Images/Guitares/Corvin/3170066.JPG" width="350" height="525" alt="">
+	</article>
+
+
+
+
+</section>
+</body>
+
+
+
+
 </html>
+
