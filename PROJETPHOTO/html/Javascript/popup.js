@@ -1,9 +1,6 @@
-function openForm() {
-  document.getElementById("popupForm").style.display = "block";
+window.onload = function toggle(){
+	var blur = document.getElementById('blur');
+	blur.classList.toggle('active');
+	var popup = document.getElementById('popup');
+	popup.classList.toggle('active');
 }
-
-function closeForm() {
-  document.getElementById("popupForm").style.display = "none";
-}
-
-openForm();
