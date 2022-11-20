@@ -113,7 +113,7 @@ line-height: 32px;
 padding-left: 10px;
 }
 
-form label,
+/*form label,*/
 form button {
 background-color: #7f9ccb;
 padding: 5px 10px;
@@ -123,13 +123,13 @@ font-size: 0.8rem;
 height: auto;
 }
 
-form label:hover,
+/*form label:hover,*/
 form button:hover {
 background-color: #2d5ba3;
 color: white;
 }
 
-form label:active,
+/*form label:active,*/
 form button:active {
 background-color: #0d3f8f;
 color: white;

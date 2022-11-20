@@ -16,6 +16,7 @@
 	<meta http-equiv="content-style-type" content="text/css">
 	<meta http-equiv="expires" content="0">
 	<link href="./CSS/app.css" rel="stylesheet" type="text/css">
+	<link href="./CSS/popup.css" rel="stylesheet" type="text/css">
 	</head>
 		<header>
 				<div id="nom_site">
@@ -27,82 +28,41 @@
 		  <article id="img_inssert">
 				<form method="post" enctype="multipart/form-data">
 					<div>
-						<label for="fic">Choose images to upload (PNG, JPG)</label>
+						<label for="fic">Choisissez l'image à déposer (PNG, JPG).</label>
 						<input type="file" id="fic" name="fic" accept=".jpg, .jpeg, .png" multiple="" style="opacity: 0;" />
 						<input type="hidden" name="MAX_FILE_SIZE" value="250000" />
 					</div>
 					<div class="preview">
-						<p>No files currently selected for upload</p>
+						<p>Aucun fichier n'est actuellement sélectionné pour le dépôt</p>
 					</div>
 					<div>
-						<button>Submit</button>
+						<button>Soumettre</button>
 					</div>
 				</form>
-				<script>
-		    	const input = document.querySelector('input');
-					const preview = document.querySelector('.preview');
-					input.style.opacity = 0;
-					input.addEventListener('change', updateImageDisplay);
-					function updateImageDisplay() {
-		  			while(preview.firstChild) {
-		    			preview.removeChild(preview.firstChild);
-		  			}
-		  			const curFiles = input.files;
-		  			if (curFiles.length === 0) {
-		    			const para = document.createElement('p');
-		    			para.textContent = 'No files currently selected for upload';
-		    			preview.appendChild(para);
-		  			}
-		  			else {
-		    			const list = document.createElement('ol');
-		    			preview.appendChild(list);
-		    			for (const file of curFiles) {
-		      			const listItem = document.createElement('li');
-		      			const para = document.createElement('p');
-		      			if (validFileType(file)) {
-		        			para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
-		        			const image = document.createElement('img');
-		        			image.src = URL.createObjectURL(file);
-		        			listItem.appendChild(image);
-		        			listItem.appendChild(para);
-		     				}
-		     				else {
-		        			para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-		        			listItem.appendChild(para);
-		      			}
-		      			list.appendChild(listItem);
-		    			}
-		  			}
-					}
-					// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
-					const fileTypes = [
-				  "image/apng",
-				  "image/bmp",
-				  "image/gif",
-				  "image/jpeg",
-				  "image/pjpeg",
-				  "image/png",
-				  "image/svg+xml",
-				  "image/tiff",
-				  "image/webp",
-				  "image/x-icon"
-					];
-					function validFileType(file) {
-		  			return fileTypes.includes(file.type);
-					}
-					function returnFileSize(number) {
-		  			if (number < 1024) {
-		    			return `${number} bytes`;
-		  			}
-		  			else if (number >= 1024 && number < 1048576) {
-		    			return `${(number / 1024).toFixed(1)} KB`;
-		  			}
-		  			else if (number >= 1048576) {
-		    			return `${(number / 1048576).toFixed(1)} MB`;
-		  			}
-					}
-				</script>
+				<script type="text/javascript" src="./Javascript/photo_uploader.js"></script>
 			</article>
 		</section>
+
+		<!-- COMMENTEZ LA DIV ET LA BALISE SCRIPT POUR RETROUVER LA PAGE INITIALE !!!
+		Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
+		<div class="login-popup">
+      <div class="form-popup" id="popupForm">
+        <form action="/index.php" class="form-container">
+          <h2>Veuillez vous connecter</h2>
+          <label for="email">
+            <strong>E-mail</strong>
+          </label>
+          <input type="text" id="email" placeholder="Votre Email" name="email" required />
+          <label for="psw">
+            <strong>Mot de passe</strong>
+          </label>
+          <input type="password" id="psw" placeholder="Votre Mot de passe" name="psw" required />
+          <button type="submit" class="btn">Connecter</button>
+          <!-- <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button> -->
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" src="./Javascript/popup.js"></script>
+
 	</body>
 </html>
