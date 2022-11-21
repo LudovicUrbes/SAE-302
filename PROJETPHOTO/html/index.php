@@ -17,12 +17,12 @@
       <article id="img_insert">
         <form method="post" enctype="multipart/form-data">
           <div>
-            <label for="fic">Choisissez l'image à déposer (PNG, JPG).</label>
+            <label for="fic">Choisissez l'image &agrave d&eacuteposer (PNG, JPG).</label>
             <input type="file" id="fic" name="fic" accept=".jpg, .jpeg, .png" multiple="" style="opacity: 0;" />
             <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
           </div>
           <div class="preview">
-            <p>Aucun fichier n'est actuellement sélectionné pour le dépôt</p>
+            <p>Aucun fichier n'est actuellement s&eacutelectionn&eacute pour le d&eacutep&ocirct</p>
           </div>
           <div>
             <button>Soumettre</button>
@@ -36,19 +36,27 @@
     Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
     <div id="popup">
       <form action="/index.php" class="form-container">
-        <h2>Veuillez vous connecter</h2>
+        <h2>Entrez vos donn&eacutees personnelles</h2>
+        <label for="nom">
+          <strong>Nom</strong>
+        </label>
+        <input type="text" id="nom" placeholder="Votre Nom" name="nom" required />
+        <label for="prenom">
+          <strong>Pr&eacutenom</strong>
+        </label>
+        <input type="text" id="prenom" placeholder="Votre Prenom" name="prenom" required />
+        <label for="dep">
+          <strong>D&eacutepartement</strong>
+        </label>
+        <input type="text" id="dep" placeholder="Votre Departement" name="dep" required />
         <label for="email">
           <strong>E-mail</strong>
         </label>
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
-        <label for="psw">
-          <strong>Mot de passe</strong>
-        </label>
-        <input type="password" id="psw" placeholder="Votre Mot de passe" name="psw" required />
-        <button type="submit" class="btn">Connexion</button>
+        <button type="submit" class="btn">Acc&eacuteder aux concours</button>
       </form>
     </div>
     <script type="text/javascript" src="./Javascript/popup.js"></script>
 
-  </body>
+  </body> 
 </html>
