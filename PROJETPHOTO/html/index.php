@@ -33,18 +33,20 @@
     </div>
 
     <?php
-        if (isset($_FILES['fic']['tmp_name'])) {
-            $retour = copy($_FILES['fic']['tmp_name'], $_FILES['fic']['name']);
-            if($retour) {
-                echo '<p>La photo a bien été envoyée.</p>';
-                echo '<img src="' . $_FILES['fic']['name'] . '">';
-            }
+    if (isset($_FILES['fic']['tmp_name'])) {
+        //$origine = $_FILES['fic']['tmp_name'];
+        //$destination = 'picture/'.$_FILES['fic']['name'];
+        $retour = copy($_FILES['fic']['tmp_name'], $_FILES['fic']['name']);
+        if($retour) {
+            echo '<p>La photo a bien été envoyée.</p>';
+            echo '<img src="' . $_FILES['fic']['name'] . '">';
         }
+    }
     ?>
     
     <!--COMMENTEZ LA DIV ET LA BALISE SCRIPT POUR RETROUVER LA PAGE INITIALE !!!
-    Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 --
-    <div id="popup">
+    Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
+    <!--<div id="popup">
       <form method="post" action="index.php" class="form-container">
         <h2>Entrez vos donn&eacutees personnelles</h2>
         <label for="prenom">
@@ -68,7 +70,6 @@
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
         <button type="submit" class="btn">Acc&eacuteder aux concours</button>
       </form>
-
       <?php
   
           if (isset($_POST['submit']))
@@ -95,12 +96,8 @@
             else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
            }
        ?>
-
     <script type="text/javascript" src="./Javascript/popup.js"></script>
-
-    </div>
-
-    -->
+    </div>-->
 
   </body> 
 </html>
