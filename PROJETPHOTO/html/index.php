@@ -46,7 +46,7 @@
     
     <!--COMMENTEZ LA DIV ET LA BALISE SCRIPT POUR RETROUVER LA PAGE INITIALE !!!
     Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
-    <!--<div id="popup">
+    <div id="popup">
       <form method="post" action="index.php" class="form-container">
         <h2>Entrez vos donn&eacutees personnelles</h2>
         <label for="prenom">
@@ -68,6 +68,10 @@
           <strong>E-mail</strong>
         </label>
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
+        <input type="checkbox" id="condition" required />
+        <label for="condition">
+          <strong>Conditions g&eacuten&eacuterales</strong>
+        </label> <br> <br>
         <button type="submit" class="btn">Acc&eacuteder aux concours</button>
       </form>
       <?php
@@ -97,7 +101,7 @@
            }
        ?>
     <script type="text/javascript" src="./Javascript/popup.js"></script>
-    </div>-->
+    </div>
 
   </body> 
 </html>

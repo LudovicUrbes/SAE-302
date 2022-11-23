@@ -88,6 +88,7 @@ a {
 
 /* Largeur complète pour les champs de saisie */
 .form-container input[type="text"],
+.form-container input[type="checkbox"],
 select{
   width: 100%;
   padding: 10px;
@@ -98,6 +99,7 @@ select{
 
 /* Quand les entrées sont concentrées, faites quelque chose */
 .form-container input[type="text"]:focus,
+.form-container input[type="checkbox"]:focus,
 select {
   background-color: #ddd;
   outline: none;
@@ -105,7 +107,7 @@ select {
 
 /* Stylez le bouton de connexion */
 .form-container .btn {
-  background-color: red;
+  background-color: green,
   color: #fff;
   padding: 12px 20px;
   border: none;
