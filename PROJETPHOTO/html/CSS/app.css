@@ -87,8 +87,7 @@ a {
 }
 
 /* Largeur complète pour les champs de saisie */
-.form-container input[type="text"],
-.form-container input[type="password"] {
+.form-container input[type="text"]{
   width: 100%;
   padding: 10px;
   margin: 5px 0 22px 0;
@@ -97,15 +96,14 @@ a {
 }
 
 /* Quand les entrées sont concentrées, faites quelque chose */
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
+.form-container input[type="text"]:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Stylez le bouton de connexion */
 .form-container .btn {
-  background-color: #8ebf42;
+  background-color: red;
   color: #fff;
   padding: 12px 20px;
   border: none;

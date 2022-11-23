@@ -62,7 +62,7 @@
           {
               if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['departement']) && !empty($_POST['email']))
               {
-                  include('../html/connection.php');
+                  include('connexion_base.php');
                   $query = $pdo->prepare("INSERT INTO utilisateur (nom, prenom, departement, email) VALUES (:nom, :prenom, :departement, :email)");
                   $success = $query->execute([
                         'nom' => $_POST['nom'],
