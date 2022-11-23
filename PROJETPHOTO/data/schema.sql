@@ -1,6 +1,3 @@
-drop table users;
-drop table questions;
-
 drop table utilisateur;
 drop table photo;
 

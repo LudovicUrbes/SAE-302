@@ -35,7 +35,7 @@
     <!--COMMENTEZ LA DIV ET LA BALISE SCRIPT POUR RETROUVER LA PAGE INITIALE !!!
     Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
     <div id="popup">
-      <form method="post" action="/index.php" class="form-container">
+      <form method="post" action="index.php" class="form-container">
         <h2>Entrez vos donn&eacutees personnelles</h2>
         <label for="prenom">
           <strong>Pr&eacutenom</strong>
@@ -68,17 +68,17 @@
                   include('connexion_base.php');
                   $query = $pdo->prepare("INSERT INTO utilisateur (prenom, nom, departement, email) VALUES (:prenom, :nom, :departement, :email)");
                   $success = $query->execute([
-                        'nom' => $_POST['prenom'],
-                        'prenom' => $_POST['nom'],
+                        'prenom' => $_POST['prenom'],
+                        'nom' => $_POST['nom'],
                         'departement' => $_POST['departement'],
                         'email' => $_POST['email']
                         ]);
                   if($success){
-                      echo "Vous pouvez accéder au site \n";
+                      echo "Vous pouvez acc&eacuteder au site \n";
                   } 
                   mysqli_close($pdo);
                   sleep(2);
-                  header('Location: /localhost');
+                  header('Location: index.php');
                   die();
                             
               }
