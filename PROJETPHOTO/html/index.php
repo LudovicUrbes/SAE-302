@@ -31,9 +31,19 @@
         <script type="text/javascript" src="./Javascript/photo_uploader.js"></script>
       </article>
     </div>
+
+    <?php
+        if (isset($_FILES['fic']['tmp_name'])) {
+            $retour = copy($_FILES['fic']['tmp_name'], $_FILES['fic']['name']);
+            if($retour) {
+                echo '<p>La photo a bien été envoyée.</p>';
+                echo '<img src="' . $_FILES['fic']['name'] . '">';
+            }
+        }
+    ?>
     
     <!--COMMENTEZ LA DIV ET LA BALISE SCRIPT POUR RETROUVER LA PAGE INITIALE !!!
-    Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
+    Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 --
     <div id="popup">
       <form method="post" action="index.php" class="form-container">
         <h2>Entrez vos donn&eacutees personnelles</h2>
@@ -89,6 +99,8 @@
     <script type="text/javascript" src="./Javascript/popup.js"></script>
 
     </div>
+
+    -->
 
   </body> 
 </html>
