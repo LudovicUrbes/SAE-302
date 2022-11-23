@@ -37,18 +37,21 @@
     <div id="popup">
       <form method="post" action="/index.php" class="form-container">
         <h2>Entrez vos donn&eacutees personnelles</h2>
-        <label for="nom">
-          <strong>Nom</strong>
-        </label>
-        <input type="text" id="nom" placeholder="Votre Nom" name="nom" required />
         <label for="prenom">
           <strong>Pr&eacutenom</strong>
         </label>
         <input type="text" id="prenom" placeholder="Votre Prenom" name="prenom" required />
-        <label for="dep">
-          <strong>D&eacutepartement</strong>
+        <label for="nom">
+          <strong>Nom</strong>
         </label>
-        <input type="text" id="dep" placeholder="Votre Departement" name="departement" required />
+        <input type="text" id="nom" placeholder="Votre Nom" name="nom" required />
+        <label for="dep"><strong>D&eacutepartement</strong></label>
+        <select nid="dep" name="departement" required>
+            <option value="">Choisis ton d&eacutepartement</option>
+            <option value="R&T">R&eacuteseaux et T&eacutel&eacutecommunications</option>
+            <option value="TC">Technico-Commercial</option>
+            <option value="MP">Mesures Physiques</option>
+        </select> <br> <br>
         <label for="email">
           <strong>E-mail</strong>
         </label>
@@ -60,13 +63,13 @@
   
           if (isset($_POST['submit']))
           {
-              if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['departement']) && !empty($_POST['email']))
+              if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare("INSERT INTO utilisateur (nom, prenom, departement, email) VALUES (:nom, :prenom, :departement, :email)");
+                  $query = $pdo->prepare("INSERT INTO utilisateur (prenom, nom, departement, email) VALUES (:prenom, :nom, :departement, :email)");
                   $success = $query->execute([
-                        'nom' => $_POST['nom'],
-                        'prenom' => $_POST['prenom'],
+                        'nom' => $_POST['prenom'],
+                        'prenom' => $_POST['nom'],
                         'departement' => $_POST['departement'],
                         'email' => $_POST['email']
                         ]);

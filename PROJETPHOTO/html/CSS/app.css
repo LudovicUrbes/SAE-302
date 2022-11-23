@@ -87,7 +87,8 @@ a {
 }
 
 /* Largeur complète pour les champs de saisie */
-.form-container input[type="text"]{
+.form-container input[type="text"],
+select{
   width: 100%;
   padding: 10px;
   margin: 5px 0 22px 0;
@@ -96,7 +97,8 @@ a {
 }
 
 /* Quand les entrées sont concentrées, faites quelque chose */
-.form-container input[type="text"]:focus {
+.form-container input[type="text"]:focus,
+select {
   background-color: #ddd;
   outline: none;
 }

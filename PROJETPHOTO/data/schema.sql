@@ -6,8 +6,8 @@ drop table photo;
 
 CREATE TABLE utilisateur (
     `id` INT AUTO_INCREMENT UNIQUE,
-    `nom` VARCHAR(20) NOT NULL,
     `prenom` VARCHAR(20) NOT NULL,
+    `nom` VARCHAR(20) NOT NULL,
     `departement` VARCHAR(20) NOT NULL,
     `email` VARCHAR(50) NOT NULL,
     `vote_possible` INT default 1,
@@ -15,7 +15,7 @@ CREATE TABLE utilisateur (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `utilisateur` (`nom`, `prenom`, `departement`, `email` ) VALUES ("LEROUX", "Gauthier", "R&T", "leroux@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Gauthier", "LEROUX", "R&T", "leroux@etu.univ-poitiers.fr");
 
 CREATE TABLE photo (
     `id` INT AUTO_INCREMENT UNIQUE,
