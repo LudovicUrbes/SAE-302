@@ -55,36 +55,37 @@
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
         <button type="submit" class="btn">Acc&eacuteder aux concours</button>
       </form>
-    </div>
 
-    <?php
+      <?php
   
-        if (isset($_POST['submit']))
-        {
-            if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['departement']) && !empty($_POST['email']))
-            {
-                include('../helper/connection.php');
-                $query = $pdo->prepare("INSERT INTO utilisateur (nom, prenom, departement, email) VALUES (:nom, :prenom, :departement, :email)");
-                $success = $query->execute([
-                      'nom' => $_POST['nom'],
-                      'prenom' => $_POST['prenom'],
-                      'departement' => $_POST['departement'],
-                      'email' => $_POST['email']
-                      ]);
-                if($success){
-                    echo "Vous pouvez accéder au site \n";
-                } 
-                mysqli_close($pdo);
-                sleep(2);
-                header('Location: /localhost');
-                die();
+          if (isset($_POST['submit']))
+          {
+              if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['departement']) && !empty($_POST['email']))
+              {
+                  include('../html/connection.php');
+                  $query = $pdo->prepare("INSERT INTO utilisateur (nom, prenom, departement, email) VALUES (:nom, :prenom, :departement, :email)");
+                  $success = $query->execute([
+                        'nom' => $_POST['nom'],
+                        'prenom' => $_POST['prenom'],
+                        'departement' => $_POST['departement'],
+                        'email' => $_POST['email']
+                        ]);
+                  if($success){
+                      echo "Vous pouvez accéder au site \n";
+                  } 
+                  mysqli_close($pdo);
+                  sleep(2);
+                  header('Location: /localhost');
+                  die();
                             
-            }
-          else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
-         }
-     ?>
+              }
+            else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
+           }
+       ?>
 
     <script type="text/javascript" src="./Javascript/popup.js"></script>
+
+    </div>
 
   </body> 
 </html>
