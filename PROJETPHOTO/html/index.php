@@ -71,6 +71,10 @@
           <strong>E-mail</strong>
         </label>
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
+        <label for="mdp">
+          <strong>Mot de passe</strong>
+        </label>
+        <input type="text" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
         <input type="checkbox" id="condition" required />
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
@@ -81,15 +85,16 @@
   
           if (isset($_POST['connexion']))
           {
-              if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']))
+              if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']) && !empty($_POST['mdp']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare('SELECT prenom, nom, departement, email FROM utilisateur WHERE prenom=:prenom, nom=:nom, departement=:departement, email=:email');
+                  $query = $pdo->prepare('SELECT prenom, nom, departement, email, mdp FROM utilisateur WHERE prenom=:prenom, nom=:nom, departement=:departement, email=:email, mdp=:mdp');
                   $success = $query->execute([
                         "prenom" => $_POST['prenom'],
                         "nom" => $_POST['nom'],
                         "departement" => $_POST['departement'],
-                        "email" => $_POST['email']
+                        "email" => $_POST['email'],
+                        "mdp" => $_POST['mdp']
                         ]);
                   $user = $query->fetch(PDO::FETCH_ASSOC);
 

@@ -10,14 +10,15 @@ CREATE TABLE utilisateur (
     `nom` VARCHAR(20) NOT NULL UNIQUE,
     `departement` VARCHAR(50) NOT NULL,
     `email` VARCHAR(50) NOT NULL UNIQUE,
+    `mdp` VARCHAR(50) NOT NULL,
     `vote_possible` INT default 1,
     `choix` INT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Gautier", "LEROUX", "R&eacuteseaux et T&eacutel&eacutecommunications", "gautier.leroux@etu.univ-poitiers.fr");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Ludovic", "URBES", "R&eacuteseaux et T&eacutel&eacutecommunications", "ludovic.urbes@etu.univ-poitiers.fr");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Eliott", "MARCEAU", "R&eacuteseaux et T&eacutel&eacutecommunications", "eliott.marceau@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Gautier", "LEROUX", "R&eacuteseaux et T&eacutel&eacutecommunications", "gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Ludovic", "URBES", "R&eacuteseaux et T&eacutel&eacutecommunications", "ludovic.urbes@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Eliott", "MARCEAU", "R&eacuteseaux et T&eacutel&eacutecommunications", "eliott.marceau@etu.univ-poitiers.fr", "gtrnet");
 
 
 CREATE TABLE photo (
