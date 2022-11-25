@@ -61,7 +61,7 @@
         </label>
         <input type="text" id="nom" placeholder="Votre Nom" name="nom" required />
         <label for="dep"><strong>D&eacutepartement</strong></label>
-        <select nid="dep" name="departement" required>
+        <select nid="dep" name="departement" plaehrequired>
             <option value="">Choisis ton d&eacutepartement</option>
             <option value="R&T">R&eacuteseaux et T&eacutel&eacutecommunications</option>
             <option value="TC">Techniques de Commercialisation</option>
@@ -75,30 +75,30 @@
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
         </label> <br> <br>
-        <button type="submit" name="submit" class="btn">Acc&eacuteder aux concours</button>
+        <button type="submit" name="connexion" class="btn">Acc&eacuteder aux concours</button>
       </form>
       <?php
   
-          if (isset($_POST['submit']))
+          if (isset($_POST['connexion']))
           {
               if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare("INSERT INTO utilisateur (prenom, nom, departement, email) VALUES (:prenom, :nom, :departement, :email)");
+                  $query = $pdo->prepare('SELECT prenom, nom, departement, email FROM utilisateur WHERE prenom=:prenom, nom=:nom, departement=:departement, email=:email');
                   $success = $query->execute([
-                        'prenom' => $_POST['prenom'],
-                        'nom' => $_POST['nom'],
-                        'departement' => $_POST['departement'],
-                        'email' => $_POST['email']
+                        "prenom" => $_POST['prenom'],
+                        "nom" => $_POST['nom'],
+                        "departement" => $_POST['departement'],
+                        "email" => $_POST['email']
                         ]);
-                  if($success){
+                  $user = $query->fetch(PDO::FETCH_ASSOC);
+
+                  if($user){
                       echo "Vous pouvez acc&eacuteder au site \n";
                       $_SESSION['logon'] = true;
-                  } 
-                  mysqli_close($pdo);
-                  sleep(2);
-                  header('Location: index.php');
-                  die();                 
+                      sleep(1);
+                      header ('Location: index.php');
+                  }                
               }
             else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
            }

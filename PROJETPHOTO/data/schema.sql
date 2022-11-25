@@ -15,7 +15,10 @@ CREATE TABLE utilisateur (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Gautier", "LEROUX", "R&T", "gautier.leroux@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Gautier", "LEROUX", "Réseaux et Télécommunications", "gautier.leroux@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Ludovic", "URBES", "Réseaux et Télécommunications", "ludovic.urbes@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Eliott", "MARCEAU", "Réseaux et Télécommunications", "eliott.marceau@etu.univ-poitiers.fr");
+
 
 CREATE TABLE photo (
     `id` INT AUTO_INCREMENT UNIQUE,
