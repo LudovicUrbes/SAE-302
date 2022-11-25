@@ -74,7 +74,7 @@
         <label for="mdp">
           <strong>Mot de passe</strong>
         </label>
-        <input type="text" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
+        <input type="passsword" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
         <input type="checkbox" id="condition" required />
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
