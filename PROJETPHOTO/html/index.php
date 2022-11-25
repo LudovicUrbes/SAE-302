@@ -34,9 +34,9 @@
 
     <?php
     if (isset($_FILES['fic']['tmp_name'])) {
-        //$origine = $_FILES['fic']['tmp_name'];
+        $origine = $_FILES['fic']['tmp_name'];
         $destination = '../data/img/'.$_FILES['fic']['name'];
-        $retour = copy($_FILES['fic']['tmp_name'], $destination);
+        $retour = copy($origine, $destination);
         if($retour) {
             echo '<p>La photo a bien été envoyée.</p>';
             echo '<img src="' . $_FILES['fic']['name'] . '">';
@@ -64,7 +64,7 @@
         <select nid="dep" name="departement" required>
             <option value="">Choisis ton d&eacutepartement</option>
             <option value="R&T">R&eacuteseaux et T&eacutel&eacutecommunications</option>
-            <option value="TC">Technico-Commercial</option>
+            <option value="TC">Techniques de Commercialisation</option>
             <option value="MP">Mesures Physiques</option>
         </select> <br> <br>
         <label for="email">
@@ -83,7 +83,7 @@
           {
               if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']))
               {
-                  include('./connexion_base.php');
+                  include('connexion_base.php');
                   $query = $pdo->prepare("INSERT INTO utilisateur (prenom, nom, departement, email) VALUES (:prenom, :nom, :departement, :email)");
                   $success = $query->execute([
                         'prenom' => $_POST['prenom'],
