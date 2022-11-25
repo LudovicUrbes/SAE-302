@@ -34,9 +34,9 @@
 
     <?php
     if (isset($_FILES['fic']['tmp_name'])) {
-        //$origine = $_FILES['fic']['tmp_name'];
+        $origine = $_FILES['fic']['tmp_name'];
         $destination = '../data/img/'.$_FILES['fic']['name'];
-        $retour = copy($_FILES['fic']['tmp_name'], $destination);
+        $retour = copy($origine, $destination);
         if($retour) {
             echo '<p>La photo a bien été envoyée.</p>';
             echo '<img src="' . $_FILES['fic']['name'] . '">';
