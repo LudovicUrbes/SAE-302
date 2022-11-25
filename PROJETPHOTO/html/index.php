@@ -88,7 +88,7 @@
               if(isset($_POST['email']) && isset($_POST['mdp']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare('SELECT email, mdp FROM utilisateur WHERE mail=:email, mdp=:mdp');
+                  $query = $pdo->prepare('SELECT email, mdp FROM utilisateur WHERE mail=:email AND mdp=:mdp');
                   $success = $query->execute([
                         "email" => $_POST['email'],
                         "mdp" => $_POST['mdp']
