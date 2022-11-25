@@ -75,7 +75,7 @@
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
         </label> <br> <br>
-        <button type="submit" class="btn">Acc&eacuteder aux concours</button>
+        <button type="submit" name="submit" class="btn">Acc&eacuteder aux concours</button>
       </form>
       <?php
   
@@ -83,7 +83,7 @@
           {
               if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']))
               {
-                  include('connexion_base.php');
+                  include('./connexion_base.php');
                   $query = $pdo->prepare("INSERT INTO utilisateur (prenom, nom, departement, email) VALUES (:prenom, :nom, :departement, :email)");
                   $success = $query->execute([
                         'prenom' => $_POST['prenom'],
@@ -97,12 +97,11 @@
                   mysqli_close($pdo);
                   sleep(2);
                   header('Location: index.php');
-                  die();
-                            
+                  die();                 
               }
             else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
            }
-       ?>
+      ?>
     <script type="text/javascript" src="./Javascript/popup.js"></script>
     </div>
 
