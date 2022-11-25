@@ -93,6 +93,7 @@
                         ]);
                   if($success){
                       echo "Vous pouvez acc&eacuteder au site \n";
+                      $_SESSION['logon'] = true;
                   } 
                   mysqli_close($pdo);
                   sleep(2);
