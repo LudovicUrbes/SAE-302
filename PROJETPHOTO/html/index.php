@@ -66,7 +66,7 @@
             <option value="R&T">R&eacuteseaux et T&eacutel&eacutecommunications</option>
             <option value="TC">Techniques de Commercialisation</option>
             <option value="MP">Mesures Physiques</option>
-        </select> <br> <br>
+        </select> 
         <label for="email">
           <strong>E-mail</strong>
         </label>
@@ -74,7 +74,7 @@
         <label for="mdp">
           <strong>Mot de passe</strong>
         </label>
-        <input type="passsword" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
+        <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
         <input type="checkbox" id="condition" required />
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
