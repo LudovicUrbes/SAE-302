@@ -85,14 +85,11 @@
   
           if (isset($_POST['connexion']))
           {
-              if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['departement']) && !empty($_POST['email']) && !empty($_POST['mdp']))
+              if(isset($_POST['email']) && isset($_POST['mdp']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare('SELECT prenom, nom, departement, email, mdp FROM utilisateur WHERE prenom=:prenom, nom=:nom, departement=:departement, email=:email, mdp=:mdp');
+                  $query = $pdo->prepare('SELECT email, mdp FROM utilisateur WHERE mail=:email, mdp=:mdp');
                   $success = $query->execute([
-                        "prenom" => $_POST['prenom'],
-                        "nom" => $_POST['nom'],
-                        "departement" => $_POST['departement'],
                         "email" => $_POST['email'],
                         "mdp" => $_POST['mdp']
                         ]);
