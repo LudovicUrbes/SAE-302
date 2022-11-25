@@ -15,9 +15,9 @@ CREATE TABLE utilisateur (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Gautier", "LEROUX", "Réseaux et Télécommunications", "gautier.leroux@etu.univ-poitiers.fr");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Ludovic", "URBES", "Réseaux et Télécommunications", "ludovic.urbes@etu.univ-poitiers.fr");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Eliott", "MARCEAU", "Réseaux et Télécommunications", "eliott.marceau@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Gautier", "LEROUX", "R&eacuteseaux et T&eacutel&eacutecommunications", "gautier.leroux@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Ludovic", "URBES", "R&eacuteseaux et T&eacutel&eacutecommunications", "ludovic.urbes@etu.univ-poitiers.fr");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email` ) VALUES ("Eliott", "MARCEAU", "R&eacuteseaux et T&eacutel&eacutecommunications", "eliott.marceau@etu.univ-poitiers.fr");
 
 
 CREATE TABLE photo (
