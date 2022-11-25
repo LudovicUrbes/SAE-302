@@ -8,7 +8,7 @@ CREATE TABLE utilisateur (
     `id` INT AUTO_INCREMENT UNIQUE,
     `prenom` VARCHAR(20) NOT NULL UNIQUE,
     `nom` VARCHAR(20) NOT NULL UNIQUE,
-    `departement` VARCHAR(20) NOT NULL,
+    `departement` VARCHAR(50) NOT NULL,
     `email` VARCHAR(50) NOT NULL UNIQUE,
     `vote_possible` INT default 1,
     `choix` INT NULL,
