@@ -8,6 +8,18 @@
     <link href="./CSS/app.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+
+    <ul class="nav justify-content-end" style="font-size: larger;">
+      <li class="nav-item gauche">
+        <a class="nav-link active" aria-current="page" style="color:#000000;">Quizz R&T</a>
+      </li>
+      <li class="nav-item">
+        <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $condition === 1): ?>
+          <a class="nav-link active" aria-current="page" href="admin.php" style="color:#000000;"> Admin</a>
+        <?php endif ?>
+      </li>
+    </ul>
+
     <div class="container" id="blur">
       <header>
         <div id="nom_site">
@@ -109,6 +121,10 @@
     </div>
 
     <?php endif ?>
+
+    <p>
+      <?php echo '<span style="color: red;"> <big> <big> <big> <big>'.$_SESSION['username'].'</big> </big> </big> </big> </span>' ?>
+    </p>
 
   </body> 
 </html>

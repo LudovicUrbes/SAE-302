@@ -13,13 +13,14 @@ CREATE TABLE utilisateur (
     `mdp` VARCHAR(50) NOT NULL,
     `vote_possible` INT default 1,
     `choix` INT NULL,
+    `condition` INT default 0,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Gautier", "LEROUX", "R&eacuteseaux et T&eacutel&eacutecommunications", "gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Ludovic", "URBES", "R&eacuteseaux et T&eacutel&eacutecommunications", "ludovic.urbes@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Eliott", "MARCEAU", "R&eacuteseaux et T&eacutel&eacutecommunications", "eliott.marceau@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp` ) VALUES ("Alan", "DE LIJSTER", "R&eacuteseaux et T&eacutel&eacutecommunications", "alan.de.lijster@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp`, `condition`) VALUES ("Gautier", "LEROUX", "R&eacuteseaux et T&eacutel&eacutecommunications", "gautier.leroux@etu.univ-poitiers.fr", "gtrnet", "1");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp`, `condition`) VALUES ("Ludovic", "URBES", "R&eacuteseaux et T&eacutel&eacutecommunications", "ludovic.urbes@etu.univ-poitiers.fr", "gtrnet", "1");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp`, `condition`) VALUES ("Eliott", "MARCEAU", "R&eacuteseaux et T&eacutel&eacutecommunications", "eliott.marceau@etu.univ-poitiers.fr", "gtrnet", "1");
+INSERT INTO `utilisateur` (`prenom`, `nom`, `departement`, `email`, `mdp`, `condition`) VALUES ("Alan", "DE LIJSTER", "R&eacuteseaux et T&eacutel&eacutecommunications", "alan.de.lijster@etu.univ-poitiers.fr", "gtrnet", "1");
 
 CREATE TABLE photo (
     `id` INT AUTO_INCREMENT UNIQUE,
@@ -28,3 +29,5 @@ CREATE TABLE photo (
     `like` INT default 0,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
+
+INSERT INTO `photo` (`stockage`, `legend`, `like`) VALUES ("../data/img/", "Petite écursion", "5");
