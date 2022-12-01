@@ -126,5 +126,19 @@
       <?php echo '<span style="color: red;"> <big> <big> <big> <big>'.$_SESSION['username'].'</big> </big> </big> </big> </span>' ?>
     </p>
 
+    <?php 
+      $liste[] = '<table align="center" cellspacing="5" style="text-align: center;">';
+      if ($dossier = opendir("../data/img/")) {
+        while (($item = readdir($dossier)) !== false) {
+          if ($item[0] == '.') { continue; }
+          if (!in_array(end(explode('.', $item)), array('jpg','jpeg','png','gif'))) { continue; }
+          $liste[] = '<tr><td><img src="'.$item.'" alt="'.$item.'" /></td></tr>';
+        }
+        closedir($dossier);
+      }
+      $liste[] = '</table>';
+      echo implode("\n", $liste);
+    ?>
+
   </body> 
 </html>
