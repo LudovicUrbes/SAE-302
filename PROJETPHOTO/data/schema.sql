@@ -1,5 +1,9 @@
+CREATE DATABASE projet;
+
 CREATE USER 'php'@'localhost' IDENTIFIED BY 'web';
 GRANT ALL PRIVILEGES ON * . * TO 'php'@'localhost';
+
+use projet;
 
 drop table utilisateur;
 drop table photo;
