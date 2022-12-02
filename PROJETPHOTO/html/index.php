@@ -11,10 +11,10 @@
 
     <ul class="nav justify-content-end" style="font-size: larger;">
       <li class="nav-item gauche">
-        <a class="nav-link active" aria-current="page" style="color:#000000;">Quizz R&T</a>
+        <a class="nav-link active" aria-current="page" style="color:#000000;">Concours Photo</a>
       </li>
       <li class="nav-item">
-        <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $condition === 1): ?>
+        <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $_SESSION['condition'] === 1): ?>
           <a class="nav-link active" aria-current="page" href="admin.php" style="color:#000000;"> Admin</a>
         <?php endif ?>
       </li>
@@ -83,10 +83,35 @@
           <strong>E-mail</strong>
         </label>
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
-        <label for="mdp">
+        <label for="mdp" id="mdp">
           <strong>Mot de passe</strong>
+          <div class="password-icon">
+            <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
+            <i data-feather="eye"></i>
+            <i data-feather="eye-off"></i>
+          </div>
+
+
+          <script src="https://unpkg.com/feather-icons"></script>
+          <script>
+              feather.replace();
+              const eye = document.querySelector(".feather-eye");
+              const eyeoff = document.querySelector(".feather-eye-off");
+              const passwordField = document.querySelector("input[type=password]");
+              eye.addEventListener("click", () => {
+              eye.style.display = "none";
+              eyeoff.style.display = "block";
+              passwordField.type = "text";
+              });
+
+              eyeoff.addEventListener("click", () => {
+              eyeoff.style.display = "none";
+              eye.style.display = "block";
+              passwordField.type = "password";
+              });
+          </script>
+
         </label>
-        <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
         <input type="checkbox" id="condition" required />
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
@@ -100,13 +125,13 @@
               if(isset($_POST['email']) && isset($_POST['mdp']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare('SELECT email, mdp FROM utilisateur WHERE email=:email AND mdp=:mdp');
+                  $query = $pdo->prepare('SELECT email, mdp, condition FROM utilisateur WHERE email=:email AND mdp=:mdp');
                   $success = $query->execute([
                         "email" => $_POST['email'],
                         "mdp" => $_POST['mdp']
                         ]);
                   $user = $query->fetch(PDO::FETCH_ASSOC);
-
+                  
                   if($user){
                       echo "Vous pouvez acc&eacuteder au site \n";
                       $_SESSION['logon'] = true;
@@ -122,12 +147,8 @@
 
     <?php endif ?>
 
-    <p>
-      <?php echo '<span style="color: red;"> <big> <big> <big> <big>'.$_SESSION['username'].'</big> </big> </big> </big> </span>' ?>
-    </p>
-
     <?php 
-      $liste[] = '<table align="center" cellspacing="5" style="text-align: center;">';
+      $liste[] = '<table align="center" cellspacing="5" style="text-align: centesr;">';
       if ($dossier = opendir("../data/img/")) {
         while (($item = readdir($dossier)) !== false) {
           if ($item[0] == '.') { continue; }
