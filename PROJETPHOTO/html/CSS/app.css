@@ -211,7 +211,13 @@ label .password-icon .feather-eye-off {
 }
 
 label #mdp{
-  position: relative;
+  background-color: #8f8f8f;
+color: white;
+padding: 5px 10px;
+border-radius: 10px;
+border: 1px ridge black;
+font-size: 1rem;
+height: auto;
 }
 
 label #mdp input {

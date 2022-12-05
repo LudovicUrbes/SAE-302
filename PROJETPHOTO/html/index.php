@@ -85,11 +85,12 @@
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
         <label for="mdp" id="mdp">
           <strong>Mot de passe</strong>
-          <div class="password-icon">
-            <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
-            <i data-feather="eye"></i>
-            <i data-feather="eye-off"></i>
-          </div>
+         </label> 
+        <div class="password-icon">
+          <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
+          <i data-feather="eye"></i>
+          <i data-feather="eye-off"></i>
+        </div>
 
 
           <script src="https://unpkg.com/feather-icons"></script>
