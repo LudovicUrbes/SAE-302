@@ -31,7 +31,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #50504b;
   transition: 0.5s;
   padding: 20px;
 }

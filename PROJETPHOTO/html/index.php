@@ -51,7 +51,6 @@
         $retour = copy($origine, $destination);
         if($retour) {
             echo '<p>La photo a bien été envoyée.</p>';
-            echo '<img src="' . $_FILES['fic']['name'] . '">';
         }
     }
     ?>
@@ -83,36 +82,33 @@
           <strong>E-mail</strong>
         </label>
         <input type="text" id="email" placeholder="Votre Email" name="email" required />
-        <label for="mdp" id="mdp">
-          <strong>Mot de passe</strong>
-         </label> 
         <div class="password-icon">
+          <label for="mdp" id="mdp">
+            <strong>Mot de passe</strong>
+          </label>
           <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
           <i data-feather="eye"></i>
           <i data-feather="eye-off"></i>
-        </div>
-
 
           <script src="https://unpkg.com/feather-icons"></script>
           <script>
-              feather.replace();
-              const eye = document.querySelector(".feather-eye");
-              const eyeoff = document.querySelector(".feather-eye-off");
-              const passwordField = document.querySelector("input[type=password]");
-              eye.addEventListener("click", () => {
-              eye.style.display = "none";
-              eyeoff.style.display = "block";
-              passwordField.type = "text";
-              });
+            feather.replace();
+            const eye = document.querySelector(".feather-eye");
+            const eyeoff = document.querySelector(".feather-eye-off");
+            const passwordField = document.querySelector("input[type=password]");
+            eye.addEventListener("click", () => {
+            eye.style.display = "none";
+            eyeoff.style.display = "block";
+            passwordField.type = "text";
+            });
 
-              eyeoff.addEventListener("click", () => {
-              eyeoff.style.display = "none";
-              eye.style.display = "block";
-              passwordField.type = "password";
-              });
+            eyeoff.addEventListener("click", () => {
+            eyeoff.style.display = "none";
+            eye.style.display = "block";
+            passwordField.type = "password";
+            });
           </script>
-
-        </label>
+        </div>
         <input type="checkbox" id="condition" required />
         <label for="condition">
           <strong>Conditions g&eacuten&eacuterales</strong>
@@ -134,10 +130,9 @@
                   $user = $query->fetch(PDO::FETCH_ASSOC);
                   
                   if($user){
-                      echo "Vous pouvez acc&eacuteder au site \n";
                       $_SESSION['logon'] = true;
-                      sleep(5);
-                      header ('Location: index.php');
+                      sleep(1);
+                      header("index.php");
                   }                
               }
             else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
@@ -148,25 +143,34 @@
 
     <?php endif ?>
 
-    <?php   
-      $table = '<table align="center" cellspacing="10" width="1080"><tr>'."\n";  
-      $liste = array(); 
-      $dir="../data/img/";
-      if ($dossier = opendir($dir)) {  
-          while (($item = readdir($dossier)) !== false) {  
-              if ($item[0] == '.') { continue; }  
-              if (!in_array(end(explode('.', $item)), array('jpg','jpeg','png','gif'))) { continue; }  
-              $liste[] = $item;  
-          }  
-          closedir($dossier);  
-          rsort($liste); 
-          foreach ($liste as $val) { 
-              $table .= '<td><img src="'.$dir.'/'.$val.'" alt="" /> </td>'."\n"; 
-          } 
-      }  
-      $table .= '</tr></table>';  
-      echo $table;  
-    ?>
+    <h1> Photographie concours </h1>
+
+    <div id="blur">
+      <?php   
+        $table = '<table align="center" cellspacing="10" width="1080"><tr>'."\n";  
+        $liste = array(); 
+        $dir="../data/img/";
+        if ($dossier = opendir($dir)) {  
+            while (($item = readdir($dossier)) !== false) {  
+                if ($item[0] == '.') { continue; }  
+                if (!in_array(end(explode('.', $item)), array('jpg','jpeg','png','gif'))) { continue; }  
+                $liste[] = $item;  
+            }  
+            closedir($dossier);  
+            rsort($liste); 
+            foreach ($liste as $val) { 
+                $table .= '<td><img src="'.$dir.'/'.$val.'" alt="" width="368" height="276"/><input type="radio" name="vote" value="vote"> </td>'."\n"; 
+            } 
+        }  
+        $table .= '</tr></table>';  
+        echo $table;  
+      ?>
+
+      <button type="submit" name="photo" class="btn">Validé votre vote</button>
+
+    </div>
+
+
 
   </body> 
 </html>
