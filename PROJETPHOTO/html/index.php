@@ -148,18 +148,24 @@
 
     <?php endif ?>
 
-    <?php 
-      $liste[] = '<table align="center" cellspacing="5" style="text-align: centesr;">';
-      if ($dossier = opendir("../data/img/")) {
-        while (($item = readdir($dossier)) !== false) {
-          if ($item[0] == '.') { continue; }
-          if (!in_array(end(explode('.', $item)), array('jpg','jpeg','png','gif'))) { continue; }
-          $liste[] = '<tr><td><img src="'.$item.'" alt="'.$item.'" /></td></tr>';
-        }
-        closedir($dossier);
-      }
-      $liste[] = '</table>';
-      echo implode("\n", $liste);
+    <?php   
+      $table = '<table align="center" cellspacing="10" width="1080"><tr>'."\n";  
+      $liste = array(); 
+      $dir="../data/img/";
+      if ($dossier = opendir($dir)) {  
+          while (($item = readdir($dossier)) !== false) {  
+              if ($item[0] == '.') { continue; }  
+              if (!in_array(end(explode('.', $item)), array('jpg','jpeg','png','gif'))) { continue; }  
+              $liste[] = $item;  
+          }  
+          closedir($dossier);  
+          rsort($liste); 
+          foreach ($liste as $val) { 
+              $table .= '<td><img src="'.$dir.'/'.$val.'" alt="" /> </td>'."\n"; 
+          } 
+      }  
+      $table .= '</tr></table>';  
+      echo $table;  
     ?>
 
   </body> 
