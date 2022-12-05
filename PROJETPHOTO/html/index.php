@@ -126,7 +126,7 @@
               if(isset($_POST['email']) && isset($_POST['mdp']))
               {
                   include('connexion_base.php');
-                  $query = $pdo->prepare('SELECT email, mdp, condition FROM utilisateur WHERE email=:email AND mdp=:mdp');
+                  $query = $pdo->prepare('SELECT email, mdp FROM utilisateur WHERE email=:email AND mdp=:mdp');
                   $success = $query->execute([
                         "email" => $_POST['email'],
                         "mdp" => $_POST['mdp']
@@ -136,7 +136,7 @@
                   if($user){
                       echo "Vous pouvez acc&eacuteder au site \n";
                       $_SESSION['logon'] = true;
-                      sleep(1);
+                      sleep(5);
                       header ('Location: index.php');
                   }                
               }
