@@ -45,14 +45,7 @@
     </div>
 
     <?php
-    if (isset($_FILES['fic']['tmp_name'])) {
-        $origine = $_FILES['fic']['tmp_name'];
-        $destination = '../data/img/'.$_FILES['fic']['name'];
-        $retour = copy($origine, $destination);
-        if($retour) {
-            echo '<p>La photo a bien été envoyée.</p>';
-        }
-    }
+      include("envoi_image.php");
     ?>
     
     <!--COMMENTEZ LA DIV ET LA BALISE SCRIPT POUR RETROUVER LA PAGE INITIALE  efefefef!!!
@@ -159,7 +152,7 @@
             closedir($dossier);  
             rsort($liste); 
             foreach ($liste as $val) { 
-                $table .= '<td><img src="'.$dir.'/'.$val.'" alt="" width="368" height="276"/><input type="radio" name="vote" value="vote"> </td>'."\n"; 
+                $table .= '<td><img src="'.$dir.'/'.$val.'" alt="" max-width=80% max-height=auto/><input type="radio" name="vote" > </td>'."\n"; 
             } 
         }  
         $table .= '</tr></table>';  
