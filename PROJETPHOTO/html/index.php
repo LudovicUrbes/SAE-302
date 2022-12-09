@@ -61,7 +61,5 @@
       include("affichage_img.php")
     ?>
 
-
-
   </body> 
 </html>

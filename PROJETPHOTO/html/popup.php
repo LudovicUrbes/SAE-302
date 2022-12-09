@@ -3,21 +3,6 @@
     <div id="popup">
       <form method="post" action="index.php" class="form-container">
         <h2>Entrez vos donn&eacutees personnelles</h2>
-        <label for="prenom">
-          <strong>Pr&eacutenom</strong>
-        </label>
-        <input type="text" id="prenom" placeholder="Votre Prenom" name="prenom" required />
-        <label for="nom">
-          <strong>Nom</strong>
-        </label>
-        <input type="text" id="nom" placeholder="Votre Nom" name="nom" required />
-        <label for="dep"><strong>D&eacutepartement</strong></label>
-        <select nid="dep" name="departement" plaehrequired>
-            <option value="">Choisis ton d&eacutepartement</option>
-            <option value="R&T">R&eacuteseaux et T&eacutel&eacutecommunications</option>
-            <option value="TC">Techniques de Commercialisation</option>
-            <option value="MP">Mesures Physiques</option>
-        </select> 
         <label for="email">
           <strong>E-mail</strong>
         </label>
