@@ -57,7 +57,7 @@
                   if($user){
                       $_SESSION['logon'] = true;
                       sleep(1);
-                      header("index.php");
+                      replace("index.php");
                   }                
               }
             else echo '<span style="color:#000000;"> <big> Veuillez saisir tous les champs ! </big> </span>';
