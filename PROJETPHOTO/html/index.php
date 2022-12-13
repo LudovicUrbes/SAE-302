@@ -9,20 +9,21 @@
   </head>
   <body>
 
-    <ul class="nav justify-content-end" style="font-size: larger;">
+    <header>
+    <ul class="nav justify-content-end" style="font-size: larger;" id="bouton_admin">
       <li class="nav-item">
         <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $_SESSION['condition'] === 1): ?>
           <a class="nav-link active" aria-current="page" href="admin.php" style="color:#000000;"> Admin</a>
         <?php endif ?>
       </li>
     </ul>
-
-    <div class="container" id="blur">
-      <header>
         <div id="nom_site">
           <h1><i><b>Votez !</b></i></h1>
         </div>
-      </header>
+        <div class="lineaire-simple" id="degrader"></div>
+    </header>
+    
+    <div class="container" id="blur">
       <article id="img_insert">
         <form method="post" enctype="multipart/form-data">
           <div>
@@ -49,16 +50,13 @@
     Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
 
     <?php
-      if ($_SESSION['logon'] == false)
-      {
-        include("popup.php");
-      }  
+      include("popup.php")
     ?>
 
     <h1> Photographie concours </h1>
 
     <?php
-      include("affichage_img.php");
+      include("affichage_img.php")
     ?>
 
   </body> 
