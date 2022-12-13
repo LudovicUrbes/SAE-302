@@ -5,8 +5,9 @@
         $dir="../data/img/";
         if ($dossier = opendir($dir)) {  
             while (($item = readdir($dossier)) !== false) {  
-                if ($item[0] == '.') { continue; }  
-                if (!in_array(end(explode('.', $item)), array('jpg','jpeg','png','gif'))) { continue; }  
+                if ($item[0] == '.') { continue; }
+                $tmp = explode('.', $item);
+                if (!in_array(end($tmp), array('jpg','jpeg','png','gif'))) { continue; }  
                 $liste[] = $item;  
             }  
             closedir($dossier);  

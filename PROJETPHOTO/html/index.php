@@ -49,13 +49,16 @@
     Actuellement lorsque le popup est rempli il renvoie vers l'index avec les arguments php "email" et "psw" mais cette page n'existant pas on tombe sur une erreur 404 -->
 
     <?php
-      include("popup.php")
+      if ($_SESSION['logon'] == false)
+      {
+        include("popup.php");
+      }  
     ?>
 
     <h1> Photographie concours </h1>
 
     <?php
-      include("affichage_img.php")
+      include("affichage_img.php");
     ?>
 
   </body> 
