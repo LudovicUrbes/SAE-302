@@ -11,7 +11,7 @@ body {
 }
 
 #nom_site {
-    text-shadow: 0 0 2px #FFD100,0 0 30px #FFD100, 0px 0px 5px #FFD100, 0 0 150px #FFD100;
+    /*text-shadow: 0 0 2px #FFD100,0 0 30px #FFD100, 0px 0px 5px #FFD100, 0 0 150px #FFD100;
     color:#FFD100;
     background-color:#50504b;
     padding: 10px;
@@ -20,7 +20,7 @@ body {
     text-align: center;
     position: fixed;
 	top: 2%;
-	left: 45%;
+	left: 45%;*/
 }
 
 .container {

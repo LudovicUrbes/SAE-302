@@ -10,9 +10,6 @@
   <body>
 
     <ul class="nav justify-content-end" style="font-size: larger;">
-      <li class="nav-item gauche">
-        <a class="nav-link active" aria-current="page" style="color:#000000;">Concours Photo</a>
-      </li>
       <li class="nav-item">
         <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $_SESSION['condition'] === 1): ?>
           <a class="nav-link active" aria-current="page" href="admin.php" style="color:#000000;"> Admin</a>
