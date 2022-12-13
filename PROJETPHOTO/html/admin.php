@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 
 <?php 
-    if ($_SESSION['condition'] === 1) {
+    if ($_SESSION['username'] === 'admin') {
     } else {
         header('Location: index.php');
     }

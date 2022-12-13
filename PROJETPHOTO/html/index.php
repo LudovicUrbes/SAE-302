@@ -12,7 +12,7 @@
     <header>
     <ul class="nav justify-content-end" style="font-size: larger;" id="bouton_admin">
       <li class="nav-item">
-        <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $_SESSION['condition'] === 1): ?>
+        <?php if ($_SERVER['REQUEST_URI'] == "index.php" && $_SESSION['logon'] === true && $_SESSION['username'] === 'admin'): ?>
           <a class="nav-link active" aria-current="page" href="admin.php" style="color:#000000;"> Admin</a>
         <?php endif ?>
       </li>
