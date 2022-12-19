@@ -1,5 +1,11 @@
 <?php
-	if (isset($_FILES['fic']['tmp_name'])) {  
+	if (isset($_FILES['fic']['tmp_name'])) {
+        /*
+        include('connexion_base.php');
+                $nom_img = $pdo->prepare('SELECT id FROM photo');
+                $success = $nom_img->execute();
+        $destination = '../data/img/'.$nom_img;
+        */
         $destination = '../data/img/'.$_FILES['fic']['name'];
 
 		$taille = getimagesize($_FILES['fic']['tmp_name']);
