@@ -34,27 +34,38 @@ $images = getAllImages();
                 <article class="col-span-3 h-fit mt-5 mx-5 shadow-xl p-4 rounded overflow-hidden">
                     <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center">Bienvenue ! 🎊🎊🎊</header>
-                        <p class="text-center">
-                            Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
-                            <br />
-                            Toutefois, si vous désirez participer, nous vous offrons la possibilitée de le faire !
-                            <br />
-                            Pour cela, choississez votre image à partir du bouton ci-dessous 👇.
-                            <br />
-                            Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
-                        </p>
+                        <br />
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center">Conditions de participation 📝</header>
                         <p class="text-center">
-                            Sachez que la participation est <u>annonyme</u>.
+                            Sachez que la participation est <u>anonyme</u>.
                             <br />
                             Lors du vote, personne ne pourra connaître l'auteur depuis le site.
                             <br />
                             Les images seront affichées lorsque le timer sera écoulé. Vous aurez alors quelques jours pour voter !!
                             <br />
                             Le nom de l'auteur sera donc dévoilé à la fin du concours ! 🎉
+                            <br />
+                            Pensez à bien vérifier votre photo lors de votre participation au concours !
+                            <br />
+                            Vous ne pourrez y participer qu'une seule fois !
+                            <br />
+                        </p>
+                    </section>
+                    <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                    <section class=" w-fit h-fit mx-auto">
+                    <header class="text-xl font-bold text-center">Explication</header>
+                        <p class="text-center">
+                            Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
+                            <br />
+                            Toutefois, si vous désirez participer, nous vous offrons la possibilité de le faire !
+                            <br />
+                            Pour cela, choississez votre image à partir du bouton ci-dessous 👇.
+                            <br />
+                            Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
+                            <br />
                         </p>
                     </section>
                 </article>
@@ -92,13 +103,13 @@ $images = getAllImages();
                     <?php require_once('admin/components/customInputIlmage.php'); ?>
                     <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
                         <?php require_once('admin/utils/upload.php'); ?>
-                        <input type="submit" class="cursor-pointer" value="Participer !" id="submit">
+                        <input type="submit" class="cursor-pointer" value="Envoyer !" id="submit">
                     </button>
                 </form>
 
                 <!-- Liste des images -->
                 <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">
-                    <header class="col-span-3 text-center text-2xl font-medium">🖼️<span class="underline">Liste des images :</span></header>
+                    <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Liste des images : </span> 🖼️</header>
                     <?php
                     if (count($images) != 0) :
                         foreach ($images as $image) :
@@ -108,7 +119,7 @@ $images = getAllImages();
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
-                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    <input id="default-checkbox" type="checkbox" value="vote" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
                                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>

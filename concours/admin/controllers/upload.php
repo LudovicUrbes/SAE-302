@@ -4,6 +4,7 @@ require_once '../../config/crud.php';
 session_start();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
+$images = getAllImages();
 
 $_SESSION['errorUpload'] = array();
 $_SESSION['successUpload'] = '';
@@ -77,18 +78,26 @@ if (!move_uploaded_file(
 
 $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 
-// Il ne nous reste plus qu'à ajouter l'image dans la base de données :
-addImage($destinationFile, $userId['id']);
-
+// Il ne nous reste plus qu'à ajouter l'image dans la base de données 
 // On vérifie que l'utilisateur n'a pas déjà upload une image 
 
-//if $userId
-//    addImage($destinationFile, $userId['id']);
-//else :
-//    array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre image sur le site.");
-//    header('Location: /SAE-302/concours/index.php');
+$upload==0;
+foreach ($images as $element){
 
+    if ($userId == $element['user_id']){
+        $upload=$upload+1;
+    }
+}
+
+if ($upload==0){
+    addImage($destinationFile, $userId['id']);
+} else {
+    array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
+    header('Location: /SAE-302/concours/index.php');
+    die();
+}
 
 // Enfin, on redirige sur la page pour voir le résultat !
 header('Location: /SAE-302/concours/index.php');
+array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
 die();
