@@ -109,6 +109,9 @@ $images = getAllImages();
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
                                     <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    <div id="fb-root"></div>
+                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
+                                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
