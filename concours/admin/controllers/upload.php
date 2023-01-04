@@ -58,6 +58,7 @@ if (false === array_search(
     die();
 }
 
+
 $destinationFile = sprintf(
     '../uploads/%s.%s',
     sha1_file($_FILES['image']['tmp_name']),
@@ -78,6 +79,15 @@ $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 
 // Il ne nous reste plus qu'à ajouter l'image dans la base de données :
 addImage($destinationFile, $userId['id']);
+
+// On vérifie que l'utilisateur n'a pas déjà upload une image 
+
+//if $userId
+//    addImage($destinationFile, $userId['id']);
+//else :
+//    array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre image sur le site.");
+//    header('Location: /SAE-302/concours/index.php');
+
 
 // Enfin, on redirige sur la page pour voir le résultat !
 header('Location: /SAE-302/concours/index.php');
