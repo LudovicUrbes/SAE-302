@@ -52,12 +52,18 @@ $images = getAllImages();
                             <br />
                             Vous ne pourrez y participer qu'une seule fois !
                             <br />
+                            Ne vous amuser pas à poster des images n'ayant aucun rapport avec le thème du coucours !
+                            <br />
+                            Le nom et prénom des personnes ayant posté seront connus !
+                            <br />
                         </p>
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">
                     <header class="text-xl font-bold text-center">Explication</header>
                         <p class="text-center">
+                            Cette année le thème du concours  est votre ville d'origine.
+                            <br />
                             Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
                             <br />
                             Toutefois, si vous désirez participer, nous vous offrons la possibilité de le faire !
@@ -66,6 +72,7 @@ $images = getAllImages();
                             <br />
                             Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
                             <br />
+                            Vous avez juste qu'au ..... pour publié votre photo et les votes aront lieu du .... au ....
                         </p>
                     </section>
                 </article>

@@ -81,15 +81,12 @@ $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 // Il ne nous reste plus qu'à ajouter l'image dans la base de données 
 // On vérifie que l'utilisateur n'a pas déjà upload une image 
 
-$upload==0;
-foreach ($images as $element){
+$bdd = getPDO();
+$req = $bdd->prepare('SELECT user_id FROM images WHERE user_id = $userId');
+$req->execute(array());
+$data = $req->fetch(PDO::FETCH_ASSOC);
 
-    if ($userId == $element['user_id']){
-        $upload=$upload+1;
-    }
-}
-
-if ($upload==0){
+if (empty($data)){
     addImage($destinationFile, $userId['id']);
 } else {
     array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
