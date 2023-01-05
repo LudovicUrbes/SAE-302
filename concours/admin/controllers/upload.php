@@ -82,7 +82,7 @@ $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 // On vérifie que l'utilisateur n'a pas déjà upload une image 
 
 $bdd = getPDO();
-$req = $bdd->prepare('SELECT user_id FROM images WHERE user_id = $userId');
+$req = $bdd->prepare("SELECT user_id FROM images WHERE user_id = $userId");
 $req->execute(array());
 $data = $req->fetch(PDO::FETCH_ASSOC);
 
