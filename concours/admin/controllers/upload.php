@@ -76,18 +76,19 @@ if (!move_uploaded_file(
     die();
 }
 
-$_SESSION['successUpload'] = 'Image téléchargée avec succès.';
-
 // Il ne nous reste plus qu'à ajouter l'image dans la base de données 
 // On vérifie que l'utilisateur n'a pas déjà upload une image 
 
 $bdd = getPDO();
-$req = $bdd->prepare("SELECT user_id FROM images WHERE user_id = $userId");
-$req->execute(array());
+$sql = "SELECT user_id FROM images WHERE user_id = :userId";
+$req = $bdd->prepare($sql);
+$req->bindParam(":userId", $userId['id']);
+$req->execute();
 $data = $req->fetch(PDO::FETCH_ASSOC);
 
 if (empty($data)){
     addImage($destinationFile, $userId['id']);
+    $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 } else {
     array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
     header('Location: /SAE-302/concours/index.php');
@@ -96,5 +97,4 @@ if (empty($data)){
 
 // Enfin, on redirige sur la page pour voir le résultat !
 header('Location: /SAE-302/concours/index.php');
-array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
 die();

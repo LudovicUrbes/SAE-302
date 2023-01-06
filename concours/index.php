@@ -62,7 +62,7 @@ $images = getAllImages();
                     <section class=" w-fit h-fit mx-auto">
                     <header class="text-xl font-bold text-center">Explication</header>
                         <p class="text-center">
-                            Cette année le thème du concours  est votre ville d'origine.
+                            Cette année <strong>le thème du concours est votre ville d'origine</strong>.
                             <br />
                             Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
                             <br />
