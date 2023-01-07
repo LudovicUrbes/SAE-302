@@ -90,7 +90,7 @@ if (empty($data)){
     addImage($destinationFile, $userId['id']);
     $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 } else {
-    array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
+    array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
     header('Location: /SAE-302/concours/index.php');
     die();
 }
