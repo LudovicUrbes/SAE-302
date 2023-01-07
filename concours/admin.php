@@ -7,22 +7,20 @@ $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 
 
-if ($userId['id'] === 100 or 101 or 102 or 103){
+if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)){
 } else {
     header('Location: /SAE-302/concours/index.php');
 }
-
 
 ?>
 <!doctype html>
 <html lang="fr">
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="/SAE-302/concours/style.css">
     <title>Concours Photo | IUT Châtellerault</title>
 </head>
 
@@ -31,8 +29,8 @@ if ($userId['id'] === 100 or 101 or 102 or 103){
         <!-- Vrai Contenu Une fois connecté :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
-                <h1 class="text-2xl ml-3">Page ADMIN</h1>
-                <h1 class="text-2xl ml-3"> <a href ="/SAE-302/concours/index.php">Concours</a></h1>
+                <h1 class="text-2xl ml-3">Page d'Administration</h1>
+                <h1 class="text-2xl ml-3"> <a href ="/SAE-302/concours/index.php">Concours Photo</a></h1>
                 <div class="flex items-center gap-y-1">
                     <h3><?= $_SESSION['user']; ?></h3>
                     <a href="admin/controllers/logout.php">
@@ -53,7 +51,7 @@ if ($userId['id'] === 100 or 101 or 102 or 103){
                     <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center"> Utilité de la page 📝</header>
                         <p class="text-center">
-                            Depuis cette page vous pouvez supprimez des photos si elles ne correspondent aux réglements 
+                            Depuis cette page vous pouvez supprimez des photos si elles ne correspondent aux réglements.
                             <br />
                             Vous pouvez aussi avoir un aperçu sur les votes et les noms des participants.
                             <br />
@@ -71,7 +69,7 @@ if ($userId['id'] === 100 or 101 or 102 or 103){
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
-                                    <input id="default-checkbox" type="checkbox" value="vote" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    <input id="default-checkbox" type="radio" value="vote" name="vote_photo" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
                                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
@@ -82,11 +80,54 @@ if ($userId['id'] === 100 or 101 or 102 or 103){
                         <div class="col-span-3 p-2 bg-yellow-500 items-center text-yellow-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                             <span class="flex rounded-full bg-yellow-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                             <span class="font-semibold mr-2 text-center flex-auto">
-                                Nous n'avons pas d'image à vous proposer 😥
+                                Nous n'avons pas encore d'image à vous proposer 😥
                             </span>
                         </div>
                     <?php endif; ?>
                 </section>
+                <section>
+                    <button class="bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center">
+                        <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" id="submit">
+                    </button>
+                </section>
+                <section>
+                    <h1>Tableau des scores : </h1>
+                    <div>
+                        <table class="table">
+                        <?php
+
+                            $bdd = getPDO();
+                            $req = $bdd->query("SELECT id, likes, user_id FROM images ORDER BY likes DESC");
+
+                        ?>
+
+                            <!--
+                            $bdd_2 = getPDO();    
+                            $sql = "SELECT email FROM users WHERE id = :userId";
+                            $req_2 = $bdd_2->prepare($sql);
+                            $req_2->bindParam(":userId", $req['user_id']);
+                            $req_2->execute();
+                            $data = $req_2->fetch(PDO::FETCH_ASSOC);
+                            -->
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Identifiant de l'image </th>
+                                <th scope="col">Nombre de likes </th>
+                                <th scope="col">Identifiant de l'utilisateur </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($req as $donnees):?>
+                            <tr>
+                                <td style="background-color: #f2f2f2"> <?=$donnees['id']?></td>
+                                <td style="background-color: #d3d3d3"> <?=$donnees['likes']?></td>
+                                <td style="background-color: #f2f2f2"> <?=$donnees['user_id']?></td>
+                            </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                        </table>
+                </section>       
             </section>
         </section>
     <?php else : ?>

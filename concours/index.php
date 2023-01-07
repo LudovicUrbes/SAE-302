@@ -21,10 +21,10 @@ $userId = getUserIdByEmail($email);
         <!-- Vrai Contenu Une fois connecté :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
-                <h1 class="text-2xl ml-3">Concours</h1>
+                <h1 class="text-2xl ml-3">Concours Photo</h1>
 
-                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && $userId['id'] === 100 or 101 or 102 or 103): ?>
-                <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="color:#000000;">ADMIN</a>
+                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && ($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)): ?>
+                <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="color:#000000;">Administration</a>
                 <?php endif ?>
 
                 <div class="flex items-center gap-y-1">
@@ -106,9 +106,10 @@ $userId = getUserIdByEmail($email);
                             <br />
                             Pour cela, choississez votre image à partir du bouton ci-dessous 👇.
                             <br />
+                            Veuillez à bien renomer votre photo avec votre nom et prénom. Par exemple : <u>Jane.McConnell.jpeg</u>
+                            <br />
                             Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
                             <br />
-                            Vous avez juste qu'au ..... pour publié votre photo et les votes aront lieu du .... au ....
                         </p>
                     </section>
                 </article>
@@ -146,7 +147,7 @@ $userId = getUserIdByEmail($email);
                     <?php require_once('admin/components/customInputIlmage.php'); ?>
                     <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
                         <?php require_once('admin/utils/upload.php'); ?>
-                        <input type="submit" class="cursor-pointer" value="Envoyer !" id="submit">
+                        <input type="submit" class="cursor-pointer" value="Envoyer votre photo !" id="submit">
                     </button>
                 </form>
 
@@ -162,7 +163,7 @@ $userId = getUserIdByEmail($email);
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
-                                    <input id="default-checkbox" type="checkbox" value="vote" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    <input id="default-checkbox" type="radio" value="vote" name="vote_photo" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
                                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
@@ -173,12 +174,15 @@ $userId = getUserIdByEmail($email);
                         <div class="col-span-3 p-2 bg-yellow-500 items-center text-yellow-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                             <span class="flex rounded-full bg-yellow-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                             <span class="font-semibold mr-2 text-center flex-auto">
-                                Nous n'avons pas d'image à vous proposer 😥
+                                Nous n'avons pas encore d'image à vous proposer 😥
                             </span>
                         </div>
                     <?php endif; ?>
                 </section>
             </section>
+            <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">?>
+                <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" id="submit">
+            </button>
         </section>
     <?php else : ?>
         <!-- Contenu -->
