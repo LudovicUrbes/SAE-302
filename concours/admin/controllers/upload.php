@@ -5,6 +5,7 @@ session_start();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 $images = getAllImages();
+$data = getUserIdByUserImage($userId);
 
 $_SESSION['errorUpload'] = array();
 $_SESSION['successUpload'] = '';
@@ -78,13 +79,6 @@ if (!move_uploaded_file(
 
 // Il ne nous reste plus qu'à ajouter l'image dans la base de données 
 // On vérifie que l'utilisateur n'a pas déjà upload une image 
-
-$bdd = getPDO();
-$sql = "SELECT user_id FROM images WHERE user_id = :userId";
-$req = $bdd->prepare($sql);
-$req->bindParam(":userId", $userId['id']);
-$req->execute();
-$data = $req->fetch(PDO::FETCH_ASSOC);
 
 if (empty($data)){
     addImage($destinationFile, $userId['id']);

@@ -180,7 +180,7 @@ $userId = getUserIdByEmail($email);
                     <?php endif; ?>
                 </section>
             </section>
-            <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">?>
+            <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
                 <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" id="submit">
             </button>
         </section>

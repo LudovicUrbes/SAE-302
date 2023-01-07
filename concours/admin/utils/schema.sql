@@ -18,7 +18,7 @@ CREATE TABLE users (
 
 CREATE TABLE images(
     `id` INT AUTO_INCREMENT UNIQUE,
-    `url` VARCHAR(100) NOT NULL UNIQUE,
+    `url` VARCHAR(100) NOT NULL,
     `likes` INT default 0,
     `user_id` INT NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
