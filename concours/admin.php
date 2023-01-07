@@ -70,7 +70,20 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
-                                    <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    <form method="post" action="/SAE-302/concours/admin.php">
+                                        <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                        <?php
+                                            if (isset($_POST['submit']))
+                                            {
+                                                $bdd = getPDO();
+                                                $sql = "DELETE FROM images WHERE id = :choix";
+                                                $req = $bdd->prepare($sql);
+                                                $req->bindParam(":choix", $selectImage['id'] );
+                                                $req->execute();
+                                            }
+                                        ?>
+
+                                    </form>
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
                                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
@@ -87,35 +100,9 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     <?php endif; ?>
                 </section>
                 <section>
-                    
-                    <form method="post" action="/SAE-302/concours/admin.php">
-                        <button class="bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center">
-                            <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" name="submit">
-                        </button>
-                    </form>
-                    
-                    <script> 
-                        var boutonsRadio = document.getElementsByTagName("input"); 
-                        for (var i = 0; i < boutonsRadio.length; i++) { 
-                            if (boutonsRadio[i].type === "radio" && boutonsRadio[i].checked) { 
-                                $selectImage=boutonsRadio[i].value; 
-                            } 
-                        } 
-                    </script>
-
-                    <?php
-
-                        if (isset($_POST['submit']))
-                        {
-                            $bdd = getPDO();
-                            $sql = "DELETE FROM images WHERE id = :choix";
-                            $req = $bdd->prepare($sql);
-                            $req->bindParam(":choix", $selectImage['id'] );
-                            $req->execute();
-                        }
-
-                    ?>
-
+                    <button class="bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center">
+                        <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" name="submit">
+                    </button>
                 </section>
                 <section>
                     <h1>Tableau des scores : </h1>
