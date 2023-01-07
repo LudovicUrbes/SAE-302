@@ -1,4 +1,3 @@
-<!-- Celle-là c'est cadeau -->
 <div class="relative w-full">
     <div class="absolute inset-y-0 right-0 flex items-center px-2">
         <input class="hidden js-password-toggle" id="toggle" type="checkbox" />

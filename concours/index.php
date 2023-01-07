@@ -163,7 +163,7 @@ $userId = getUserIdByEmail($email);
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
-                                    <input id="default-checkbox" type="radio" value="vote" name="vote_photo" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
                                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
@@ -180,9 +180,22 @@ $userId = getUserIdByEmail($email);
                     <?php endif; ?>
                 </section>
             </section>
-            <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
-                <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" id="submit">
-            </button>
+
+            <form method="post" action="/SAE-302/concours/index.php">
+                <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
+                    <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" name="submit">
+                </button>
+            </form>
+
+            <script> 
+                var boutonsRadio = document.getElementsByTagName("input"); 
+                for (var i = 0; i < boutonsRadio.length; i++) { 
+                    if (boutonsRadio[i].type === "radio" && boutonsRadio[i].checked) { 
+                                $selectImage=boutonsRadio[i].value; 
+                    } 
+                } 
+            </script>
+
         </section>
     <?php else : ?>
         <!-- Contenu -->
