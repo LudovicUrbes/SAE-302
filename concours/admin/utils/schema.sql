@@ -24,7 +24,7 @@ CREATE TABLE images(
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `users` (`email`, `password`) VALUES ("gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `users` (`email`, `password`) VALUES ("eliott.marceau@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `users` (`email`, `password`) VALUES ("alan.de.lijster@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `users` (`email`, `password`) VALUES ("ludovic.urbes@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `users` (`id`,`email`, `password`) VALUES ("103","gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `users` (`id`,`email`, `password`) VALUES ("102","eliott.marceau@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `users` (`id`,`email`, `password`) VALUES ("101","alan.de.lijster@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `users` (`id`, `email`, `password`) VALUES ("100", "ludovic.urbes@etu.univ-poitiers.fr", "gtrnet");

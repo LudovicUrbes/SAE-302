@@ -3,6 +3,7 @@ session_start();
 require_once('config/crud.php');
 var_dump(getAllImages());
 $images = getAllImages();
+$userId = getUserIdByEmail($email);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -19,7 +20,12 @@ $images = getAllImages();
         <!-- Vrai Contenu Une fois connecté :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
-                <h1 class="text-2xl ml-4">Concours Photo</h1>
+                <h1 class="text-2xl ml-3">Concours</h1>
+
+                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && $_SESSION['logon'] === true && $userId['id'] === 100 or 101 or 102 or 103): ?>
+                <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="color:#000000;">ADMIN</a>
+                <?php endif ?>
+
                 <div class="flex items-center gap-y-1">
                     <h3><?= $_SESSION['user']; ?></h3>
                     <a href="admin/controllers/logout.php">
