@@ -90,3 +90,14 @@ function getUserIdByEmail($email)
     $req->closeCursor();
     return $id;
 }
+
+function getUserIdByUserImage($userId)
+{
+    $bdd = getPDO();
+    $sql = "SELECT user_id FROM images WHERE user_id = :userId";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(":userId", $userId['id']);
+    $req->execute();
+    $data = $req->fetch(PDO::FETCH_ASSOC);
+    return $data;
+}

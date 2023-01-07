@@ -5,14 +5,13 @@ session_start();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 $images = getAllImages();
+$data = getUserIdByUserImage($userId);
 
 $_SESSION['errorUpload'] = array();
 $_SESSION['successUpload'] = '';
 
 $max_size = 62914560;
 
-// Pour ceux que ça intéresse :
-// https://www.php.net/manual/en/features.file-upload.errors.php
 switch ($_FILES['image']['error']) {
     case UPLOAD_ERR_OK:
         break;
@@ -67,6 +66,7 @@ $destinationFile = sprintf(
 );
 
 // On déplace le fichier temporaire dans notre dossiers uploads :
+
 if (!move_uploaded_file(
     $_FILES['image']['tmp_name'],
     $destinationFile
@@ -79,18 +79,11 @@ if (!move_uploaded_file(
 // Il ne nous reste plus qu'à ajouter l'image dans la base de données 
 // On vérifie que l'utilisateur n'a pas déjà upload une image 
 
-$bdd = getPDO();
-$sql = "SELECT user_id FROM images WHERE user_id = :userId";
-$req = $bdd->prepare($sql);
-$req->bindParam(":userId", $userId['id']);
-$req->execute();
-$data = $req->fetch(PDO::FETCH_ASSOC);
-
 if (empty($data)){
     addImage($destinationFile, $userId['id']);
     $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 } else {
-    array_push($_SESSION['errorUpload'], "Vous avez déjà voté !");
+    array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
     header('Location: /SAE-302/concours/index.php');
     die();
 }
