@@ -3,6 +3,7 @@ session_start();
 require_once('config/crud.php');
 var_dump(getAllImages());
 $images = getAllImages();
+$email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 ?>
 <!doctype html>
@@ -22,7 +23,7 @@ $userId = getUserIdByEmail($email);
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
                 <h1 class="text-2xl ml-3">Concours</h1>
 
-                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && $_SESSION['logon'] === true && $userId['id'] === 100 or 101 or 102 or 103): ?>
+                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && $userId['id'] === 100 or 101 or 102 or 103): ?>
                 <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="color:#000000;">ADMIN</a>
                 <?php endif ?>
 
