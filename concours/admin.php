@@ -66,6 +66,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     ?>
                             <!-- Création de la carte qui contiendra l'image ! -->
                             <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative">
+                                <h1 style="text-align: center; font-size: 30px;"><?php echo $image['id'] ?></h1>
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
