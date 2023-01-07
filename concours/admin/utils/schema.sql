@@ -5,9 +5,6 @@ GRANT ALL PRIVILEGES ON * . * TO 'php'@'localhost';
 
 use projet;
 
-drop table users;
-drop table images;
-
 CREATE TABLE users (
     `id` INT AUTO_INCREMENT UNIQUE,
     `email` VARCHAR(50) NOT NULL UNIQUE,

@@ -69,11 +69,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 <h1 style="text-align: center; font-size: 25px;">ID image : <strong><?php echo $image['id'] ?></strong></h1>
                                 <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                 <div class="absolute bottom-1 right-2 p-1">
-                                    <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
                                     <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
-                                    <div id="fb-root"></div>
-                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
-                                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -92,13 +88,13 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" name="submit">
                         </button>
                         
-                        <script> 
-                            var boutonsRadio = document.getElementsByTagName("input"); 
-                            for (var i = 0; i < boutonsRadio.length; i++) { 
-                                if (boutonsRadio[i].type === "radio" && boutonsRadio[i].checked) { 
-                                    $selectImage=boutonsRadio[i].value; 
-                                } 
-                            } 
+                        <script>
+                            var boutonsRadio = document.getElementsByTagName("input");
+                            for (var i = 0; i < boutonsRadio.length; i++) {
+                                if (boutonsRadio[i].type === "radio" && boutonsRadio[i].checked) {
+                                    selectImage=boutonsRadio[i].value;
+                                }
+                            }
                         </script>
 
                         <?php
@@ -107,7 +103,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 $bdd = getPDO();
                                 $sql = "DELETE FROM images WHERE id = :choix";
                                 $req = $bdd->prepare($sql);
-                                $req->bindParam(":choix", $selectImage['id'] );
+                                $req->bindParam(":choix", selectImage['id'] );
                                 $req->execute();
                             }
                         ?>

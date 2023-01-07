@@ -22,7 +22,7 @@ $userId = getUserIdByEmail($email);
         <!-- Vrai Contenu Une fois connecté :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
-                <h1 class="text-2xl ml-3">Concours Photo</h1>
+                <h1 class="text-2xl ml-3">Concours Photo </h1>
 
                 <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && ($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)): ?>
                 <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="color:#000000;">Administration</a>
@@ -165,9 +165,6 @@ $userId = getUserIdByEmail($email);
                                 <div class="absolute bottom-1 right-2 p-1">
                                     <!-- Nécessite un formulaire avec un checkbox fantôme pour le like : -->
                                     <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
-                                    <div id="fb-root"></div>
-                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="d2o5Gc7r"></script>
-                                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
