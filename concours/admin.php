@@ -20,7 +20,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="/SAE-302/concours/style.css">
+    <link rel="stylesheet" type="text/css" href="/SAE-302/concours/admin/css/style.css">
     <title>Concours Photo | IUT Châtellerault</title>
 </head>
 
