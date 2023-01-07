@@ -67,7 +67,7 @@ $userId = getUserIdByEmail($email);
                             };
 
                             // envoie une requête HTTP GET au serveur pour mettre à jour le timer
-                            xhttp.open("GET", "mettre_a_jour_timer.php", true);
+                            xhttp.open("GET", "timer_update.php", true);
                             xhttp.send();
                           }, 1000);
                         </script>
