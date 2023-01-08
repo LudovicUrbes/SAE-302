@@ -6,10 +6,6 @@ $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 
-$_SESSION['errorUpload'] = array();
-$_SESSION['successUpload'] = '';
-
-
 ?>
 <!doctype html>
 <html lang="fr">
@@ -27,10 +23,10 @@ $_SESSION['successUpload'] = '';
         <!-- Vrai Contenu Une fois connecté :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
-                <h1 class="text-2xl ml-3">Concours Photo </h1>
+                <h1 class="text-2xl ml-3">Concours Photo 📸</h1>
 
                 <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && ($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)): ?>
-                <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="text-indent: 220px ; color: red ; font-size: 23px">Administration</a>
+                <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="text-indent: 185px ; color: red ; font-size: 23px">Page Admin 📂</a>
                 <?php endif ?>
 
                 <div class="flex items-center gap-y-1">
@@ -168,7 +164,6 @@ $_SESSION['successUpload'] = '';
                             <form method="post" action="/SAE-302/concours/index.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
                                 <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
                                     <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
-                                    <h1 style="font-size: 25px;" class="absolute top-1 left-2 text-white">ID image : <strong><?php echo $image['id'] ?></strong></h1>
                                     <div class="absolute bottom-1 right-2 p-1">
                                         <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     </div>
@@ -181,13 +176,8 @@ $_SESSION['successUpload'] = '';
 
                             <?php
                                 if (isset($_POST['submit']))
-                                {
+                                {                                     
                                     $bdd = getPDO();
-                                    $sql = "UPDATE images SET likes = likes +1 WHERE id = :choix";
-                                    $req = $bdd->prepare($sql);
-                                    $req->bindParam(":choix", $_POST['choix']);
-                                    $req->execute();
-                                    
                                     $sql_2 = "SELECT vote_possible FROM users WHERE id = :userId";
                                     $req_2 = $bdd->prepare($sql_2);
                                     $req_2->bindParam(":userId", $userId['id']);
@@ -195,8 +185,15 @@ $_SESSION['successUpload'] = '';
                                     $data = $req_2->fetch(PDO::FETCH_ASSOC);
                                     var_dump($data);
 
-                                    if ($data == 1) {
-                                        $sql_3 = "UPDATE users SET vote_possible = vote_possible -1 WHERE id = :userId";
+                                    if ($data['vote_possible'] == 0) {
+                                        
+                                        $bdd = getPDO();
+                                        $sql = "UPDATE images SET likes = likes +1 WHERE id = :choix";
+                                        $req = $bdd->prepare($sql);
+                                        $req->bindParam(":choix", $_POST['choix']);
+                                        $req->execute();
+
+                                        $sql_3 = "UPDATE users SET vote_possible = vote_possible+1 WHERE id = :userId";
                                         $req_3 = $bdd->prepare($sql_3);
                                         $req_3->bindParam(":userId", $userId['id']);
                                         $req_3->execute();
@@ -206,9 +203,6 @@ $_SESSION['successUpload'] = '';
                                     } else {
 
                                         array_push($_SESSION['errorUpload'], "Vous avez déjà voté pour une photo !");
-                                        header('Location: /SAE-302/concours/index.php');
-                                        die();
-
                                     }
                                 } 
                             ?>
@@ -246,13 +240,14 @@ $_SESSION['successUpload'] = '';
 
         </section>
     <?php else : ?>
-        <!-- Contenu -->
+      <!-- Contenu 
         <section class="grid grid-cols-3 place-items-center py-64 blur-sm w-full h-full">
             <article class=" col-span-3 text-white">
                 <h1 class="text-lg">Félicitations !</h1>
                 <p>Tu as perdu ton temps je crois...</p>
             </article>
         </section>
+        -->
 
         <!-- LoginForm -->
         <?php require_once('admin/components/loginForm.php'); ?>

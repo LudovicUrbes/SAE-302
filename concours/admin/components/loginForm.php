@@ -3,8 +3,10 @@
         <section class="drop-shadow-xl rounded-lg overflow-hidden">
             <div class="bg-white px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
+                    <h1 class="text-xl text-center col-span-6"><strong>Concours Photo 📸</strong></h1>
+                    <p class="text-xl text-center col-span-6">Veuillez vous identifiez à l'aide de vos identifiants de l'IUT &#x1F609;</p>
                     <!-- Title -->
-                    <h2 class="text-xl text-center col-span-6">Connexion</h2>
+                    <h2 class="text-xl text-center col-span-6" style="color: green"><strong>Connexion</strong></h2>
 
                     <!-- Error Message -->
                     <?php if (!empty($_SESSION['errorLogin'])) : ?>

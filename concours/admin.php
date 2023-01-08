@@ -6,10 +6,6 @@ $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 
-$_SESSION['errorUpload'] = array();
-$_SESSION['successUpload'] = '';
-
-
 if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)){
 } else {
     header('Location: /SAE-302/concours/index.php');
@@ -32,8 +28,8 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
         <!-- Vrai Contenu Une fois connecté :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
-                <h1 class="text-2xl ml-3">Page d'Administration</h1>
-                <h1 class="text-2xl ml-3" style="text-indent: 135px ; color: red"> <a href ="/SAE-302/concours/index.php">Concours Photo</a></h1>
+                <h1 class="text-2xl ml-3">Page Admin 📂</h1>
+                <h1 class="text-2xl ml-3" style="text-indent: 200px"> <a href ="/SAE-302/concours/index.php" style="color: red" >Concours Photo </a>📸</h1>
                 <div class="flex items-center gap-y-1">
                     <h3><?= $_SESSION['user']; ?></h3>
                     <a href="admin/controllers/logout.php">
@@ -185,13 +181,14 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
             </section>
         </section>
     <?php else : ?>
-        <!-- Contenu -->
+        <!-- Contenu 
         <section class="grid grid-cols-3 place-items-center py-64 blur-sm w-full h-full">
             <article class=" col-span-3 text-white">
                 <h1 class="text-lg">Félicitations !</h1>
                 <p>Tu as perdu ton temps je crois...</p>
             </article>
         </section>
+        -->
 
         <!-- LoginForm -->
         <?php require_once('admin/components/loginForm.php'); ?>
