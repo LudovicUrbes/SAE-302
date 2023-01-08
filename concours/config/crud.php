@@ -91,6 +91,19 @@ function getUserIdByEmail($email)
     return $id;
 }
 
+/**
+ * Retourne l'email de l'utilisateur selon son id.
+ */
+function getUserEmailById($userId)
+{
+    $bdd = getPDO();
+    $req = $bdd->prepare('SELECT email FROM users WHERE id = ?');
+    $req->execute(array($userId));
+    $email = $req->fetch(PDO::FETCH_ASSOC);
+    $req->closeCursor();
+    return $email;
+}
+
 function getUserIdByUserImage($userId)
 {
     $bdd = getPDO();

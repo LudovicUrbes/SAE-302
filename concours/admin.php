@@ -51,7 +51,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center"> Utilité de la page 📝</header>
                         <p class="text-center">
-                            Depuis cette page vous pouvez supprimez des photos si elles ne correspondent aux réglements.
+                            Depuis cette page vous pouvez supprimer des photos si elles ne correspondent aux réglements.
                             <br />
                             Vous pouvez aussi avoir un aperçu sur les votes et les noms des participants.
                             <br />
@@ -65,15 +65,34 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                         foreach ($images as $image) :
                     ?>
                             <!-- Création de la carte qui contiendra l'image ! -->
-                            <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative">
-                                <h1 style="text-align: center; font-size: 25px;">ID image : <strong><?php echo $image['id'] ?></strong></h1>
-                                <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
-                                <div class="absolute bottom-1 right-2 p-1">
-                                    <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                            <form method="post" action="/SAE-302/concours/admin.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
+                                <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
+                                    <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
+                                    <h1 style="font-size: 25px;" class="absolute top-1 left-2 text-white">ID image : <strong><?php echo $image['id'] ?></strong></h1>
+                                    <div class="absolute bottom-1 right-2 p-1">
+                                        <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                                <?php endforeach; ?>
+                                <button class="col-span-3 w-fit h-fit bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center">
+                                    <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" name="submit">
+                                </button>
+                            </form>
+
+                        <?php
+                            if (isset($_POST['submit']))
+                            {
+                                $bdd = getPDO();
+                                $sql = "DELETE FROM images WHERE id = :choix";
+                                $req = $bdd->prepare($sql);
+                                $req->bindParam(":choix", $_POST['choix']);
+                                $req->execute();
+                            }
+                        ?>
+
+                        </form>
                     <?php else : ?>
+                        
                         <div class="col-span-3 p-2 bg-yellow-500 items-center text-yellow-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                             <span class="flex rounded-full bg-yellow-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                             <span class="font-semibold mr-2 text-center flex-auto">
@@ -82,34 +101,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                         </div>
                     <?php endif; ?>
                 </section>
-                <section>
-                    <form method="post" action="/SAE-302/concours/admin.php">
-                        <button class="bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center">
-                            <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" name="submit">
-                        </button>
-                        
-                        <script>
-                            var boutonsRadio = document.getElementsByTagName("input");
-                            for (var i = 0; i < boutonsRadio.length; i++) {
-                                if (boutonsRadio[i].type === "radio" && boutonsRadio[i].checked) {
-                                    selectImage=boutonsRadio[i].value;
-                                }
-                            }
-                        </script>
-
-                        <?php
-                            if (isset($_POST['submit']))
-                            {
-                                $bdd = getPDO();
-                                $sql = "DELETE FROM images WHERE id = :choix";
-                                $req = $bdd->prepare($sql);
-                                $req->bindParam(":choix", selectImage['id'] );
-                                $req->execute();
-                            }
-                        ?>
-                    </form>
-                </section>
-                <section>
+                <section class="col-span-3 h-fit mx-5">
                     <h1>Tableau des scores : </h1>
                     <div>
                         <table class="table">
@@ -117,17 +109,10 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
 
                             $bdd = getPDO();
                             $req = $bdd->query("SELECT id, likes, user_id FROM images ORDER BY likes DESC");
-
+                            $req->execute();
+                            $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+                            $req->closeCursor();                           
                         ?>
-
-                            <!--
-                            $bdd_2 = getPDO();    
-                            $sql = "SELECT email FROM users WHERE id = :userId";
-                            $req_2 = $bdd_2->prepare($sql);
-                            $req_2->bindParam(":userId", $req['user_id']);
-                            $req_2->execute();
-                            $data = $req_2->fetch(PDO::FETCH_ASSOC);
-                            -->
 
                         <thead>
                             <tr>
@@ -137,11 +122,11 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($req as $donnees):?>
+                            <?php foreach ($donnees as $donnee):?>
                             <tr>
-                                <td style="background-color: #f2f2f2"> <?=$donnees['id']?></td>
-                                <td style="background-color: #d3d3d3"> <?=$donnees['likes']?></td>
-                                <td style="background-color: #f2f2f2"> <?=$donnees['user_id']?></td>
+                                <td style="background-color: #f2f2f2"> <?=$donnee['id'];?></td>
+                                <td style="background-color: #d3d3d3"> <?=$donnee['likes'];?></td>
+                                <td style="background-color: #f2f2f2"> <?=getUserEmailById($donnee['user_id'])['email'];?></td>
                             </tr>
                             <?php endforeach ?>
                         </tbody>

@@ -184,6 +184,25 @@ $userId = getUserIdByEmail($email);
                     <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" name="submit">
                 </button>
             </form>
+            
+            <?php
+             /*
+                if (isset($_POST['submit']))
+                {
+                    $bdd = getPDO();
+                    $sql = "UPDATE images SET likes = likes +1 WHERE id = :choix";
+                    $req = $bdd->prepare($sql);
+                    $req->bindParam(":choix", $choix );
+                    $req->execute();
+
+                    $sql_2 = "UPDATE users SET vote_possible = vote_possible -1 WHERE id = :choix";
+                    $req_2 = $bdd->prepare($sql_2);
+                    $req_2->bindParam(":choix", $choix );
+                    $req_2->execute();
+                }
+            */
+            ?>
+
 
             <script> 
                 var boutonsRadio = document.getElementsByTagName("input"); 
