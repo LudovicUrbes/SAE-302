@@ -170,7 +170,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     <h1 style ="font-family: Arial, sans-serif; font-size: 27px; color: #333; text-align: center; text-transform: uppercase;">Tableau des scores </h1>
                     </br>
                     <div>
-                        <table class="border-separate border-spacing-2 border border-slate-500 ">
+                        <table class="rounded-lg bg-gray-700 border-separate border-spacing-1 border">
                         <?php
 
                             $bdd = getPDO();
@@ -182,24 +182,35 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
 
                         <thead>
                             <tr>
-                                <th scope="col">Identifiant de l'image </th>
-                                <th scope="col">Nombre de likes </th>
-                                <th scope="col">Url de l'image </th>
-                                <th scope="col">Identifiant de l'utilisateur </th>
+                                <th class="rounded-tl-lg bg-gray-400" scope="col">Identifiant de l'image </th>
+                                <th class="bg-gray-400" scope="col">Nombre de likes </th>
+                                <th class="bg-gray-400" scope="col">Url de l'image </th>
+                                <th class="rounded-tr-lg bg-gray-400" scope="col">Identifiant de l'utilisateur </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($donnees as $donnee):?>
-                            <tr>
-                                <td style="background-color: #f2f2f2"> <?=$donnee['id'];?></td>
-                                <td style="background-color: #d3d3d3"> <?=$donnee['likes'];?></td>
-                                <td style="background-color: #f2f2f2"> <?=$donnee['url'];?></td>
-                                <td style="background-color: #d3d3d3"> <?=getUserEmailById($donnee['user_id'])['email'];?></td>
-                            </tr>
-                            <?php endforeach ?>
+                           <?php for ($i = 0; $i < count($donnees); $i++): ?>
+                           <?php if ($i == count($donnees)-1): ?>
+                           <tr>
+                              <td class="rounded-bl-lg bg-gray-100"> <?=$donnees[$i]['id'];?></td>
+                              <td class="bg-gray-300"> <?=$donnees[$i]['likes'];?></td>
+                              <td class="bg-gray-100"> <?=$donnees[$i]['url'];?></td>
+                              <td class="rounded-br-lg bg-gray-300"> <?=getUserEmailById($donnees[$i]['user_id'])['email'];?></td>
+                           </tr>
+                           <?php else : ?>
+                           <tr>
+                              <td class="bg-gray-100"> <?=$donnees[$i]['id'];?></td>
+                              <td class="bg-gray-300"> <?=$donnees[$i]['likes'];?></td>
+                              <td class="bg-gray-100"> <?=$donnees[$i]['url'];?></td>
+                              <td class="bg-gray-300"> <?=getUserEmailById($donnees[$i]['user_id'])['email'];?></td>
+                           </tr>
+                           <?php endif ?>
+                           <?php endfor ?>
                         </tbody>
                         </table>
-                </section>       
+                </section>
+                <br/>
+                <br/>    
             </section>
         </section>
     <?php else : ?>

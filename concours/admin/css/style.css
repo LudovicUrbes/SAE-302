@@ -12,3 +12,7 @@ td, th {
 th {
     background-color: #dddddd;
 }
+
+.last-row td {
+   border: solid 2px red;
+}
