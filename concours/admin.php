@@ -83,6 +83,25 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             <br />
                             Vous pouvez aussi avoir un aperçu sur les votes et les noms des participants.
                             <br />
+                            <br />
+                            Pour faire correspondre les images et le nom des participants.
+                            <br />
+                            Veuillez vous référer à l'identifiant de l'image indiqué sur celle-ci,
+                            <br />
+                            Puis à l'aide de ce numéro aidez-vous du tableau qui se trouve en bas de page,
+                            <br />
+                            Pour pouvoir faire le lien entre l'identifiant de l'image et l'étudiant 
+                            <br />
+                            Ce qui permettra de sanctionner si des images non conformes sont postées
+                            <br />
+                            Pour supprimer une photo, il vous suffit de sélectionner le bouton sur la photo,
+                            <br />
+                            Et de cliquer sur le bouton "Supprimer la photo sélectionnée "
+                            <br />
+                            <strong>Si vous voulez voir l'image en format réel faites un click droit sur l'image,</strong>
+                            <br />
+                            <strong>puis "Ouvrir l'image dans un nouvel onglet".</strong>
+                            <br />
                 </article>
 
                 <!-- Liste des images -->
@@ -148,13 +167,14 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     <?php endif; ?>
                 </section>
                 <section class="col-span-3 h-fit mx-5">
-                    <h1>Tableau des scores : </h1>
+                    <h1 style ="font-family: Arial, sans-serif; font-size: 27px; color: #333; text-align: center; text-transform: uppercase;">Tableau des scores </h1>
+                    </br>
                     <div>
-                        <table class="table">
+                        <table class="border-separate border-spacing-2 border border-slate-500 ">
                         <?php
 
                             $bdd = getPDO();
-                            $req = $bdd->query("SELECT id, likes, user_id FROM images ORDER BY likes DESC");
+                            $req = $bdd->query("SELECT id, likes, url, user_id FROM images ORDER BY likes DESC");
                             $req->execute();
                             $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
                             $req->closeCursor();                           
@@ -164,6 +184,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             <tr>
                                 <th scope="col">Identifiant de l'image </th>
                                 <th scope="col">Nombre de likes </th>
+                                <th scope="col">Url de l'image </th>
                                 <th scope="col">Identifiant de l'utilisateur </th>
                             </tr>
                         </thead>
@@ -172,7 +193,8 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             <tr>
                                 <td style="background-color: #f2f2f2"> <?=$donnee['id'];?></td>
                                 <td style="background-color: #d3d3d3"> <?=$donnee['likes'];?></td>
-                                <td style="background-color: #f2f2f2"> <?=getUserEmailById($donnee['user_id'])['email'];?></td>
+                                <td style="background-color: #f2f2f2"> <?=$donnee['url'];?></td>
+                                <td style="background-color: #d3d3d3"> <?=getUserEmailById($donnee['user_id'])['email'];?></td>
                             </tr>
                             <?php endforeach ?>
                         </tbody>
