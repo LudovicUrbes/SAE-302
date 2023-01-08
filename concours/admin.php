@@ -170,7 +170,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     <h1 style ="font-family: Arial, sans-serif; font-size: 27px; color: #333; text-align: center; text-transform: uppercase;">Tableau des scores </h1>
                     </br>
                     <div>
-                        <table class="rounded-lg bg-gray-700 border-separate border-spacing-1 border">
+                        <table class="rounded-lg bg-white-900 border-separate border-spacing-0.1">
                         <?php
 
                             $bdd = getPDO();
