@@ -142,27 +142,33 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
 
                         <!-- Displaying the Image Supression Success Message -->
 
-                        <!--
+                            <!-- 
+
                             <div class="col-span-3 p-2 bg-green-500 items-center text-green-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                                 <span class="flex rounded-full bg-green-600 uppercase px-2 py-1 text-xs font-bold mr-3">Réussite</span>
                                 <span class="font-semibold mr-2 text-center flex-auto">
                                     Vous avez bien supprimer l'image sélectionée &#x1F44D;
                                 </span>
                             </div>
-                        -->
+
+                            -->
+
 
                         <?php // else : ?>
 
                             <!-- Displaying Image Supression Failure Message -->
                             
-                        <!--
+                            <!--
+                                
                             <div class="col-span-3 p-2 bg-red-500 items-center text-red-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                                 <span class="flex rounded-full bg-red-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                                 <span class="font-semibold mr-2 text-center flex-auto">
                                     Vous n'avez pas réussi à supprimer l'image 😥
                                 </span>
                             </div>
-                        -->
+
+                            -->
+ 
                         <?php // endif; ?>
                         
                     <?php else : ?>
