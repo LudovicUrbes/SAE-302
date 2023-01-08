@@ -114,15 +114,3 @@ function getUserIdByUserImage($userId)
     $data = $req->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
-
-/*
-function DelPhoto()
-{
-    $bdd = getPDO();
-    $username=$_POST['nom'];
-    $query = $bdd->prepare("DELETE FROM images WHERE id ='$username' ");
-    $success = $query->execute([
-    "username" => $_POST['nom']
-    ]);
-}
-*/

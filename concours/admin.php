@@ -6,6 +6,9 @@ $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 
+$_SESSION['errorUpload'] = array();
+$_SESSION['successUpload'] = '';
+
 
 if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)){
 } else {
@@ -30,7 +33,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
                 <h1 class="text-2xl ml-3">Page d'Administration</h1>
-                <h1 class="text-2xl ml-3"> <a href ="/SAE-302/concours/index.php">Concours Photo</a></h1>
+                <h1 class="text-2xl ml-3" style="text-indent: 135px ; color: red"> <a href ="/SAE-302/concours/index.php">Concours Photo</a></h1>
                 <div class="flex items-center gap-y-1">
                     <h3><?= $_SESSION['user']; ?></h3>
                     <a href="admin/controllers/logout.php">
@@ -43,9 +46,38 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
             <section class="grid grid-cols-3 w-full h-fit gap-y-5">
                 <!-- Message Informatif -->
                 <article class="col-span-3 h-fit mt-5 mx-5 shadow-xl p-4 rounded overflow-hidden">
-                    <section class=" w-fit h-fit mx-auto">
-                        <header class="text-xl font-bold text-center">Bienvenue sur la page admin ! 🎊🎊🎊</header>
+                <section class=" w-fit h-fit mx-auto">
+                        <header class="text-xl font-bold text-center">Bienvenue sur la Page d'Administration ! 🎊🎊🎊</header>
                         <br />
+                        <div id="temps_restant">
+                            <?php
+                                // affiche le temps restant
+                                echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE</strong>";
+                            ?>
+                        </div>
+                        <script>
+                          // met à jour le contenu de l'élément HTML toutes les secondes (1000 millisecondes)
+                          setInterval(function() {
+                            // crée une nouvelle instance de l'objet XMLHttpRequest
+                            var xhttp = new XMLHttpRequest();
+
+                            // définit la fonction à exécuter lorsque la réponse est prête
+                            xhttp.onreadystatechange = function() {
+                              // vérifie si la réponse est prête et valide
+                              if (this.readyState == 4 && this.status == 200) {
+                                // récupère le contenu de l'élément HTML
+                                var temps_restant = document.getElementById("temps_restant");
+
+                                // remplace le contenu de l'élément HTML par le nouveau contenu
+                                temps_restant.innerHTML = this.responseText;
+                              }
+                            };
+
+                            // envoie une requête HTTP GET au serveur pour mettre à jour le timer
+                            xhttp.open("GET", "timer_update.php", true);
+                            xhttp.send();
+                          }, 1000);
+                        </script>
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">
@@ -61,8 +93,8 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                 <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">
                     <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Liste des images : </span> 🖼️</header>
                     <?php
-                    if (count($images) != 0) :
-                        foreach ($images as $image) :
+                        if (count($images) != 0) :
+                            foreach ($images as $image) :
                     ?>
                             <!-- Création de la carte qui contiendra l'image ! -->
                             <form method="post" action="/SAE-302/concours/admin.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
@@ -79,7 +111,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 </button>
                             </form>
 
-                        <?php
+                        <?php 
                             if (isset($_POST['submit']))
                             {
                                 $bdd = getPDO();
@@ -87,10 +119,28 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 $req = $bdd->prepare($sql);
                                 $req->bindParam(":choix", $_POST['choix']);
                                 $req->execute();
-                            }
+                            }    
                         ?>
+                        <!--
+                            <div class="col-span-3 p-2 bg-green-500 items-center text-green-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
+                                <span class="flex rounded-full bg-green-600 uppercase px-2 py-1 text-xs font-bold mr-3">Réussite</span>
+                                <span class="font-semibold mr-2 text-center flex-auto">
+                                    Vous avez bien supprimer l'image sélectionée &#x1F44D;
+                                </span>
+                            </div>
 
-                        </form>
+                        <?php // else : ?>
+
+                            <div class="col-span-3 p-2 bg-red-500 items-center text-red-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
+                                <span class="flex rounded-full bg-red-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
+                                <span class="font-semibold mr-2 text-center flex-auto">
+                                    Vous n'avez pas réussi à supprimer l'image 😥
+                                </span>
+                            </div>
+
+                        <?php // endif; ?>
+                        -->
+                        
                     <?php else : ?>
                         
                         <div class="col-span-3 p-2 bg-yellow-500 items-center text-yellow-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
