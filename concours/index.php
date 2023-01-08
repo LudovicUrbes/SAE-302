@@ -47,7 +47,7 @@ $userId = getUserIdByEmail($email);
                         <div id="temps_restant">
                             <?php
                                 // affiche le temps restant
-                                echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE</strong>";
+                                echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE &#8987</strong>";
                             ?>
                         </div>
                         <script>
@@ -90,7 +90,11 @@ $userId = getUserIdByEmail($email);
                             <br />
                             Vous ne pourrez y participer qu'une seule fois !
                             <br />
-                            Ne vous amusez pas à poster des images n'ayant aucun rapport avec le thème du coucours !
+                            Pour les personnes qui participeront au concours, votre photo doit être unique.
+                            <br />
+                            Interdiction de la récupérer sur Internet ( des vérifications seront faites ) !
+                            <br />
+                            Ne vous amusez pas à poster des images n'ayant aucun rapport avec le thème du concours !
                             <br />
                             Le nom et prénom des personnes ayant posté seront connus !
                             <br />

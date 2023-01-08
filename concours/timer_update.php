@@ -16,7 +16,7 @@ if ($fin_envoi > time()) {
   $secondes = $temps_restant % 60;
 
   // renvoie le temps restant sous forme de chaîne de caractères
-  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE D'ENVOI : $jours J : $heures H : $minutes M : $secondes S</strong><br/>Après cette date, vous ne pourrez plus uploader de photos ! On passera alors à la phase de vote.";
+  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE D'ENVOI : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus uploader de photos ! On passera alors à la phase de vote.";
 } elseif ($debut_vote > time()){
   // renvoie un message indiquant que la phase d'envoi est terminée
   echo "La phase d'envoi est terminée !<br/>";
@@ -31,7 +31,7 @@ if ($fin_envoi > time()) {
   $secondes = $temps_restant % 60;
 
   // renvoie le temps restant sous forme de chaîne de caractères
-  echo "<strong>&#8987 TEMPS RESTANT AVANT LE D&#201PART DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S</strong><br/>Vous pourrez alors voter pour votre photo préférée !";
+  echo "<strong>&#8987 TEMPS RESTANT AVANT LE D&#201PART DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Vous pourrez alors voter pour votre photo préférée !";
 }  elseif ($fin_vote > time()){
   // calcule le temps restant jusqu'à la fin de la phase de vote
   $temps_restant = $fin_vote - time();
@@ -43,7 +43,7 @@ if ($fin_envoi > time()) {
   $secondes = $temps_restant % 60;
 
   // renvoie le temps restant sous forme de chaîne de caractères
-  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S</strong><br/>Après cette date, vous ne pourrez plus voter ! On vous fournira alors les résultats du concours.";
+  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus voter ! On vous fournira alors les résultats du concours.";
 } else {
   // renvoie un message indiquant que le concours est terminé
   echo "Le concours est terminé.<br/>";

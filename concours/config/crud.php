@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Ici, nous allons rédiger les fonctions qui nous permettrons de
- * récuperer les images ou les utlisateurs afin de vérifier leur identifiant.
+ * Here, we will write the functions that will allow 
+ * retrieve images or users in order to verify their identifier.
  */
 
 /**
- * Fonction qui retourne l'objet PDO.
+ * Function that returns the PDO object.
  */
 function getPDO()
 {
@@ -33,28 +33,28 @@ function getPDO()
     return $bdd;
 }
 
-// On peut ensuite commencer à rédiger nos fonctions :
+// Then we can start writing our functions :
 
 /**
- * Retourne toutes les urls des images stockés dans la base de données.
+ *  Function that returns all urls of the images stored in the database.
  */
 function getAllImages()
 {
     $bdd = getPDO();
-    // On prépare ensuite la requête SQL :
+    // We then prepare the SQL query :
     $req = $bdd->prepare('SELECT * FROM images');
-    // Une fois prête, nous exécutons celle-ci :
+    // Once ready, we execute this :
     $req->execute();
-    // Une fois exécutée, on récupère les informations dans '$data' :
+    // Once executed, the information is retrieved in '$data':
     $data = $req->fetchAll(PDO::FETCH_ASSOC);
-    // On ferme le curseur pour signaler la fin de l'opération :
+    // The cursor is closed to indicate the end of the operation :
     $req->closeCursor();
-    // Enfin, on retourne les informations :
+    // Finally, we return the information :
     return $data;
 }
 
 /**
- * Retourne l'utilisateur s'il existe dans la base de données.
+ * Function that returns the user if it exists in the database.
  */
 function getUser($email, $pass)
 {
@@ -67,7 +67,7 @@ function getUser($email, $pass)
 }
 
 /**
- * Ajoute l'image dans la bdd.
+ * Function adds the image to the bdd.
  */
 function addImage($filePath, $user_id)
 {
@@ -79,7 +79,7 @@ function addImage($filePath, $user_id)
 }
 
 /**
- * Retourne l'id de l'utilisateur selon son email.
+ * Function returns the user’s id according to their email.
  */
 function getUserIdByEmail($email)
 {
@@ -92,7 +92,7 @@ function getUserIdByEmail($email)
 }
 
 /**
- * Retourne l'email de l'utilisateur selon son id.
+ * Function returns the user’s email according to its id.
  */
 function getUserEmailById($userId)
 {
@@ -104,6 +104,9 @@ function getUserEmailById($userId)
     return $email;
 }
 
+/**
+ * The function returns the user id using the user id in the images table
+ */
 function getUserIdByUserImage($userId)
 {
     $bdd = getPDO();

@@ -1,10 +1,14 @@
+<!-- This page is only accessible by administrators  -->
+
 <?php
-session_start();
-require_once('config/crud.php');
-var_dump(getAllImages());
-$images = getAllImages();
-$email = $_SESSION['user'];
-$userId = getUserIdByEmail($email);
+session_start(); // Start a PHP session
+require_once('config/crud.php'); // Load an external PHP file named "crud.php", which contains database management functions
+var_dump(getAllImages()); // Function containing all images of the contest.
+$images = getAllImages(); // Stores the result of the "getAllImages" function in a variable named "$images"
+$email = $_SESSION['user']; // Stores the email of the currently logged in user in a variable named "$email"
+$userId = getUserIdByEmail($email); // "getUserIdByEmail" function to retrieve the ID of the currently logged in user from his email address
+
+// Check to allow access to the page user id must be equal to 100, 101, 102 otherwise it is redirected to the page index.php
 
 if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)){
 } else {
@@ -23,53 +27,51 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
     <title>Concours Photo | IUT Châtellerault</title>
 </head>
 
-<body <?php if (!isset($_SESSION['user'])) : ?> class="relative z-auto w-full h-full bg-stone-700" <?php endif; ?>>
-    <?php if (isset($_SESSION['user'])) : ?>
-        <!-- Vrai Contenu Une fois connecté :) -->
+<body <?php if (!isset($_SESSION['user'])) : ?> class="relative z-auto w-full h-full bg-stone-700" <?php endif; ?>> <!-- User Login Verification -->
+    <?php if (isset($_SESSION['user'])) : ?> <!-- User Login Verification -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
                 <h1 class="text-2xl ml-3">Page Admin 📂</h1>
                 <h1 class="text-2xl ml-3" style="text-indent: 200px"> <a href ="/SAE-302/concours/index.php" style="color: red" >Concours Photo </a>📸</h1>
                 <div class="flex items-center gap-y-1">
-                    <h3><?= $_SESSION['user']; ?></h3>
+                    <h3><?= $_SESSION['user']; ?></h3> <!-- Displaying user email -->
                     <a href="admin/controllers/logout.php">
-                        <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded m-4">
+                        <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded m-4"> <!-- Button to disconnect from the page -->
                             Se déconnecter
                         </button>
                     </a>
                 </div>
             </header>
             <section class="grid grid-cols-3 w-full h-fit gap-y-5">
-                <!-- Message Informatif -->
                 <article class="col-span-3 h-fit mt-5 mx-5 shadow-xl p-4 rounded overflow-hidden">
                 <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center">Bienvenue sur la Page d'Administration ! 🎊🎊🎊</header>
                         <br />
                         <div id="temps_restant">
                             <?php
-                                // affiche le temps restant
+                                // Shows the time remaining
                                 echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE</strong>";
                             ?>
                         </div>
                         <script>
-                          // met à jour le contenu de l'élément HTML toutes les secondes (1000 millisecondes)
+                          // Updates HTML element content every second (1000 milliseconds)
                           setInterval(function() {
-                            // crée une nouvelle instance de l'objet XMLHttpRequest
+                            // Creates a new instance of the XMLHttpRequest object
                             var xhttp = new XMLHttpRequest();
 
-                            // définit la fonction à exécuter lorsque la réponse est prête
+                            // Defines the function to be performed when the response is ready
                             xhttp.onreadystatechange = function() {
-                              // vérifie si la réponse est prête et valide
+                              // Checks if the answer is ready and valid
                               if (this.readyState == 4 && this.status == 200) {
-                                // récupère le contenu de l'élément HTML
+                                // Recovers the content of the HTML element
                                 var temps_restant = document.getElementById("temps_restant");
 
-                                // remplace le contenu de l'élément HTML par le nouveau contenu
+                                // Replaces HTML element content with new content
                                 temps_restant.innerHTML = this.responseText;
                               }
                             };
 
-                            // envoie une requête HTTP GET au serveur pour mettre à jour le timer
+                            // Sends HTTP GET request to server to update timer
                             xhttp.open("GET", "timer_update.php", true);
                             xhttp.send();
                           }, 1000);
@@ -77,7 +79,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">
-                        <header class="text-xl font-bold text-center"> Utilité de la page 📝</header>
+                        <header class="text-xl font-bold text-center"> Utilité de la page 📝</header>  <!-- Explaining the Admin Page Utility to Administrators -->
                         <p class="text-center">
                             Depuis cette page vous pouvez supprimer des photos si elles ne correspondent aux réglements.
                             <br />
@@ -104,14 +106,13 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             <br />
                 </article>
 
-                <!-- Liste des images -->
                 <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">
                     <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Liste des images : </span> 🖼️</header>
                     <?php
                         if (count($images) != 0) :
                             foreach ($images as $image) :
                     ?>
-                            <!-- Création de la carte qui contiendra l'image ! -->
+                            <!-- Displaying images in thumbnails and creating the delete feature -->
                             <form method="post" action="/SAE-302/concours/admin.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
                                 <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
                                     <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
@@ -121,10 +122,12 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                     </div>
                                 </div>
                                 <?php endforeach; ?>
-                                <button class="col-span-3 w-fit h-fit bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center">
+                                <button class="col-span-3 w-fit h-fit bg-red-200 hover:bg-red-300 text-red-700 font-bold py-2 px-4 rounded inline-flex items-center"> <!-- Button to delete the selected image -->
                                     <input type="submit" class="cursor-pointer" value="Supprimer la photo sélectionnée !" name="submit">
                                 </button>
                             </form>
+
+                        <!-- Php request to delete the selected image according to its id -->
 
                         <?php 
                             if (isset($_POST['submit']))
@@ -135,7 +138,10 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 $req->bindParam(":choix", $_POST['choix']);
                                 $req->execute();
                             }    
-                        ?>
+                        ?> 
+
+                        <!-- Displaying the Image Supression Success Message -->
+
                         <!--
                             <div class="col-span-3 p-2 bg-green-500 items-center text-green-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                                 <span class="flex rounded-full bg-green-600 uppercase px-2 py-1 text-xs font-bold mr-3">Réussite</span>
@@ -143,21 +149,26 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                     Vous avez bien supprimer l'image sélectionée &#x1F44D;
                                 </span>
                             </div>
+                        -->
 
                         <?php // else : ?>
 
+                            <!-- Displaying Image Supression Failure Message -->
+                            
+                        <!--
                             <div class="col-span-3 p-2 bg-red-500 items-center text-red-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                                 <span class="flex rounded-full bg-red-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                                 <span class="font-semibold mr-2 text-center flex-auto">
                                     Vous n'avez pas réussi à supprimer l'image 😥
                                 </span>
                             </div>
-
-                        <?php // endif; ?>
                         -->
+                        <?php // endif; ?>
                         
                     <?php else : ?>
                         
+                         <!-- Display an informative message if no image is displayed by the page -->
+
                         <div class="col-span-3 p-2 bg-yellow-500 items-center text-yellow-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                             <span class="flex rounded-full bg-yellow-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                             <span class="font-semibold mr-2 text-center flex-auto">
@@ -167,10 +178,13 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                     <?php endif; ?>
                 </section>
                 <section class="col-span-3 h-fit mx-5">
-                    <h1 style ="font-family: Arial, sans-serif; font-size: 27px; color: #333; text-align: center; text-transform: uppercase;">Tableau des scores </h1>
+                <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Tableau des scores : </span> 📈</header>
                     </br>
                     <div>
-                        <table class="rounded-lg bg-white-700 border-separate border-spacing-1 border">
+                        <table class="rounded-lg bg-white-900 border-separate border-spacing-0.1">
+
+                        <!-- Php request to retrieve information contained in a table to display in an array -->
+
                         <?php
 
                             $bdd = getPDO();
@@ -179,6 +193,8 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                             $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
                             $req->closeCursor();                           
                         ?>
+
+                        <!-- Table containing image table information to give information to administrators -->
 
                         <thead>
                             <tr>
@@ -223,10 +239,11 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
         </section>
         -->
 
-        <!-- LoginForm -->
+
+        <!-- Calling the LoginForm page to log in -->
         <?php require_once('admin/components/loginForm.php'); ?>
 
-        <!-- Script -->
+        <!-- Calling the Script to modify the authentication page -->
         <script src="./admin/js/togglePassword.js"></script>
     <?php endif; ?>
 </body>

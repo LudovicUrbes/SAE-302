@@ -4,15 +4,6 @@ table {
 }
 
 td, th {
-    border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-}
-
-th {
-    background-color: #dddddd;
-}
-
-.last-row td {
-   border: solid 2px red;
 }
