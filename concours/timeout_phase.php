@@ -1,0 +1,1 @@
+<?php echo "<br/>Bonjour, il faut attendre un peu maintenant<br/>"; ?>
