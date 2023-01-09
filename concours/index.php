@@ -19,16 +19,19 @@ $userId = getUserIdByEmail($email);
 </head>
 
 <body <?php if (!isset($_SESSION['user'])) : ?> class="relative z-auto w-full h-full bg-stone-700" <?php endif; ?>>
+    <!-- We check if the user is logged in -->
     <?php if (isset($_SESSION['user'])) : ?>
-        <!-- Vrai Contenu Une fois connecté :) -->
+        <!-- True Content Once logged in :) -->
         <section class="w-full h-full bg-white">
             <header class="w-full h-fit bg-gray-200 inline-flex items-center justify-between flex-nowrap">
                 <h1 class="text-2xl ml-3">Concours Photo 📸</h1>
 
+                <!-- We check if the logged in user is an administrator -->
                 <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && ($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)): ?>
                 <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="text-indent: 185px ; color: red ; font-size: 23px">Page Admin 📂</a>
                 <?php endif ?>
-
+                
+                <!-- Displaying the user's email and the button to log out -->
                 <div class="flex items-center gap-y-1">
                     <h3><?= $_SESSION['user']; ?></h3>
                     <a href="admin/controllers/logout.php">
@@ -39,36 +42,36 @@ $userId = getUserIdByEmail($email);
                 </div>
             </header>
             <section class="grid grid-cols-3 w-full h-fit gap-y-5">
-                <!-- Message Informatif -->
+                <!-- Informational Message -->
                 <article class="col-span-3 h-fit mt-5 mx-5 shadow-xl p-4 rounded overflow-hidden">
                     <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center">Bienvenue ! 🎊🎊🎊</header>
                         <br />
                         <div id="temps_restant">
                             <?php
-                                // affiche le temps restant
+                                // displays the remaining time
                                 echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE &#8987</strong>";
                             ?>
                         </div>
                         <script>
-                          // met à jour le contenu de l'élément HTML toutes les secondes (1000 millisecondes)
+                          // updates the content of the HTML element every second (1000 milliseconds)
                           setInterval(function() {
-                            // crée une nouvelle instance de l'objet XMLHttpRequest
+                            // create a new instance of the XMLHttpRequest object
                             var xhttp = new XMLHttpRequest();
 
-                            // définit la fonction à exécuter lorsque la réponse est prête
+                            // defines the function to execute when the response is ready
                             xhttp.onreadystatechange = function() {
-                              // vérifie si la réponse est prête et valide
+                              // check if the answer is ready and valid
                               if (this.readyState == 4 && this.status == 200) {
-                                // récupère le contenu de l'élément HTML
+                                // retrieve the content of the HTML element
                                 var temps_restant = document.getElementById("temps_restant");
 
-                                // remplace le contenu de l'élément HTML par le nouveau contenu
+                                // replace the content of the HTML element with the new content
                                 temps_restant.innerHTML = this.responseText;
                               }
                             };
 
-                            // envoie une requête HTTP GET au serveur pour mettre à jour le timer
+                            // sends an HTTP GET request to the server to update the timer
                             xhttp.open("GET", "timer_update.php", true);
                             xhttp.send();
                           }, 1000);
@@ -153,7 +156,7 @@ $userId = getUserIdByEmail($email);
                     <?php unset($_SESSION['successUpload']); ?>
                 <?php endif; ?>
 
-                <!-- Ajout d'Image -->
+                <!-- Add Image -->
                 <form action="admin/controllers/upload.php" enctype="multipart/form-data" method="post" class="col-span-3 flex justify-center">
                     <?php require_once('admin/components/customInputIlmage.php'); ?>
                     <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
@@ -162,18 +165,19 @@ $userId = getUserIdByEmail($email);
                     </button>
                 </form>
 
-                <!-- Liste des images -->
+                <!-- Image list -->
                 <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">
                     <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Liste des images : </span> 🖼️</header>
                     <?php
                         if (count($images) != 0) :
                             foreach ($images as $image) :
                     ?>
-                            <!-- Création de la carte qui contiendra l'image ! -->
+                            <!-- Creating the card that will contain the image! -->
                             <form method="post" action="/SAE-302/concours/index.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
                                 <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
                                     <img onclick="zoomImage()" class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                     <div class="absolute bottom-1 right-2 p-1">
+                                         <!-- Requires a form with a ghost checkbox for like: -->
                                         <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     </div>
                                 </div>
@@ -182,7 +186,8 @@ $userId = getUserIdByEmail($email);
                                     <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" name="submit">
                                 </button>
                             </form>
-
+                            
+                            <!-- we check that the user has not already voted -->
                             <?php
                                 if (isset($_POST['submit']))
                                 {                                     
@@ -194,6 +199,7 @@ $userId = getUserIdByEmail($email);
                                     $data = $req_2->fetch(PDO::FETCH_ASSOC);
                                     var_dump($data);
 
+                                    // Voting is possible, so we grant the user the right to vote and we take away the right to vote
                                     if ($data['vote_possible'] == 0) {
                                         
                                         $bdd = getPDO();
@@ -208,7 +214,8 @@ $userId = getUserIdByEmail($email);
                                         $req_3->execute();
 
                                         $_SESSION['successUpload'] = 'Vote accepté avec succès.';
-
+                                    
+                                    // The vote is not possible, an error message is displayed
                                     } else {
 
                                         array_push($_SESSION['errorUpload'], "Vous avez déjà voté pour une photo !");
