@@ -92,6 +92,19 @@ function getUserIdByEmail($email)
 }
 
 /**
+ * Function returns the user’s auth according to their email.
+ */
+function getUserAuthByEmail($email)
+{
+    $bdd = getPDO();
+    $req = $bdd->prepare('SELECT auth FROM users WHERE email = ?');
+    $req->execute(array($email));
+    $auth = $req->fetch(PDO::FETCH_ASSOC);
+    $req->closeCursor();
+    return $auth;
+}
+
+/**
  * Function returns the user’s email according to its id.
  */
 function getUserEmailById($userId)

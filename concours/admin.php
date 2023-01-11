@@ -7,10 +7,11 @@ var_dump(getAllImages()); // Function containing all images of the contest.
 $images = getAllImages(); // Stores the result of the "getAllImages" function in a variable named "$images"
 $email = $_SESSION['user']; // Stores the email of the currently logged in user in a variable named "$email"
 $userId = getUserIdByEmail($email); // "getUserIdByEmail" function to retrieve the ID of the currently logged in user from his email address
+$authentification = getUserAuthByEmail($email);
 
 // Check to allow access to the page user id must be equal to 100, 101, 102 otherwise it is redirected to the page index.php
 
-if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102)){
+if ($authentification['auth'] === "admin") {
 } else {
     header('Location: /SAE-302/concours/index.php');
 }
@@ -137,15 +138,16 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                                 $req = $bdd->prepare($sql);
                                 $req->bindParam(":choix", $_POST['choix']);
                                 $req->execute();
+
                             }    
                         ?> 
 
-                        <!-- Displaying the Image Supression Success Message -->
+                            <!-- Displaying the Image Supression Success Message -->
 
-                            <!-- 
-
-                            <div class="col-span-3 p-2 bg-green-500 items-center text-green-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
-                                <span class="flex rounded-full bg-green-600 uppercase px-2 py-1 text-xs font-bold mr-3">Réussite</span>
+                            <!--
+                         
+                            <div class="col-span-3 p-2 bg-blue-500 items-center text-blue-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
+                                <span class="flex rounded-full bg-blue-600 uppercase px-2 py-1 text-xs font-bold mr-3">info</span>
                                 <span class="font-semibold mr-2 text-center flex-auto">
                                     Vous avez bien supprimer l'image sélectionée &#x1F44D;
                                 </span>
@@ -153,13 +155,12 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
 
                             -->
 
-
-                        <?php // else : ?>
+                        <?php  // else : ?>
 
                             <!-- Displaying Image Supression Failure Message -->
                             
                             <!--
-                                
+
                             <div class="col-span-3 p-2 bg-red-500 items-center text-red-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                                 <span class="flex rounded-full bg-red-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
                                 <span class="font-semibold mr-2 text-center flex-auto">
@@ -169,7 +170,7 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
 
                             -->
  
-                        <?php // endif; ?>
+                        <?php  // endif; ?>
                         
                     <?php else : ?>
                         
@@ -226,8 +227,8 @@ if (($userId['id'] === 100) or ($userId['id'] === 101) or ($userId['id'] === 102
                               <td class="bg-gray-100"> <?=$donnees[$i]['url'];?></td>
                               <td class="bg-gray-300"> <?=getUserEmailById($donnees[$i]['user_id'])['email'];?></td>
                            </tr>
-                           <?php endif ?>
-                           <?php endfor ?>
+                           <?php endif ; ?>
+                           <?php endfor ; ?>
                         </tbody>
                         </table>
                 </section>

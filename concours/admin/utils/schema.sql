@@ -10,6 +10,7 @@ CREATE TABLE users (
     `email` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(50) NOT NULL,
     `vote_possible` INT default 0,
+    `auth` VARCHAR(50) NOT NULL default 'users',
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB;
 
@@ -21,7 +22,7 @@ CREATE TABLE images(
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `users` (`id`,`email`, `password`) VALUES ("103","gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `users` (`id`,`email`, `password`) VALUES ("102","eliott.marceau@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `users` (`id`,`email`, `password`) VALUES ("101","alan.de.lijster@etu.univ-poitiers.fr", "gtrnet");
-INSERT INTO `users` (`id`, `email`, `password`) VALUES ("100", "ludovic.urbes@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `users` (`email`, `password`) VALUES ("gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
+INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("eliott.marceau@etu.univ-poitiers.fr", "gtrnet", "admin");
+INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("alan.de.lijster@etu.univ-poitiers.fr", "gtrnet", "admin");
+INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("ludovic.urbes@etu.univ-poitiers.fr", "gtrnet", "admin");

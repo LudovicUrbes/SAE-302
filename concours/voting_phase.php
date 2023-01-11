@@ -1,1 +1,0 @@
-<?php echo "<br/>Bonjour, c'est l'heure de voter<br/>"; ?>

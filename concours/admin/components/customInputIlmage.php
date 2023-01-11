@@ -1,3 +1,4 @@
+<!-- This is an HTML code snippet that allows the user to select a file from their device and upload it to a web page. Finally, the paragraph element below the input indicating the accepted file formats. -->
 <label class="block w-fit">
   <span class="sr-only">Choississez votre image</span>
   <input type="file" name="image" id="image" accept=".png,.jpeg,.jpg" class="text-sm text-slate-500
