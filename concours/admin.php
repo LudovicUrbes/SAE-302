@@ -117,7 +117,7 @@ if ($authentification['auth'] === "admin") {
                             <form method="post" action="/SAE-302/concours/admin.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
                                 <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
                                     <img class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
-                                    <h1 style="font-size: 25px;" class="absolute top-1 left-2 text-white">ID image : <strong><?php echo $image['id'] ?></strong></h1>
+                                    <div style="font-size: 25px;" class="absolute top-1 left-2 rounded-md bg-black text-white">ID image : <strong><?php echo $image['id'] ?></strong></div>
                                     <div class="absolute bottom-1 right-2 p-1">
                                         <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
                                     </div>
