@@ -134,11 +134,28 @@ if ($authentification['auth'] === "admin") {
                             if (isset($_POST['submit']))
                             {
                                 $bdd = getPDO();
+                                $sql = "SELECT user_id FROM images WHERE id = :choix";
+                                $req = $bdd->prepare($sql);
+                                $req->bindParam(":choix", $_POST['choix']);
+                                $req->execute();
+                                $image = $req->fetchAll(PDO::FETCH_ASSOC);
+                                $req->closeCursor();
+
+                                if(!empty($image)){
+                                    $userId2ban = $image[0]['user_id'];
+                                }
+
+                                $sql = "UPDATE users SET banned = banned+1 WHERE id = :userId";
+                                $req = $bdd->prepare($sql);
+                                $req->bindParam(":userId", $userId2ban);
+                                $req->execute();
+
                                 $sql = "DELETE FROM images WHERE id = :choix";
                                 $req = $bdd->prepare($sql);
                                 $req->bindParam(":choix", $_POST['choix']);
                                 $req->execute();
 
+                                echo "<script>location.reload();</script>";
                             }    
                         ?> 
 
@@ -149,7 +166,7 @@ if ($authentification['auth'] === "admin") {
                             <div class="col-span-3 p-2 bg-blue-500 items-center text-blue-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
                                 <span class="flex rounded-full bg-blue-600 uppercase px-2 py-1 text-xs font-bold mr-3">info</span>
                                 <span class="font-semibold mr-2 text-center flex-auto">
-                                    Vous avez bien supprimer l'image sélectionée &#x1F44D;
+                                    Vous avez bien supprimé l'image sélectionée &#x1F44D;
                                 </span>
                             </div>
 

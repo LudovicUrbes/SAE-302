@@ -5,11 +5,15 @@ GRANT ALL PRIVILEGES ON * . * TO 'php'@'localhost';
 
 use projet;
 
+DROP TABLE users;
+DROP TABLE images;
+
 CREATE TABLE users (
     `id` INT AUTO_INCREMENT UNIQUE,
     `email` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(50) NOT NULL,
     `vote_possible` INT default 0,
+    `banned` INT default 0,
     `auth` VARCHAR(50) NOT NULL default 'users',
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB;

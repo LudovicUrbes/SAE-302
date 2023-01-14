@@ -130,3 +130,14 @@ function getUserIdByUserImage($userId)
     $data = $req->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
+
+function getBannedUser($userId)
+{
+    $bdd = getPDO();
+    $sql = "SELECT banned FROM users WHERE id = :userId";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(":userId", $userId['id']);
+    $req->execute();
+    $banned = $req->fetch(PDO::FETCH_ASSOC);
+    return $banned;
+}

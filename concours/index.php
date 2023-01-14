@@ -180,7 +180,7 @@ $authentification = getUserAuthByEmail($email);
                                     <div class="absolute bottom-1 right-2 p-1">
                                          <!-- Requires a form with a ghost checkbox for like: -->
                                         <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
-                                    </div>
+                                     </div>
                                 </div>
                                 <?php endforeach; ?>
                                 <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
@@ -217,7 +217,7 @@ $authentification = getUserAuthByEmail($email);
                                     
                                     // The vote is not possible, an error message is displayed
                                     } else {
-
+                                        $_SESSION['errorUpload'] = array();
                                         array_push($_SESSION['errorUpload'], "Vous avez déjà voté pour une photo !");
                                     }
                                 } 
