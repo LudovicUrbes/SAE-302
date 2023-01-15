@@ -63,7 +63,7 @@ if (false === array_search(
 
 
 $destinationFile = sprintf(
-    'SAE-302/data/%s.%s',
+    '../uploads/%s.%s',
     sha1_file($_FILES['image']['tmp_name']),
     $extension
 );
