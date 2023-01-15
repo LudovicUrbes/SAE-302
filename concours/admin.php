@@ -61,31 +61,32 @@ if ($authentification['auth'] === "admin") {
             </header>
             <section class="grid grid-cols-3 w-full h-fit gap-y-5">
                 <article class="col-span-3 h-fit mt-5 mx-5 shadow-xl p-4 rounded overflow-hidden">
-                <section class=" w-fit h-fit mx-auto">
-                        <header class="text-xl font-bold text-center">Bienvenue sur la Page d'Administration ! 🎊🎊🎊</header>
-                        <br />
-                        <div id="temps_restant">
-                            <?php
-                                // Shows the time remaining
-                                echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE</strong>";
-                            ?>
-                        </div>
+                    <section class=" w-fit h-fit mx-auto">
+                            <header class="text-xl font-bold text-center">Bienvenue sur la Page d'Administration ! 🎊🎊🎊</header>
+                            <br />
+                            <div id="temps_restant">
+                                <?php
+                                    // Shows the time remaining
+                                    echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE</strong>";
+                                ?>
+                            </div>
 
-                        <!--<script src="\SAE-302\concours\admin\js\timer_update.js"></script>-->
+                            <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
+                    </section>
 
+                <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
+
+                    <section class=" w-fit h-fit mx-auto">
                         <?php include('admin/controllers/timer_admin.php'); ?>
 
                         <?php
-                            echo $date[0]['fin_envoi'];
-                            echo $date[0]['debut_vote'];
-                            echo $date[0]['fin_vote'];
-                            //$date1 = date("d/m/Y H:i:s", $date['fin_envoi']);
-                            //$date2 = date("d/m/Y H:i:s", $date['debut_vote']);
-                            //$date3 = date("d/m/Y H:i:s", $date['fin_vote']);
+                            $date1 = date("d/m/Y H:i:s", strtotime($date[0]['fin_envoi']));
+                            $date2 = date("d/m/Y H:i:s", strtotime($date[0]['debut_vote']));
+                            $date3 = date("d/m/Y H:i:s", strtotime($date[0]['fin_vote']));
 
-                            //echo "<br/><br/>Fin de la période d'envoi : <strong>$date1</strong> ";
-                            //echo "<br/>Début de la période des votes : <strong>$date2</strong> ";
-                            //echo "<br/>Résultat du concours : <strong>$date3</strong>";
+                            echo "<br/><br/>Fin de la période d'envoi : <strong>$date1</strong> ";
+                            echo "<br/>Début de la période des votes : <strong>$date2</strong> ";
+                            echo "<br/>Résultat du concours : <strong>$date3</strong>";
                         ?>
 
                     </section>

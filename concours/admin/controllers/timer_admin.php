@@ -12,27 +12,27 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
 
 <br/>
 
-<h1><u>Définir la date de début du concours :</u></h1>
+<h1><strong>Définir la date de début du concours :</strong></h1>
 <br/>
 <form method="post" action="/SAE-302/concours/admin.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
-            <strong>jour</strong>
+            jour
         </span>
         <span>
-            <strong>mois</strong>
+            mois
         </span>
         <span>
-            <strong>année</strong>
+            année
         </span>
         <span>
-            <strong>heures</strong>
+            heures
         </span>
         <span>
-            <strong>minutes</strong>
+            minutes
         </span>
         <span>
-            <strong>secondes</strong>
+            secondes
         </span>
 
         <span>
@@ -290,41 +290,39 @@ if (isset($_POST['date1']))
 
     // end date of each phase of the competition
     $fin_envoi = "$selected_year1-$selected_month1-$selected_day1 $selected_hours1:$selected_minutes1:$selected_seconds1";
-    var_dump($fin_envoi);
     $bdd = getPDO();
     $sql = "UPDATE dates SET fin_envoi = :date1 WHERE id = 1";
     $req = $bdd->prepare($sql);
     $req->bindParam(":date1", $fin_envoi);
     $req->execute();
     $req->closeCursor();
-
 }
-//var_dump($fin_envoi);
+
 ?>
 
 </form>
 
-<h1><u>Définir la date de fin d'envoi :</u></h1>
+<h1><strong>Définir la date de fin d'envoi :</strong></h1>
 <br/>
 <form method="post" action="/SAE-302/concours/admin.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
-            <strong>jour</strong>
+            jour
         </span>
         <span>
-            <strong>mois</strong>
+            mois
         </span>
         <span>
-            <strong>année</strong>
+            année
         </span>
         <span>
-            <strong>heures</strong>
+            heures
         </span>
         <span>
-            <strong>minutes</strong>
+            minutes
         </span>
         <span>
-            <strong>secondes</strong>
+            secondes
         </span>
 
         <span>
@@ -582,7 +580,6 @@ if (isset($_POST['date2']))
 
     // end date of each phase of the competition
     $debut_vote = "$selected_year2-$selected_month2-$selected_day2 $selected_hours2:$selected_minutes2:$selected_seconds2";
-    var_dump($debut_vote);
     $bdd = getPDO();
     $sql = "UPDATE dates SET debut_vote = :date2 WHERE id = 1";
     $req = $bdd->prepare($sql);
@@ -590,32 +587,31 @@ if (isset($_POST['date2']))
     $req->execute();
     $req->closeCursor();
 }
-//var_dump($debut_vote);
 ?>
 
 </form>
 
-<h1><u>Définir la date de fin des votes  :</u></h1>
+<h1><strong>Définir la date de fin des votes  :</strong></h1>
 <br/>
 <form method="post" action="/SAE-302/concours/admin.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
-            <strong>jour</strong>
+            jour
         </span>
         <span>
-            <strong>mois</strong>
+            mois
         </span>
         <span>
-            <strong>année</strong>
+            année
         </span>
         <span>
-            <strong>heures</strong>
+            heures
         </span>
         <span>
-            <strong>minutes</strong>
+            minutes
         </span>
         <span>
-            <strong>secondes</strong>
+            secondes
         </span>
 
         <span>
@@ -873,7 +869,6 @@ if (isset($_POST['date3']))
 
     // end date of each phase of the competition
     $fin_vote = "$selected_year3-$selected_month3-$selected_day3 $selected_hours3:$selected_minutes3:$selected_seconds3";
-    var_dump($fin_vote);
     $bdd = getPDO();
     $sql = "UPDATE dates SET fin_vote = :date3 WHERE id = 1";
     $req = $bdd->prepare($sql);
@@ -881,7 +876,6 @@ if (isset($_POST['date3']))
     $req->execute();
     $req->closeCursor();
 }
-//var_dump($fin_vote);
 ?>
 
 </form>

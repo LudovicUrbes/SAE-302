@@ -1,8 +1,13 @@
 <?php
 
-//$fin_envoi = strtotime("2023-01-15 06:44:00");
-//$debut_vote = strtotime("2023-01-15 06:45:00");
-//$fin_vote = strtotime("2023-01-18 06:46:00");
+session_start(); // Start a PHP session
+require_once('config/crud.php'); // Load an external PHP file named "crud.php", which contains database management functions
+
+$date = getAllDates();
+
+$fin_envoi = strtotime($date[0]['fin_envoi']);
+$debut_vote = strtotime($date[0]['debut_vote']);
+$fin_vote = strtotime($date[0]['fin_vote']);
 
 // checks that the end date of the sending phase has not ended
 if ($fin_envoi > time()) {
