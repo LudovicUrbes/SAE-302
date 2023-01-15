@@ -1,5 +1,30 @@
-<?php
+<?php                      
+// Définition des options valides pour le sélecteur
+$valid_years = array("2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030");
+$valid_months = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+$valid_days = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31");
+$valid_hours = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
+$valid_minutes = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59");
+$valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59");
+
+// Vérification que la valeur sélectionnée est valide
+if (isset($_POST['année'], $_POST['mois'], $_POST['jour'], $_POST['heures'], $_POST['minutes'], $_POST['secondes'])) {
+  if (in_array($_POST['année'], $valid_years) && in_array($_POST['mois'], $valid_months) && in_array($_POST['jour'], $valid_days) && in_array($_POST['heures'], $valid_hours) && in_array($_POST['minutes'], $valid_minutes) && in_array($_POST['secondes'], $valid_seconds)) {
+    $selected_year = htmlspecialchars($_POST['année'], ENT_QUOTES, 'UTF-8');
+    $selected_month = htmlspecialchars($_POST['mois'], ENT_QUOTES, 'UTF-8');
+    $selected_day = htmlspecialchars($_POST['jour'], ENT_QUOTES, 'UTF-8');
+    $selected_hours = htmlspecialchars($_POST['heures'], ENT_QUOTES, 'UTF-8');
+    $selected_minutes = htmlspecialchars($_POST['minutes'], ENT_QUOTES, 'UTF-8');
+    $selected_seconds = htmlspecialchars($_POST['secondes'], ENT_QUOTES, 'UTF-8');
+  } else {
+    // Gestion d'une erreur si la valeur sélectionnée n'est pas valide
+    echo "Sélection de date non valide";
+    exit();
+  }
+}
+
 // end date of each phase of the competition
+//$fin_envoi = strtotime("$selected_year-$selected_month-$selected_day $selected_hours:$selected_minutes:$selected_seconds");
 $fin_envoi = strtotime("2023-02-19 00:00:00");
 $debut_vote = strtotime("2023-02-21 00:00:00");
 $fin_vote = strtotime("2023-03-20 00:00:00");
@@ -49,3 +74,13 @@ if ($fin_envoi > time()) {
   echo "Le concours est terminé.<br/>";
   echo "Voici les résultats du concours :<br/>";
 }
+
+$date1 = date("d/m/Y H:i:s", $fin_envoi);
+$date2 = date("d/m/Y H:i:s", $debut_vote);
+$date3 = date("d/m/Y H:i:s", $fin_vote);
+
+echo "<br/><br/>fin d'envoi : <strong>$date1</strong> ";
+echo "<br/>début des votes : <strong>$date2</strong> ";
+echo "<br/>fin des votes : <strong>$date3</strong>";
+
+?>

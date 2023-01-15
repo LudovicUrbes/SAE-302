@@ -141,3 +141,7 @@ function getBannedUser($userId)
     $banned = $req->fetch(PDO::FETCH_ASSOC);
     return $banned;
 }
+
+function is_my_page(){
+    return (basename($_SERVER['PHP_SELF']) == 'admin.php');
+}

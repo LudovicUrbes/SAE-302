@@ -84,6 +84,8 @@ if (!move_uploaded_file(
 if (empty($data) && $banned['banned'] == 0){
     addImage($destinationFile, $userId['id']);
     $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
+} elseif ($banned['banned'] > 0){
+    array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
 } else {
     array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
     //header('Location: /SAE-302/concours/index.php');

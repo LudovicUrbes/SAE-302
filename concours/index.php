@@ -6,7 +6,7 @@ $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 $authentification = getUserAuthByEmail($email);
-
+$banned = getBannedUser($userId);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -18,6 +18,21 @@ $authentification = getUserAuthByEmail($email);
     <link rel="stylesheet" type="text/css" href="/SAE-302/concours/admin/css/style.css">
     <title>Concours Photo | IUT Châtellerault</title>
 </head>
+
+<noscript>
+  JavaScript n'est pas activé. Veuillez l'activer pour afficher la page.
+</noscript>
+
+<div id="js-check" style="display: none;">
+    <script>
+      if (!document.getElementById('js-check')) {
+      // JavaScript n'est pas activé, affiche un message d'erreur
+      document.write("JavaScript n'est pas activé. Veuillez l'activer pour afficher la page.");
+    } else {
+      // JavaScript est activé, affiche la page
+      document.getElementById('js-check').style.display = 'block';
+    }
+    </script>
 
 <body <?php if (!isset($_SESSION['user'])) : ?> class="relative z-auto w-full h-full bg-stone-700" <?php endif; ?>>
     <!-- We check if the user is logged in -->
@@ -54,29 +69,7 @@ $authentification = getUserAuthByEmail($email);
                                 echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE &#8987</strong>";
                             ?>
                         </div>
-                        <script>
-                          // updates the content of the HTML element every second (1000 milliseconds)
-                          setInterval(function() {
-                            // create a new instance of the XMLHttpRequest object
-                            var xhttp = new XMLHttpRequest();
-
-                            // defines the function to execute when the response is ready
-                            xhttp.onreadystatechange = function() {
-                              // check if the answer is ready and valid
-                              if (this.readyState == 4 && this.status == 200) {
-                                // retrieve the content of the HTML element
-                                var temps_restant = document.getElementById("temps_restant");
-
-                                // replace the content of the HTML element with the new content
-                                temps_restant.innerHTML = this.responseText;
-                              }
-                            };
-
-                            // sends an HTTP GET request to the server to update the timer
-                            xhttp.open("GET", "timer_update.php", true);
-                            xhttp.send();
-                          }, 1000);
-                        </script>
+                        <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
                         <br />
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
@@ -128,6 +121,12 @@ $authentification = getUserAuthByEmail($email);
                         </p>
                     </section>
                 </article>
+                <?php
+                if ($banned['banned'] > 0){
+                    $_SESSION['errorUpload'] = array();
+                    array_push($_SESSION['errorUpload'], "Votre participation ne sera pas retenue pour cause de non conformité !");
+                } 
+                ?>
 
                 <?php if (!empty($_SESSION['errorUpload'])) : ?>
                     <!-- Error Message -->
@@ -251,5 +250,5 @@ $authentification = getUserAuthByEmail($email);
         <script src="./admin/js/togglePassword.js"></script>
     <?php endif; ?>
 </body>
-
+</div>
 </html>

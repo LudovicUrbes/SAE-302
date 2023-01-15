@@ -28,6 +28,21 @@ if ($authentification['auth'] === "admin") {
     <title>Concours Photo | IUT Châtellerault</title>
 </head>
 
+<noscript>
+  JavaScript n'est pas activé. Veuillez l'activer pour afficher la page.
+</noscript>
+
+<div id="js-check" style="display: none;">
+    <script>
+      if (!document.getElementById('js-check')) {
+      // JavaScript n'est pas activé, affiche un message d'erreur
+      document.write("JavaScript n'est pas activé. Veuillez l'activer pour afficher la page.");
+    } else {
+      // JavaScript est activé, affiche la page
+      document.getElementById('js-check').style.display = 'block';
+    }
+    </script>
+
 <body <?php if (!isset($_SESSION['user'])) : ?> class="relative z-auto w-full h-full bg-stone-700" <?php endif; ?>> <!-- User Login Verification -->
     <?php if (isset($_SESSION['user'])) : ?> <!-- User Login Verification -->
         <section class="w-full h-full bg-white">
@@ -54,29 +69,11 @@ if ($authentification['auth'] === "admin") {
                                 echo "<strong>&#8987 EN ATTENTE DU RAFFRA&#206CHISSEMENT DE LA PAGE</strong>";
                             ?>
                         </div>
-                        <script>
-                          // Updates HTML element content every second (1000 milliseconds)
-                          setInterval(function() {
-                            // Creates a new instance of the XMLHttpRequest object
-                            var xhttp = new XMLHttpRequest();
 
-                            // Defines the function to be performed when the response is ready
-                            xhttp.onreadystatechange = function() {
-                              // Checks if the answer is ready and valid
-                              if (this.readyState == 4 && this.status == 200) {
-                                // Recovers the content of the HTML element
-                                var temps_restant = document.getElementById("temps_restant");
+                        <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
 
-                                // Replaces HTML element content with new content
-                                temps_restant.innerHTML = this.responseText;
-                              }
-                            };
+                        <?php include('admin/controllers/timer_admin.php'); ?>
 
-                            // Sends HTTP GET request to server to update timer
-                            xhttp.open("GET", "timer_update.php", true);
-                            xhttp.send();
-                          }, 1000);
-                        </script>
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">
@@ -271,5 +268,5 @@ if ($authentification['auth'] === "admin") {
         <script src="./admin/js/togglePassword.js"></script>
     <?php endif; ?>
 </body>
-
+</div>
 </html>
