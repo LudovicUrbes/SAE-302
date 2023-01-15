@@ -5,13 +5,13 @@
 <form method="post" action="/SAE-302/concours/timer_update.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
-            <strong>année</strong>
+            <strong>jour</strong>
         </span>
         <span>
             <strong>mois</strong>
         </span>
         <span>
-            <strong>jour</strong>
+            <strong>année</strong>
         </span>
         <span>
             <strong>heures</strong>
@@ -21,36 +21,6 @@
         </span>
         <span>
             <strong>secondes</strong>
-        </span>
-
-        <span>
-            <select name="année">
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-                <option value="2029">2029</option>
-                <option value="2030">2030</option>
-            </select>
-        </span>
-
-        <span>
-            <select name="mois">
-                <option value="01">Janvier</option>
-                <option value="02">Février</option>
-                <option value="03">Mars</option>
-                <option value="04">Avril</option>
-                <option value="05">Mai</option>
-                <option value="06">Juin</option>
-                <option value="07">Juillet</option>
-                <option value="08">Août</option>
-                <option value="09">Septembre</option>
-                <option value="10">Octobre</option>
-                <option value="11">Novembre</option>
-                <option value="12">Décembre</option>
-            </select>
         </span>
 
         <span>
@@ -86,6 +56,35 @@
                 <option value="29">29</option>
                 <option value="30">30</option>
                 <option value="31">31</option>
+            </select>
+        </span>
+
+        <span>
+            <select name="mois">
+                <option value="01">Janvier</option>
+                <option value="02">Février</option>
+                <option value="03">Mars</option>
+                <option value="04">Avril</option>
+                <option value="05">Mai</option>
+                <option value="06">Juin</option>
+                <option value="07">Juillet</option>
+                <option value="08">Août</option>
+                <option value="09">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+            </select>
+        </span>
+        <span>
+            <select name="année">
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
             </select>
         </span>
 
