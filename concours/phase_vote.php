@@ -50,7 +50,7 @@ if ($time != 3)
                 <h1 class="text-2xl ml-3">Concours Photo 📸</h1>
 
                 <!-- We check if the logged in user is an administrator -->
-                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/index.php" && ($authentification['auth'] === "admin")): ?>
+                <?php if ($_SERVER['REQUEST_URI'] == "/SAE-302/concours/phase_vote.php" && ($authentification['auth'] === "admin")): ?>
                 <a class="nav-link active" aria-current="page" href="/SAE-302/concours/admin.php" style="text-indent: 185px ; color: red ; font-size: 23px">Page Admin 📂</a>
                 <?php endif ?>
                 
