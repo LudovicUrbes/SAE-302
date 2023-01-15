@@ -79,9 +79,8 @@ if ($time != 3)
                         </div>
                         <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
 
-                        <?php echo "<?php $time ?>"; ?>
+                        <?php echo "<p style='color:#FFFFFF;'> $time  </p>";  ?> 
 
-                        <br />
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">
