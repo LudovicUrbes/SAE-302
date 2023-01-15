@@ -27,7 +27,7 @@ if (isset($_POST['année'], $_POST['mois'], $_POST['jour'], $_POST['heures'], $_
 // end date of each phase of the competition
 //$fin_envoi = strtotime("$selected_year-$selected_month-$selected_day $selected_hours:$selected_minutes:$selected_seconds");
 $fin_envoi = strtotime("2023-01-15 06:44:00");
-$debut_vote = strtotime("2023-01-16 06:45:00");
+$debut_vote = strtotime("2023-01-15 06:45:00");
 $fin_vote = strtotime("2023-01-18 06:46:00");
 
 // checks that the end date of the sending phase has not ended
