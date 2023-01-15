@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('config/crud.php');
-var_dump(getAllImages());
 $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
@@ -80,7 +79,7 @@ if ($time != 2)
                         <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
 
                         <?php echo "<p style='color:#FFFFFF;'> $time  </p>";  ?> 
-                        
+
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <section class=" w-fit h-fit mx-auto">

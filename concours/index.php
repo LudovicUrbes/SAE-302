@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('config/crud.php');
-var_dump(getAllImages());
 $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
@@ -74,8 +73,6 @@ if (isset($_SESSION['time'])) {
                             ?>
                         </div>
                         <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
-
-                        <?php //echo "<br/>time=", $time; ?>
 
                         <?php 
                         

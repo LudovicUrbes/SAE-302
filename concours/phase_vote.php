@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('config/crud.php');
-var_dump(getAllImages());
 $images = getAllImages();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);

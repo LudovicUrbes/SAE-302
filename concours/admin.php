@@ -3,7 +3,6 @@
 <?php
 session_start(); // Start a PHP session
 require_once('config/crud.php'); // Load an external PHP file named "crud.php", which contains database management functions
-var_dump(getAllImages()); // Function containing all images of the contest.
 $images = getAllImages(); // Stores the result of the "getAllImages" function in a variable named "$images"
 $email = $_SESSION['user']; // Stores the email of the currently logged in user in a variable named "$email"
 $userId = getUserIdByEmail($email); // "getUserIdByEmail" function to retrieve the ID of the currently logged in user from his email address
