@@ -141,3 +141,22 @@ function getBannedUser($userId)
     $banned = $req->fetch(PDO::FETCH_ASSOC);
     return $banned;
 }
+
+function getAllDates()
+{
+    $bdd = getPDO();
+    // We then prepare the SQL query :
+    $req = $bdd->prepare('SELECT * FROM dates');
+    // Once ready, we execute this :
+    $req->execute();
+    // Once executed, the information is retrieved in '$data':
+    $date = $req->fetchAll(PDO::FETCH_ASSOC);
+    // The cursor is closed to indicate the end of the operation :
+    $req->closeCursor();
+    // Finally, we return the information :
+    return $date;
+}
+
+
+                                        
+                                        

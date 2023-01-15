@@ -1,8 +1,20 @@
+<?php 
+
+// Définition des options valides pour le sélecteur
+$valid_years = array("2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030");
+$valid_months = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+$valid_days = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31");
+$valid_hours = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
+$valid_minutes = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59");
+$valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59");
+
+?>
+
 <br/>
 
 <h1><u>Définir la date de début du concours :</u></h1>
 <br/>
-<form method="post" action="/SAE-302/concours/timer_update.php">
+<form method="post" action="/SAE-302/concours/admin.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
             <strong>jour</strong>
@@ -255,11 +267,46 @@
     <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
         <input type="submit" class="cursor-pointer" value="Valider" name="date1">
     </button>
+
+<?php
+
+if (isset($_POST['date1']))
+{
+    // Vérification que la valeur sélectionnée est valide
+    if (isset($_POST['année1'], $_POST['mois1'], $_POST['jour1'], $_POST['heures1'], $_POST['minutes1'], $_POST['secondes1'])) {
+      if (in_array($_POST['année1'], $valid_years) && in_array($_POST['mois1'], $valid_months) && in_array($_POST['jour1'], $valid_days) && in_array($_POST['heures1'], $valid_hours) && in_array($_POST['minutes1'], $valid_minutes) && in_array($_POST['secondes1'], $valid_seconds)) {
+        $selected_year1 = htmlspecialchars($_POST['année1'], ENT_QUOTES, 'UTF-8');
+        $selected_month1 = htmlspecialchars($_POST['mois1'], ENT_QUOTES, 'UTF-8');
+        $selected_day1 = htmlspecialchars($_POST['jour1'], ENT_QUOTES, 'UTF-8');
+        $selected_hours1 = htmlspecialchars($_POST['heures1'], ENT_QUOTES, 'UTF-8');
+        $selected_minutes1 = htmlspecialchars($_POST['minutes1'], ENT_QUOTES, 'UTF-8');
+        $selected_seconds1 = htmlspecialchars($_POST['secondes1'], ENT_QUOTES, 'UTF-8');
+      } else {
+        // Gestion d'une erreur si la valeur sélectionnée n'est pas valide
+        echo "Sélection de date non valide";
+        exit();
+      }
+    }
+
+    // end date of each phase of the competition
+    $fin_envoi = "$selected_year1-$selected_month1-$selected_day1 $selected_hours1:$selected_minutes1:$selected_seconds1";
+    var_dump($fin_envoi);
+    $bdd = getPDO();
+    $sql = "UPDATE dates SET fin_envoi = :date1 WHERE id = 1";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(":date1", $fin_envoi);
+    $req->execute();
+    $req->closeCursor();
+
+}
+//var_dump($fin_envoi);
+?>
+
 </form>
 
 <h1><u>Définir la date de fin d'envoi :</u></h1>
 <br/>
-<form method="post" action="/SAE-302/concours/timer_update.php">
+<form method="post" action="/SAE-302/concours/admin.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
             <strong>jour</strong>
@@ -512,11 +559,45 @@
     <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
         <input type="submit" class="cursor-pointer" value="Valider" name="date2">
     </button>
+
+<?php
+
+if (isset($_POST['date2']))
+{
+    // Vérification que la valeur sélectionnée est valide
+    if (isset($_POST['année2'], $_POST['mois2'], $_POST['jour2'], $_POST['heures2'], $_POST['minutes2'], $_POST['secondes2'])) {
+      if (in_array($_POST['année2'], $valid_years) && in_array($_POST['mois2'], $valid_months) && in_array($_POST['jour2'], $valid_days) && in_array($_POST['heures2'], $valid_hours) && in_array($_POST['minutes2'], $valid_minutes) && in_array($_POST['secondes2'], $valid_seconds)) {
+        $selected_year2 = htmlspecialchars($_POST['année2'], ENT_QUOTES, 'UTF-8');
+        $selected_month2 = htmlspecialchars($_POST['mois2'], ENT_QUOTES, 'UTF-8');
+        $selected_day2 = htmlspecialchars($_POST['jour2'], ENT_QUOTES, 'UTF-8');
+        $selected_hours2 = htmlspecialchars($_POST['heures2'], ENT_QUOTES, 'UTF-8');
+        $selected_minutes2 = htmlspecialchars($_POST['minutes2'], ENT_QUOTES, 'UTF-8');
+        $selected_seconds2 = htmlspecialchars($_POST['secondes2'], ENT_QUOTES, 'UTF-8');
+      } else {
+        // Gestion d'une erreur si la valeur sélectionnée n'est pas valide
+        echo "Sélection de date non valide";
+        exit();
+      }
+    }
+
+    // end date of each phase of the competition
+    $debut_vote = "$selected_year2-$selected_month2-$selected_day2 $selected_hours2:$selected_minutes2:$selected_seconds2";
+    var_dump($debut_vote);
+    $bdd = getPDO();
+    $sql = "UPDATE dates SET debut_vote = :date2 WHERE id = 1";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(":date2", $debut_vote);
+    $req->execute();
+    $req->closeCursor();
+}
+//var_dump($debut_vote);
+?>
+
 </form>
 
 <h1><u>Définir la date de fin des votes  :</u></h1>
 <br/>
-<form method="post" action="/SAE-302/concours/timer_update.php">
+<form method="post" action="/SAE-302/concours/admin.php">
     <span class="inline-grid grid-cols-6 gap-4">
         <span>
             <strong>jour</strong>
@@ -769,4 +850,39 @@
     <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
         <input type="submit" class="cursor-pointer" value="Valider" name="date3">
     </button>
+
+<?php
+
+if (isset($_POST['date3']))
+{
+    // Vérification que la valeur sélectionnée est valide
+    if (isset($_POST['année3'], $_POST['mois3'], $_POST['jour3'], $_POST['heures3'], $_POST['minutes3'], $_POST['secondes3'])) {
+      if (in_array($_POST['année3'], $valid_years) && in_array($_POST['mois3'], $valid_months) && in_array($_POST['jour3'], $valid_days) && in_array($_POST['heures3'], $valid_hours) && in_array($_POST['minutes3'], $valid_minutes) && in_array($_POST['secondes3'], $valid_seconds)) {
+        $selected_year3 = htmlspecialchars($_POST['année3'], ENT_QUOTES, 'UTF-8');
+        $selected_month3 = htmlspecialchars($_POST['mois3'], ENT_QUOTES, 'UTF-8');
+        $selected_day3 = htmlspecialchars($_POST['jour3'], ENT_QUOTES, 'UTF-8');
+        $selected_hours3 = htmlspecialchars($_POST['heures3'], ENT_QUOTES, 'UTF-8');
+        $selected_minutes3 = htmlspecialchars($_POST['minutes3'], ENT_QUOTES, 'UTF-8');
+        $selected_seconds3 = htmlspecialchars($_POST['secondes3'], ENT_QUOTES, 'UTF-8');
+      } else {
+        // Gestion d'une erreur si la valeur sélectionnée n'est pas valide
+        echo "Sélection de date non valide";
+        exit();
+      }
+    }
+
+    // end date of each phase of the competition
+    $fin_vote = "$selected_year3-$selected_month3-$selected_day3 $selected_hours3:$selected_minutes3:$selected_seconds3";
+    var_dump($fin_vote);
+    $bdd = getPDO();
+    $sql = "UPDATE dates SET fin_vote = :date3 WHERE id = 1";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(":date3", $fin_vote);
+    $req->execute();
+    $req->closeCursor();
+}
+//var_dump($fin_vote);
+?>
+
 </form>
+

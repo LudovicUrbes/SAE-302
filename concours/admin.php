@@ -8,6 +8,7 @@ $images = getAllImages(); // Stores the result of the "getAllImages" function in
 $email = $_SESSION['user']; // Stores the email of the currently logged in user in a variable named "$email"
 $userId = getUserIdByEmail($email); // "getUserIdByEmail" function to retrieve the ID of the currently logged in user from his email address
 $authentification = getUserAuthByEmail($email);
+$date = getAllDates();
 
 // Check to allow access to the page user id must be equal to 100, 101, 102 otherwise it is redirected to the page index.php
 
@@ -70,9 +71,22 @@ if ($authentification['auth'] === "admin") {
                             ?>
                         </div>
 
-                        <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
+                        <!--<script src="\SAE-302\concours\admin\js\timer_update.js"></script>-->
 
                         <?php include('admin/controllers/timer_admin.php'); ?>
+
+                        <?php
+                            echo $date[0]['fin_envoi'];
+                            echo $date[0]['debut_vote'];
+                            echo $date[0]['fin_vote'];
+                            //$date1 = date("d/m/Y H:i:s", $date['fin_envoi']);
+                            //$date2 = date("d/m/Y H:i:s", $date['debut_vote']);
+                            //$date3 = date("d/m/Y H:i:s", $date['fin_vote']);
+
+                            //echo "<br/><br/>Fin de la période d'envoi : <strong>$date1</strong> ";
+                            //echo "<br/>Début de la période des votes : <strong>$date2</strong> ";
+                            //echo "<br/>Résultat du concours : <strong>$date3</strong>";
+                        ?>
 
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">

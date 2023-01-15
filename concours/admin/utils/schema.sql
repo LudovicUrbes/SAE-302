@@ -7,6 +7,7 @@ use projet;
 
 DROP TABLE users;
 DROP TABLE images;
+DROP TABLE dates;
 
 CREATE TABLE users (
     `id` INT AUTO_INCREMENT UNIQUE,
@@ -26,7 +27,17 @@ CREATE TABLE images(
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE dates(
+    `id` INT AUTO_INCREMENT UNIQUE,
+    `fin_envoi` DATETIME NOT NULL,
+    `debut_vote` DATETIME NOT NULL,
+    `fin_vote` DATETIME NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
 INSERT INTO `users` (`email`, `password`) VALUES ("gautier.leroux@etu.univ-poitiers.fr", "gtrnet");
 INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("eliott.marceau@etu.univ-poitiers.fr", "gtrnet", "admin");
 INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("alan.de.lijster@etu.univ-poitiers.fr", "gtrnet", "admin");
 INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("ludovic.urbes@etu.univ-poitiers.fr", "gtrnet", "admin");
+
+INSERT INTO `dates` (`fin_envoi`, `debut_vote`, `fin_vote`) VALUES ('2023-01-01 00:00:00', '2023-01-01 00:00:00', '2023-01-01 00:00:00');
