@@ -79,11 +79,10 @@ if (isset($_SESSION['time'])) {
 
                         <?php 
                         
-                        $time == 1;
-                        
                         if ($time == 1)
                             {
                                 header('Location: /SAE-302/concours/phase_envoi.php');
+
                             }
                             elseif ($time == 2)
                             {

@@ -13,6 +13,7 @@ if (isset($_SESSION['time'])) {
 if ($time != 1)
 {
     header('Location: /SAE-302/concours/index.php');
+    die();
 }
 ?>
 <!doctype html>
