@@ -24,7 +24,7 @@
         </span>
 
         <span>
-            <select name="jour">
+            <select name="jour1">
                 <option value="01">01</option>
                 <option value="02">02</option>
                 <option value="03">03</option>
@@ -60,7 +60,7 @@
         </span>
 
         <span>
-            <select name="mois">
+            <select name="mois1">
                 <option value="01">Janvier</option>
                 <option value="02">Février</option>
                 <option value="03">Mars</option>
@@ -76,7 +76,7 @@
             </select>
         </span>
         <span>
-            <select name="année">
+            <select name="année1">
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
                 <option value="2025">2025</option>
@@ -89,7 +89,7 @@
         </span>
 
         <span>
-            <select name="heures">
+            <select name="heures1">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -118,7 +118,7 @@
         </span>
 
         <span>
-            <select name="minutes">
+            <select name="minutes1">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -183,7 +183,7 @@
         </span>
 
         <span>
-            <select name="secondes">
+            <select name="secondes1">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -253,7 +253,7 @@
     <br/>
 
     <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
-        <input type="submit" class="cursor-pointer" value="Valider" name="date">
+        <input type="submit" class="cursor-pointer" value="Valider" name="date1">
     </button>
 </form>
 
@@ -281,7 +281,7 @@
         </span>
 
         <span>
-            <select name="jour">
+            <select name="jour2">
                 <option value="01">01</option>
                 <option value="02">02</option>
                 <option value="03">03</option>
@@ -317,7 +317,7 @@
         </span>
 
         <span>
-            <select name="mois">
+            <select name="mois2">
                 <option value="01">Janvier</option>
                 <option value="02">Février</option>
                 <option value="03">Mars</option>
@@ -333,7 +333,7 @@
             </select>
         </span>
         <span>
-            <select name="année">
+            <select name="année2">
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
                 <option value="2025">2025</option>
@@ -346,7 +346,7 @@
         </span>
 
         <span>
-            <select name="heures">
+            <select name="heures2">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -375,7 +375,7 @@
         </span>
 
         <span>
-            <select name="minutes">
+            <select name="minutes2">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -440,7 +440,7 @@
         </span>
 
         <span>
-            <select name="secondes">
+            <select name="secondes2">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -510,7 +510,7 @@
     <br/>
 
     <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
-        <input type="submit" class="cursor-pointer" value="Valider" name="date">
+        <input type="submit" class="cursor-pointer" value="Valider" name="date2">
     </button>
 </form>
 
@@ -538,7 +538,7 @@
         </span>
 
         <span>
-            <select name="jour">
+            <select name="jour3">
                 <option value="01">01</option>
                 <option value="02">02</option>
                 <option value="03">03</option>
@@ -574,7 +574,7 @@
         </span>
 
         <span>
-            <select name="mois">
+            <select name="mois3">
                 <option value="01">Janvier</option>
                 <option value="02">Février</option>
                 <option value="03">Mars</option>
@@ -590,7 +590,7 @@
             </select>
         </span>
         <span>
-            <select name="année">
+            <select name="année3">
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
                 <option value="2025">2025</option>
@@ -603,7 +603,7 @@
         </span>
 
         <span>
-            <select name="heures">
+            <select name="heures3">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -632,7 +632,7 @@
         </span>
 
         <span>
-            <select name="minutes">
+            <select name="minutes3">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -697,7 +697,7 @@
         </span>
 
         <span>
-            <select name="secondes">
+            <select name="secondes3">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -767,6 +767,6 @@
     <br/>
 
     <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
-        <input type="submit" class="cursor-pointer" value="Valider" name="date">
+        <input type="submit" class="cursor-pointer" value="Valider" name="date3">
     </button>
 </form>
