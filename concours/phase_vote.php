@@ -78,7 +78,7 @@ if ($time != 3)
                         </div>
                         <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
 
-                        <?php echo "<br/>time=", $time; ?>
+                        <?php echo "<?php $time ?>"; ?>
 
                         <br />
                     </section>
@@ -137,43 +137,6 @@ if ($time != 3)
                     array_push($_SESSION['errorUpload'], "Votre participation ne sera pas retenue pour cause de non conformité !");
                 } 
                 ?>
-
-                <?php if (!empty($_SESSION['errorUpload'])) : ?>
-                    <!-- Error Message -->
-                    <?php foreach ($_SESSION['errorUpload'] as $error) : ?>
-                        <div class="col-span-3 text-center" role="alert">
-                            <div class="p-2 bg-red-500 items-center text-red-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
-                                <span class="flex rounded-full bg-red-600 uppercase px-2 py-1 text-xs font-bold mr-3">Erreur</span>
-                                <span class="font-semibold mr-2 text-center flex-auto">
-                                    <?= $error; ?>
-                                </span>
-                            </div>
-                        </div>
-                    <?php unset($_SESSION['errorUpload']);
-                    endforeach; ?>
-                <?php endif; ?>
-
-                <?php if (!empty($_SESSION['successUpload'])) : ?>
-                    <!-- Success Message -->
-                    <div class="col-span-3 text-center" role="alert">
-                        <div class="p-2 bg-cyan-500 items-center text-cyan-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
-                            <span class="flex rounded-full bg-cyan-600 uppercase px-2 py-1 text-xs font-bold mr-3">Info</span>
-                            <span class="font-semibold mr-2 text-center flex-auto">
-                                <?= $_SESSION['successUpload']; ?>
-                            </span>
-                        </div>
-                    </div>
-                    <?php unset($_SESSION['successUpload']); ?>
-                <?php endif; ?>
-
-                <!-- Add Image -->
-                <form action="admin/controllers/upload.php" enctype="multipart/form-data" method="post" class="col-span-3 flex justify-center">
-                    <?php require_once('admin/components/customInputIlmage.php'); ?>
-                    <button class="bg-emerald-200 hover:bg-emerald-300 text-emerald-700 font-bold py-2 px-4 rounded inline-flex items-center">
-                        <?php require_once('admin/utils/upload.php'); ?>
-                        <input type="submit" class="cursor-pointer" value="Envoyer votre photo !" id="submit">
-                    </button>
-                </form>
 
                 <!-- Image list -->
                 <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">

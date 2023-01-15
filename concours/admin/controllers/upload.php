@@ -20,26 +20,26 @@ switch ($_FILES['image']['error']) {
         break;
     case UPLOAD_ERR_NO_FILE:
         array_push($_SESSION['errorUpload'], "Pas d'image envoyée.");
-        header('Location: /SAE-302/concours/index.php');
+        header('Location: /SAE-302/concours/phase_envoi.php');
         die();
     case UPLOAD_ERR_INI_SIZE:
         array_push($_SESSION['errorUpload'], "La taille de l'image dépasse la limite fixée par le serveur.");
-        header('Location: /SAE-302/concours/index.php');
+        header('Location: /SAE-302/concours/phase_envoi.php');
         die();
     case UPLOAD_ERR_FORM_SIZE:
         array_push($_SESSION['errorUpload'], "La taille de l'image dépasse le maximum autorisé.");
-        header('Location: /SAE-302/concours/index.php');
+        header('Location: /SAE-302/concours/phase_envoi.php');
         die();
     default:
         array_push($_SESSION['errorUpload'], 'Erreur inconnue.');
-        header('Location: /SAE-302/concours/index.php');
+        header('Location: /SAE-302/concours/phase_envoi.php');
         die();
 }
 
 // On vérifie la taille max :
 if ($_FILES['image']['size'] > $max_size) {
     array_push($_SESSION['errorUpload'], "La taille de l'image dépasse le maximum autorisé.");
-    header('Location: /SAE-302/concours/index.php');
+    header('Location: /SAE-302/concours/phase_envoi.php');
     die();
 }
 
@@ -57,7 +57,7 @@ if (false === array_search(
     true
 )) {
     array_push($_SESSION['errorUpload'], 'Extension non valide.');
-    header('Location: /SAE-302/concours/index.php');
+    header('Location: /SAE-302/concours/phase_envoi.php');
     die();
 }
 
@@ -74,7 +74,7 @@ if (!move_uploaded_file(
     $destinationFile
 )) {
     array_push($_SESSION['errorUpload'], "Transfert échoué.");
-    header('Location: /SAE-302/concours/index.php');
+    header('Location: /SAE-302/concours/phase_envoi.php');
     die();
 }
 
@@ -93,5 +93,5 @@ if (empty($data) && $banned['banned'] == 0){
 }
 
 // Enfin, on redirige sur la page pour voir le résultat !
-header('Location: /SAE-302/concours/index.php');
+header('Location: /SAE-302/concours/phase_envoi.php');
 die();

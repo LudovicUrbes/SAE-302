@@ -78,7 +78,7 @@ if ($time != 1)
                         </div>
                         <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
 
-                        <?php echo "<br/>time=", $time; ?>
+                        <?php echo $time; ?>
 
                         <br />
                     </section>
@@ -175,72 +175,6 @@ if ($time != 1)
                     </button>
                 </form>
 
-                <!-- Image list -->
-                <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">
-                    <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Liste des images : </span> 🖼️</header>
-                    <?php
-                        if (count($images) != 0) :
-                            foreach ($images as $image) :
-                    ?>
-                            <!-- Creating the card that will contain the image! -->
-                            <form method="post" action="/SAE-302/concours/index.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
-                                <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
-                                    <img onclick="zoomImage()" class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
-                                    <div class="absolute bottom-1 right-2 p-1">
-                                         <!-- Requires a form with a ghost checkbox for like: -->
-                                        <input id="default-checkbox" type="radio" value="<?php echo $image['id'] ?>" name="choix" class="w-4 h-4 overflow-hidden rounded text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700">
-                                     </div>
-                                </div>
-                                <?php endforeach; ?>
-                                <button class="col-span-3 w-fit h-fit bg-green-200 hover:bg-green-300 text-green-700 font-bold py-2 px-4 rounded inline-flex items-center">
-                                    <input type="submit" class="cursor-pointer" value="Effectuez votre vote !" name="submit">
-                                </button>
-                            </form>
-                            
-                            <!-- we check that the user has not already voted -->
-                            <?php
-                                if (isset($_POST['submit']))
-                                {                                     
-                                    $bdd = getPDO();
-                                    $sql_2 = "SELECT vote_possible FROM users WHERE id = :userId";
-                                    $req_2 = $bdd->prepare($sql_2);
-                                    $req_2->bindParam(":userId", $userId['id']);
-                                    $req_2->execute();
-                                    $data = $req_2->fetch(PDO::FETCH_ASSOC);
-
-                                    // Voting is possible, so we grant the user the right to vote and we take away the right to vote
-                                    if ($data['vote_possible'] == 0) {
-                                        
-                                        $bdd = getPDO();
-                                        $sql = "UPDATE images SET likes = likes +1 WHERE id = :choix";
-                                        $req = $bdd->prepare($sql);
-                                        $req->bindParam(":choix", $_POST['choix']);
-                                        $req->execute();
-
-                                        $sql_3 = "UPDATE users SET vote_possible = vote_possible+1 WHERE id = :userId";
-                                        $req_3 = $bdd->prepare($sql_3);
-                                        $req_3->bindParam(":userId", $userId['id']);
-                                        $req_3->execute();
-
-                                        $_SESSION['successUpload'] = 'Vote accepté avec succès.';
-                                    
-                                    // The vote is not possible, an error message is displayed
-                                    } else {
-                                        $_SESSION['errorUpload'] = array();
-                                        array_push($_SESSION['errorUpload'], "Vous avez déjà voté pour une photo !");
-                                    }
-                                } 
-                            ?>
-
-                    <?php else : ?>
-                        <div class="col-span-3 p-2 bg-yellow-500 items-center text-yellow-100 leading-none rounded flex inline-flex overflow-hidden" role="alert">
-                            <span class="flex rounded-full bg-yellow-600 uppercase px-2 py-1 text-xs font-bold mr-3">Attention</span>
-                            <span class="font-semibold mr-2 text-center flex-auto">
-                                Nous n'avons pas encore d'image à vous proposer 😥
-                            </span>
-                        </div>
-                    <?php endif; ?>
-                </section>
             </section>
         </section>
     <?php else : ?>
