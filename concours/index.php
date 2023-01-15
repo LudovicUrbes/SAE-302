@@ -7,6 +7,10 @@ $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 $authentification = getUserAuthByEmail($email);
 $banned = getBannedUser($userId);
+if (isset($_SESSION['time'])) {
+    $time = $_SESSION['time'];
+}
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -70,6 +74,32 @@ $banned = getBannedUser($userId);
                             ?>
                         </div>
                         <script src="\SAE-302\concours\admin\js\timer_update.js"></script>
+
+                        <?php echo "<br/>time=", $time; ?>
+
+                        <?php if ($time == 1)
+                            {
+                                header('Location: /SAE-302/concours/phase_envoi.php');
+                            }
+                            elseif ($time == 2)
+                            {
+                                header('Location: /SAE-302/concours/phase_timeout.php');
+                            }
+                            elseif ($time == 3)
+                            {
+                                header('Location: /SAE-302/concours/phase_vote.php');
+                            }
+                            elseif ($time == 4)
+                            {
+                                header('Location: /SAE-302/concours/phase_result.php');
+                            }
+                            else
+                            {
+                                header('Location: /SAE-302/concours/index.php');
+                                die();
+                            }
+                        ?>
+
                         <br />
                     </section>
                     <hr class="my-4 mx-16 h-px bg-gray-200 border-0 dark:bg-gray-700">

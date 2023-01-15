@@ -1,4 +1,5 @@
-<?php                      
+<?php
+session_start();                     
 // Définition des options valides pour le sélecteur
 $valid_years = array("2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030");
 $valid_months = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
@@ -25,9 +26,9 @@ if (isset($_POST['année'], $_POST['mois'], $_POST['jour'], $_POST['heures'], $_
 
 // end date of each phase of the competition
 //$fin_envoi = strtotime("$selected_year-$selected_month-$selected_day $selected_hours:$selected_minutes:$selected_seconds");
-$fin_envoi = strtotime("2023-02-19 00:00:00");
-$debut_vote = strtotime("2023-02-21 00:00:00");
-$fin_vote = strtotime("2023-03-20 00:00:00");
+$fin_envoi = strtotime("2023-01-15 06:44:00");
+$debut_vote = strtotime("2023-01-15 06:45:00");
+$fin_vote = strtotime("2023-01-15 06:46:00");
 
 // checks that the end date of the sending phase has not ended
 if ($fin_envoi > time()) {
@@ -42,6 +43,7 @@ if ($fin_envoi > time()) {
 
   // returns the remaining time as a string
   echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE D'ENVOI : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus uploader de photos ! On passera alors à la phase de vote.";
+  $_SESSION['time'] = 1;
 } elseif ($debut_vote > time()){
   // returns a message indicating that the send phase is complete
   echo "La phase d'envoi est terminée !<br/>";
@@ -57,6 +59,7 @@ if ($fin_envoi > time()) {
 
   // returns the remaining time as a string
   echo "<strong>&#8987 TEMPS RESTANT AVANT LE D&#201PART DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Vous pourrez alors voter pour votre photo préférée !";
+  $_SESSION['time'] = 2;
 }  elseif ($fin_vote > time()){
   // calculates the time remaining until the end of the voting phase
   $temps_restant = $fin_vote - time();
@@ -69,10 +72,12 @@ if ($fin_envoi > time()) {
 
   // returns the remaining time as a string
   echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus voter ! On vous fournira alors les résultats du concours.";
+  $_SESSION['time'] = 3;
 } else {
   // returns a message that the contest is over
   echo "Le concours est terminé.<br/>";
   echo "Voici les résultats du concours :<br/>";
+  $_SESSION['time'] = 4;
 }
 
 $date1 = date("d/m/Y H:i:s", $fin_envoi);
