@@ -167,8 +167,6 @@ if ($authentification['auth'] === "admin") {
                                 $req = $bdd->prepare($sql);
                                 $req->bindParam(":choix", $_POST['choix']);
                                 $req->execute();
-                                header('Refresh: 0');
-                                die();
                             }    
                         ?> 
 
