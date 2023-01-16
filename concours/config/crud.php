@@ -69,11 +69,11 @@ function getUser($email, $pass)
 /**
  * Function adds the image to the bdd.
  */
-function addImage($filePath, $user_id)
+function addImage($filePath, $user_id, $hash)
 {
     $bdd = getPDO();
-    $req = $bdd->prepare('INSERT INTO images (url, likes, user_id) VALUES (?, ?, ?)');
-    $status = $req->execute(array($filePath, 0, $user_id));
+    $req = $bdd->prepare('INSERT INTO images (url, likes, user_id, hash) VALUES (?, ?, ?, ?)');
+    $status = $req->execute(array($filePath, 0, $user_id, $hash));
     $req->closeCursor();
     return $status;
 }
@@ -163,6 +163,23 @@ function getAllDates()
     return $date;
 }
 
+/**
+ *  The function returns an array containing all the hashes of the image table 
+ */
+function getAllHashes()
+{
+    $bdd = getPDO();
+    // We then prepare the SQL query :
+    $req = $bdd->prepare('SELECT hash FROM images');
+    // Once ready, we execute this :
+    $req->execute();
+    // Once executed, the information is retrieved in '$data':
+    $hash = $req->fetchAll(PDO::FETCH_ASSOC);
+    // The cursor is closed to indicate the end of the operation :
+    $req->closeCursor();
+    // Finally, we return the information :
+    return $hash;
+}
 
                                         
                                         

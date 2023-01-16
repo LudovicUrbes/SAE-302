@@ -24,6 +24,7 @@ CREATE TABLE images(
     `url` VARCHAR(100) NOT NULL,
     `likes` INT default 0,
     `user_id` INT NOT NULL UNIQUE,
+    `hash` CHAR(32) NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 

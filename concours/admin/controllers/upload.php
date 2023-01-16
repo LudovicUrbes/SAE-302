@@ -7,6 +7,7 @@ $userId = getUserIdByEmail($email);
 $images = getAllImages();
 $data = getUserIdByUserImage($userId);
 $banned = getBannedUser($userId);
+$hash = getAllHashes();
 
 $_SESSION['errorUpload'] = array();
 $_SESSION['successUpload'] = '';
@@ -60,7 +61,6 @@ if (false === array_search(
     die();
 }
 
-
 $destinationFile = sprintf(
     '../uploads/%s.%s',
     sha1_file($_FILES['image']['tmp_name']),
@@ -77,11 +77,21 @@ if (!move_uploaded_file(
     die();
 }
 
+$hash_image = md5_file($destinationFile);
+
+foreach ($hash as $key) {
+    if ($hash_image == $key) {
+        array_push($_SESSION['errorUpload'], "L'image est déjà présente dans la base de données.");
+        header('Location: /SAE-302/concours/phase_envoi.php');
+        die();
+    }
+}
+
 // All we have to do is add the image to the database 
 // Check that the user has not already uploaded an image 
 
 if (empty($data) && $banned['banned'] == 0){
-    addImage($destinationFile, $userId['id']);
+    addImage($destinationFile, $userId['id'], $hash_image);
     $_SESSION['successUpload'] = 'Image téléchargée avec succès.';
 } elseif ($banned['banned'] > 0){
     array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
