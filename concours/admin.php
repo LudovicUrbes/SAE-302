@@ -6,8 +6,8 @@ require_once('config/crud.php'); // Load an external PHP file named "crud.php", 
 $images = getAllImages(); // Stores the result of the "getAllImages" function in a variable named "$images"
 $email = $_SESSION['user']; // Stores the email of the currently logged in user in a variable named "$email"
 $userId = getUserIdByEmail($email); // "getUserIdByEmail" function to retrieve the ID of the currently logged in user from his email address
-$authentification = getUserAuthByEmail($email);
-$date = getAllDates();
+$authentification = getUserAuthByEmail($email); // "getUserAuthByEmail" function to retrieve a value to know if the user is admin or not
+$date = getAllDates(); // "getAllDates" function that retrieves the date table allowing to modify the site according to it
 
 // Check to allow access to the page user id must be equal to 100, 101, 102 otherwise it is redirected to the page index.php
 
@@ -233,7 +233,8 @@ if ($authentification['auth'] === "admin") {
 
                         <thead>
                             <tr>
-                                <th class="rounded-tl-lg bg-gray-400" scope="col">Identifiant de l'image </th>
+                                <th class="rounded-tl-lg bg-gray-400" scope="col">Classement </th>
+                                <th class="bg-gray-400" scope="col">Identifiant de l'image </th>
                                 <th class="bg-gray-400" scope="col">Nombre de likes </th>
                                 <th class="bg-gray-400" scope="col">Url de l'image </th>
                                 <th class="rounded-tr-lg bg-gray-400" scope="col">Identifiant de l'utilisateur </th>
@@ -243,13 +244,15 @@ if ($authentification['auth'] === "admin") {
                            <?php for ($i = 0; $i < count($donnees); $i++): ?>
                            <?php if ($i == count($donnees)-1): ?>
                            <tr>
-                              <td class="rounded-bl-lg bg-gray-100"> <?=$donnees[$i]['id'];?></td>
+                              <td class="rounded-bl-lg bg-gray-200"> <?=$i+1;?></td>
+                              <td class="bg-gray-100"> <?=$donnees[$i]['id'];?></td>
                               <td class="bg-gray-300"> <?=$donnees[$i]['likes'];?></td>
                               <td class="bg-gray-100"> <?=$donnees[$i]['url'];?></td>
                               <td class="rounded-br-lg bg-gray-300"> <?=getUserEmailById($donnees[$i]['user_id'])['email'];?></td>
                            </tr>
                            <?php else : ?>
                            <tr>
+                              <td class="bg-gray-200"> <?=$i+1;?></td>
                               <td class="bg-gray-100"> <?=$donnees[$i]['id'];?></td>
                               <td class="bg-gray-300"> <?=$donnees[$i]['likes'];?></td>
                               <td class="bg-gray-100"> <?=$donnees[$i]['url'];?></td>

@@ -39,5 +39,6 @@ INSERT INTO `users` (`email`, `password`) VALUES ("gautier.leroux@etu.univ-poiti
 INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("eliott.marceau@etu.univ-poitiers.fr", "gtrnet", "admin");
 INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("alan.de.lijster@etu.univ-poitiers.fr", "gtrnet", "admin");
 INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("ludovic.urbes@etu.univ-poitiers.fr", "gtrnet", "admin");
+INSERT INTO `users` (`email`, `password`, `auth`) VALUES ("benoit.tremblais@univ-poitiers.fr", "gtrnet", "admin");
 
 INSERT INTO `dates` (`fin_envoi`, `debut_vote`, `fin_vote`) VALUES ('2023-01-01 00:00:00', '2023-01-01 00:00:00', '2023-01-01 00:00:00');

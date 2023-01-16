@@ -12,7 +12,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
 ?>
 
 <br/>
-
+<!-- Form to send in the database the dates selected by the administrator -->
 <section class="rounded-lg bg-gray-200">
 <br/>
 <h1 class="text-1xl ml-4"><strong>Définir une date pour :</strong></h1>

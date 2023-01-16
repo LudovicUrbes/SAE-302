@@ -1,15 +1,20 @@
-<?php
-session_start();
-require_once('config/crud.php');
-$images = getAllImages();
-$email = $_SESSION['user'];
-$userId = getUserIdByEmail($email);
-$authentification = getUserAuthByEmail($email);
-$banned = getBannedUser($userId);
+<!-- This page is accessible by users and admin  -->
 
-if (isset($_SESSION['time'])) {
+<?php
+session_start(); // Start a PHP session
+require_once('config/crud.php'); // Load an external PHP file named "crud.php", which contains database management functions
+$images = getAllImages(); // Stores the result of the "getAllImages" function in a variable named "$images"
+$email = $_SESSION['user']; // Stores the email of the currently logged in user in a variable named "$email"
+$userId = getUserIdByEmail($email); // "getUserIdByEmail" function to retrieve the ID of the currently logged in user from his email address
+$authentification = getUserAuthByEmail($email); // "getUserAuthByEmail" function to retrieve a value to know if the user is admin or not
+$banned = getBannedUser($userId); // "getBannedUser" function returns the value that lets us know if the user is ban
+
+if (isset($_SESSION['time'])) { // Verification of the existence of the variable then assignment to $time
     $time = $_SESSION['time'];
 }
+
+// Check that the time variable is equal to 1 to access the page because otherwise the user is returned to the index
+
 if ($time != 1)
 {
     header('Location: /SAE-302/concours/index.php');
@@ -123,6 +128,8 @@ if ($time != 1)
                         </p>
                     </section>
                 </article>
+
+                <!-- Verification of user banishment -->
                 <?php
                 if ($banned['banned'] > 0){
                     $_SESSION['errorUpload'] = array();
