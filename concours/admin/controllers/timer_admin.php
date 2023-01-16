@@ -13,21 +13,21 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
 
 <br/>
 
-<section class="rounded-lg bg-gray-300">
+<section class="rounded-lg bg-gray-200">
 <br/>
-<h1 class="text-1xl ml-4"><strong>Définir une date :</strong></h1>
+<h1 class="text-1xl ml-4"><strong>Définir une date pour :</strong></h1>
 <br/>
-<form method="post" action="/SAE-302/concours/admin.php" class="flex col-span-3">
+<form method="post" action="/SAE-302/concours/admin.php" class="col-span-3 ml-4">
 
-    <select name="choix" class="rounded bg-gray-500">
-        <option value="1">fin d'envoi</option>
-        <option value="2">début des votes</option>
-        <option value="3">fin des votes</option>
+    <select name="choix" class="rounded bg-white text-black">
+        <option value="1">Fin d'envoi</option>
+        <option value="2">Début des votes</option>
+        <option value="3">Fin des votes</option>
     </select>
     <br/>
     <br/>
 
-    <span class="rounded inline-grid grid-cols-6 gap-4">
+    <span class="rounded inline-grid grid-cols-6 gap-2">
         <span>
             jour
         </span>
@@ -48,7 +48,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
         </span>
 
         <span>
-            <select name="jour" class="rounded bg-gray-500">
+            <select name="jour" class="rounded bg-white text-black">
                 <option value="01">01</option>
                 <option value="02">02</option>
                 <option value="03">03</option>
@@ -84,7 +84,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
         </span>
 
         <span>
-            <select name="mois" class="rounded bg-gray-500">
+            <select name="mois" class="rounded bg-white text-black">
                 <option value="01">Janvier</option>
                 <option value="02">Février</option>
                 <option value="03">Mars</option>
@@ -100,7 +100,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
             </select>
         </span>
         <span>
-            <select name="année" class="rounded bg-gray-500">
+            <select name="année" class="rounded bg-white text-black">
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
                 <option value="2025">2025</option>
@@ -113,7 +113,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
         </span>
 
         <span>
-            <select name="heures" class="rounded bg-gray-500">
+            <select name="heures" class="rounded bg-white text-black">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -142,7 +142,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
         </span>
 
         <span>
-            <select name="minutes" class="rounded bg-gray-500">
+            <select name="minutes" class="rounded bg-white text-black">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -207,7 +207,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
         </span>
 
         <span>
-            <select name="secondes" class="rounded bg-gray-500">
+            <select name="secondes" class="rounded bg-white text-black">
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
