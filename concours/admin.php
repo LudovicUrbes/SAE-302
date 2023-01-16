@@ -14,6 +14,7 @@ $date = getAllDates();
 if ($authentification['auth'] === "admin") {
 } else {
     header('Location: /SAE-302/concours/index.php');
+    die();
 }
 
 ?>
