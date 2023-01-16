@@ -21,7 +21,9 @@ if ($fin_envoi > time()) {
   $secondes = $temps_restant % 60;
 
   // returns the remaining time as a string
-  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE D'ENVOI : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus uploader de photos ! On passera alors à la phase de vote.";
+  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE D'ENVOI : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus uploader de photos ! On passera alors à la phase de vote.</br>";
+  echo "Si vous avez une erreur sur le site à un moment donné n'hésitez pas à refresh la page !<br/>";
+  echo "A l'aide de la touche <strong>F5</strong> ou de la <strong>flèche en haut à gauche</strong> de votre navigateur !<br/>";
   $_SESSION['time'] = 1;
 } elseif ($debut_vote > time()){
   // returns a message indicating that the send phase is complete
@@ -37,7 +39,9 @@ if ($fin_envoi > time()) {
   $secondes = $temps_restant % 60;
 
   // returns the remaining time as a string
-  echo "<strong>&#8987 TEMPS RESTANT AVANT LE D&#201PART DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Vous pourrez alors voter pour votre photo préférée !";
+  echo "<strong>&#8987 TEMPS RESTANT AVANT LE D&#201PART DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Vous pourrez alors voter pour votre photo préférée ! </br>";
+  echo "Si vous avez une erreur sur le site à un moment donné n'hésitez pas à refresh la page !<br/>";
+  echo "A l'aide de la touche <strong>F5</strong> ou de la <strong>flèche en haut à gauche</strong> de votre navigateur !<br/>";
   $_SESSION['time'] = 2;
 }  elseif ($fin_vote > time()){
   // calculates the time remaining until the end of the voting phase
@@ -50,11 +54,15 @@ if ($fin_envoi > time()) {
   $secondes = $temps_restant % 60;
 
   // returns the remaining time as a string
-  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus voter ! On vous fournira alors les résultats du concours.";
+  echo "<strong>&#8987 TEMPS RESTANT JUSQU'&#192 LA FIN DE LA PHASE DE VOTE : $jours J : $heures H : $minutes M : $secondes S &#8987</strong><br/>Après cette date, vous ne pourrez plus voter ! On vous fournira alors les résultats du concours. </br>";
+  echo "Si vous avez une erreur sur le site à un moment donné n'hésitez pas à refresh la page !<br/>";
+  echo "A l'aide de la touche <strong>F5</strong> ou de la <strong>flèche en haut à gauche</strong> de votre navigateur !<br/>";
   $_SESSION['time'] = 3;
 } else {
   // returns a message that the contest is over
   echo "Le concours est terminé.<br/>";
+  echo "Si vous avez une erreur sur le site à un moment donné n'hésitez pas à refresh la page !<br/>";
+  echo "A l'aide de la touche <strong>F5</strong> ou de la <strong>flèche en haut à gauche</strong> de votre navigateur !<br/>";
   $_SESSION['time'] = 4;
 }
 
