@@ -6,6 +6,7 @@ $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 $authentification = getUserAuthByEmail($email);
 $banned = getBannedUser($userId);
+
 if (isset($_SESSION['time'])) {
     $time = $_SESSION['time'];
 }
@@ -114,17 +115,9 @@ if ($time != 1)
                             <br />
                             Cette année <strong>le thème du concours est <u>votre ville d'origine</u></strong>.
                             <br />
-                            Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
-                            <br />
-                            Toutefois, si vous désirez participer, nous vous offrons la possibilité de le faire !
+                            Si vous désirez participer, nous vous offrons la possibilité de le faire !
                             <br />
                             Pour cela, choisissez votre image à partir du bouton ci-dessous 👇.
-                            <br />
-                            Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
-                            <br />
-                            <strong>Si vous voulez voir l'image en format réel faites un click droit sur l'image,</strong>
-                            <br />
-                            <strong>puis "Ouvrir l'image dans un nouvel onglet".</strong>
                             <br />
                             <br />
                         </p>

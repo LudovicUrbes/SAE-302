@@ -112,19 +112,9 @@ if ($time != 4)
                     <header class="text-xl font-bold text-center">Explications 🤔❓</header>
                         <p class="text-center">
                             <br />
-                            Cette année <strong>le thème du concours est <u>votre ville d'origine</u></strong>.
+                            Cette année <strong>le thème du concours etait <u>votre ville d'origine</u></strong>.
                             <br />
-                            Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
-                            <br />
-                            Toutefois, si vous désirez participer, nous vous offrons la possibilité de le faire !
-                            <br />
-                            Pour cela, choisissez votre image à partir du bouton ci-dessous 👇.
-                            <br />
-                            Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
-                            <br />
-                            <strong>Si vous voulez voir l'image en format réel faites un click droit sur l'image,</strong>
-                            <br />
-                            <strong>puis "Ouvrir l'image dans un nouvel onglet".</strong>
+                            Voici les résultat du concours photos de l'IUT de Poitiers
                             <br />
                             <br />
                         </p>
@@ -132,6 +122,51 @@ if ($time != 4)
                 </article>
 
             </section>
+
+            </br>
+
+            <section class="col-span-3 h-fit mx-5">
+                <header class="col-span-3 text-center text-2xl font-medium"><span class="underline">Tableau des scores : </span> 📈</header>
+                    </br>
+                    <div>
+                        <table class="rounded-lg bg-white-900 border-separate border-spacing-0.1" style="width: 30%; margin-left: 950px;">
+
+                        <!-- Php request to retrieve information contained in a table to display in an array -->
+
+                        <?php
+
+                            $bdd = getPDO();
+                            $req = $bdd->query("SELECT likes, user_id FROM images ORDER BY likes DESC");
+                            $req->execute();
+                            $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+                            $req->closeCursor();                           
+                        ?>
+
+                        <!-- Table containing image table information to give information to administrators -->
+
+                        <thead>
+                            <tr>
+                                <th class="rounded-tl-lg bg-gray-400" scope="col">Nombre de likes </th>
+                                <th class="rounded-tr-lg bg-gray-400" scope="col">Identifiant de l'utilisateur </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <?php for ($i = 0; $i < count($donnees); $i++): ?>
+                           <?php if ($i == count($donnees)-1): ?>
+                           <tr>
+                              <td class="rounded-bl-lg bg-gray-300"> <?=$donnees[$i]['likes'];?></td>
+                              <td class="rounded-br-lg bg-gray-200"> <?=getUserEmailById($donnees[$i]['user_id'])['email'];?></td>
+                           </tr>
+                           <?php else : ?>
+                           <tr>
+                              <td class="bg-gray-300"> <?=$donnees[$i]['likes'];?></td>
+                              <td class="bg-gray-200"> <?=getUserEmailById($donnees[$i]['user_id'])['email'];?></td>
+                           </tr>
+                           <?php endif ; ?>
+                           <?php endfor ; ?>
+                        </tbody>
+                        </table>
+                </section>
         </section>
     <?php else : ?>
       <!-- Contenu 

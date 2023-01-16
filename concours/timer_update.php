@@ -55,7 +55,6 @@ if ($fin_envoi > time()) {
 } else {
   // returns a message that the contest is over
   echo "Le concours est terminé.<br/>";
-  echo "Voici les résultats du concours :<br/>";
   $_SESSION['time'] = 4;
 }
 

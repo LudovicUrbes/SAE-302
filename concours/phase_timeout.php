@@ -112,19 +112,9 @@ if ($time != 2)
                     <header class="text-xl font-bold text-center">Explications 🤔❓</header>
                         <p class="text-center">
                             <br />
-                            Cette année <strong>le thème du concours est <u>votre ville d'origine</u></strong>.
+                            Cette année <strong>le thème du concours est <u>votre ville d'origine</u></strong>.                   
                             <br />
-                            Juste en dessous, nous vous proposons de voter pour l'image que vous aimez.
-                            <br />
-                            Toutefois, si vous désirez participer, nous vous offrons la possibilité de le faire !
-                            <br />
-                            Pour cela, choisissez votre image à partir du bouton ci-dessous 👇.
-                            <br />
-                            Une fois votre image téléchargée, les utilisateurs pourront alors voter pour votre image.
-                            <br />
-                            <strong>Si vous voulez voir l'image en format réel faites un click droit sur l'image,</strong>
-                            <br />
-                            <strong>puis "Ouvrir l'image dans un nouvel onglet".</strong>
+                            La page est actuellement en pause pour permettre la continuité du concours.  
                             <br />
                             <br />
                         </p>
