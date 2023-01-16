@@ -6,6 +6,7 @@ $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
 $authentification = getUserAuthByEmail($email);
 $banned = getBannedUser($userId);
+
 if (isset($_SESSION['time'])) {
     $time = $_SESSION['time'];
 }
@@ -124,12 +125,6 @@ if ($time != 3)
                         </p>
                     </section>
                 </article>
-                <?php
-                if ($banned['banned'] > 0){
-                    $_SESSION['errorUpload'] = array();
-                    array_push($_SESSION['errorUpload'], "Votre participation ne sera pas retenue pour cause de non conformité !");
-                } 
-                ?>
 
                 <!-- Image list -->
                 <section class="col-span-3 w-full h-full grid grid-cols-3 place-items-center gap-5 p-5">
@@ -165,26 +160,34 @@ if ($time != 3)
                                     $data = $req_2->fetch(PDO::FETCH_ASSOC);
                                     
                                     // Voting is possible, so we grant the user the right to vote and we take away the right to vote
-                                    if ($data['vote_possible'] == 0) {
-                                        
-                                        $bdd = getPDO();
-                                        $sql = "UPDATE images SET likes = likes +1 WHERE id = :choix";
-                                        $req = $bdd->prepare($sql);
-                                        $req->bindParam(":choix", $_POST['choix']);
-                                        $req->execute();
+                                    if ($banned['banned'] > 0){
 
-                                        $sql_3 = "UPDATE users SET vote_possible = vote_possible+1 WHERE id = :userId";
-                                        $req_3 = $bdd->prepare($sql_3);
-                                        $req_3->bindParam(":userId", $userId['id']);
-                                        $req_3->execute();
-
-                                        $_SESSION['successUpload'] = 'Vote accepté avec succès.';
-                                    
-                                    // The vote is not possible, an error message is displayed
-                                    } else {
                                         $_SESSION['errorUpload'] = array();
-                                        array_push($_SESSION['errorUpload'], "Vous avez déjà voté pour une photo !");
-                                    }
+                                        array_push($_SESSION['errorUpload'], "Votre vote ne sera pas retenu pour cause de banissement du concours !");
+
+                                    } else {
+
+                                        if ($data['vote_possible'] == 0) {
+                                        
+                                            $bdd = getPDO();
+                                            $sql = "UPDATE images SET likes = likes +1 WHERE id = :choix";
+                                            $req = $bdd->prepare($sql);
+                                            $req->bindParam(":choix", $_POST['choix']);
+                                            $req->execute();
+    
+                                            $sql_3 = "UPDATE users SET vote_possible = vote_possible+1 WHERE id = :userId";
+                                            $req_3 = $bdd->prepare($sql_3);
+                                            $req_3->bindParam(":userId", $userId['id']);
+                                            $req_3->execute();
+    
+                                            $_SESSION['successUpload'] = 'Vote accepté avec succès.';
+                                        
+                                        // The vote is not possible, an error message is displayed
+                                        } else {
+                                            $_SESSION['errorUpload'] = array();
+                                            array_push($_SESSION['errorUpload'], "Vous avez déjà voté pour une photo !");
+                                        }
+                                    } 
                                 } 
                             ?>
 

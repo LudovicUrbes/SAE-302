@@ -93,6 +93,7 @@ if ($authentification['auth'] === "admin") {
                     <section class=" w-fit h-fit mx-auto">
                         <header class="text-xl font-bold text-center"> Utilité de la page 📝</header>  <!-- Explaining the Admin Page Utility to Administrators -->
                         <p class="text-center">
+                            <br />
                             Depuis cette page vous pouvez supprimer des photos si elles ne correspondent aux réglements.
                             <br />
                             Vous pouvez aussi avoir un aperçu sur les votes et les noms des participants.
