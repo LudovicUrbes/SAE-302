@@ -79,23 +79,21 @@ if (isset($_SESSION['time'])) {
                         if ($time == 1)
                             {
                                 header('Location: /SAE-302/concours/phase_envoi.php');
-
+                                die();
                             }
                             elseif ($time == 2)
                             {
                                 header('Location: /SAE-302/concours/phase_timeout.php');
+                                die();
                             }
                             elseif ($time == 3)
                             {
                                 header('Location: /SAE-302/concours/phase_vote.php');
+                                die();
                             }
                             elseif ($time == 4)
                             {
                                 header('Location: /SAE-302/concours/phase_result.php');
-                            }
-                            else
-                            {
-                                header('Location: /SAE-302/concours/index.php');
                                 die();
                             }
                         ?>

@@ -14,6 +14,7 @@ $date = getAllDates();
 if ($authentification['auth'] === "admin") {
 } else {
     header('Location: /SAE-302/concours/index.php');
+    die();
 }
 
 ?>
@@ -166,6 +167,8 @@ if ($authentification['auth'] === "admin") {
                                 $req = $bdd->prepare($sql);
                                 $req->bindParam(":choix", $_POST['choix']);
                                 $req->execute();
+                                header('Refresh: 0');
+                                die();
                             }    
                         ?> 
 
