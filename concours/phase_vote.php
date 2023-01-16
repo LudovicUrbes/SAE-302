@@ -145,7 +145,7 @@ if ($time != 3)
                             foreach ($images as $image) :
                     ?>
                             <!-- Creating the card that will contain the image! -->
-                            <form method="post" action="/SAE-302/concours/index.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
+                            <form method="post" action="/SAE-302/concours/phase_vote.php" class="col-span-3 grid grid-cols-3 place-items-center w-full h-fit gap-y-5">
                                 <div class="col-span-1 max-w-sm rounded overflow-hidden shadow-lg relative mb-5 h-fit w-fit mx-auto">
                                     <img onclick="zoomImage()" class="w-[300px] h-[200px] object-cover" src="<?= 'admin/uploads/' . $image['url'] ?>" alt="Photo" />
                                     <div class="absolute bottom-1 right-2 p-1">
@@ -169,7 +169,7 @@ if ($time != 3)
                                     $req_2->bindParam(":userId", $userId['id']);
                                     $req_2->execute();
                                     $data = $req_2->fetch(PDO::FETCH_ASSOC);
-
+                                    
                                     // Voting is possible, so we grant the user the right to vote and we take away the right to vote
                                     if ($data['vote_possible'] == 0) {
                                         
