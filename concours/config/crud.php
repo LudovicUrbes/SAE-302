@@ -131,6 +131,9 @@ function getUserIdByUserImage($userId)
     return $data;
 }
 
+/**
+ *  The function lets you know if the user has been banned 
+ */
 function getBannedUser($userId)
 {
     $bdd = getPDO();
@@ -142,6 +145,9 @@ function getBannedUser($userId)
     return $banned;
 }
 
+/**
+ *  The function returns the entire dates table 
+ */
 function getAllDates()
 {
     $bdd = getPDO();

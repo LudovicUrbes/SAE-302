@@ -1,6 +1,6 @@
 <?php
 require_once '../../config/crud.php';
-// Upload de l'image & déplacement dans le dossier 'uploads/' :
+// Upload the image and move to the 'uploads/' folder
 session_start();
 $email = $_SESSION['user'];
 $userId = getUserIdByEmail($email);
@@ -13,8 +13,7 @@ $_SESSION['successUpload'] = '';
 
 $max_size = 62914560;
 
-// Pour ceux que ça intéresse :
-// https://www.php.net/manual/en/features.file-upload.errors.php
+// Definition of the various possible errors
 switch ($_FILES['image']['error']) {
     case UPLOAD_ERR_OK:
         break;
@@ -36,7 +35,7 @@ switch ($_FILES['image']['error']) {
         die();
 }
 
-// On vérifie la taille max :
+// Checking the maximum size
 if ($_FILES['image']['size'] > $max_size) {
     array_push($_SESSION['errorUpload'], "La taille de l'image dépasse le maximum autorisé.");
     header('Location: /SAE-302/concours/phase_envoi.php');
@@ -46,7 +45,7 @@ if ($_FILES['image']['size'] > $max_size) {
 $size = $_FILES['image']['size'];
 $extension = strtolower(substr(strrchr($_FILES['image']['name'], '.'), 1));
 
-// On vérifie que l'extension correspond à nos critères :
+// Checking the image extension  
 if (false === array_search(
     $extension,
     array(
@@ -68,7 +67,7 @@ $destinationFile = sprintf(
     $extension
 );
 
-// On déplace le fichier temporaire dans notre dossiers uploads :
+// Moving the file temporarily to our uploads folder
 if (!move_uploaded_file(
     $_FILES['image']['tmp_name'],
     $destinationFile
@@ -78,8 +77,8 @@ if (!move_uploaded_file(
     die();
 }
 
-// Il ne nous reste plus qu'à ajouter l'image dans la base de données 
-// On vérifie que l'utilisateur n'a pas déjà upload une image 
+// All we have to do is add the image to the database 
+// Check that the user has not already uploaded an image 
 
 if (empty($data) && $banned['banned'] == 0){
     addImage($destinationFile, $userId['id']);
@@ -88,10 +87,8 @@ if (empty($data) && $banned['banned'] == 0){
     array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
 } else {
     array_push($_SESSION['errorUpload'], "Vous avez déjà publié votre photo !");
-    //header('Location: /SAE-302/concours/index.php');
-    //die();
 }
 
-// Enfin, on redirige sur la page pour voir le résultat !
+// Finally, we redirect to the page
 header('Location: /SAE-302/concours/phase_envoi.php');
 die();

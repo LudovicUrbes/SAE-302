@@ -29,10 +29,10 @@ if (isset($_SESSION['time'])) {
 <div id="js-check" style="display: none;">
     <script>
       if (!document.getElementById('js-check')) {
-      // JavaScript n'est pas activé, affiche un message d'erreur
+      // JavaScript is not enabled, displays an error message
       document.write("JavaScript n'est pas activé. Veuillez l'activer pour afficher la page.");
     } else {
-      // JavaScript est activé, affiche la page
+      // JavaScript is enabled, displays the page
       document.getElementById('js-check').style.display = 'block';
     }
     </script>
@@ -151,6 +151,8 @@ if (isset($_SESSION['time'])) {
                         </p>
                     </section>
                 </article>
+
+                <!-- Verification of user banishment -->
                 <?php
                 if ($banned['banned'] > 0){
                     $_SESSION['errorUpload'] = array();

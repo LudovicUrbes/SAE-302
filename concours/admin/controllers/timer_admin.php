@@ -1,6 +1,6 @@
 <?php 
 
-// Définition des options valides pour le sélecteur
+// Set valid options for selector
 $valid_choices = array("1", "2", "3");
 $valid_years = array("2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030");
 $valid_months = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
@@ -284,7 +284,7 @@ $valid_seconds = array("00", "01", "02", "03", "04", "05", "06", "07", "08", "09
 
 if (isset($_POST['date']))
 {
-    // Vérification que la valeur sélectionnée est valide
+    // Verify that the selected value is valid
     if (isset($_POST['choix'], $_POST['année'], $_POST['mois'], $_POST['jour'], $_POST['heures'], $_POST['minutes'], $_POST['secondes'])) {
       if (in_array($_POST['choix'], $valid_choices) && in_array($_POST['année'], $valid_years) && in_array($_POST['mois'], $valid_months) && in_array($_POST['jour'], $valid_days) && in_array($_POST['heures'], $valid_hours) && in_array($_POST['minutes'], $valid_minutes) && in_array($_POST['secondes'], $valid_seconds)) {
         $selected_choice = htmlspecialchars($_POST['choix'], ENT_QUOTES, 'UTF-8');
@@ -295,14 +295,14 @@ if (isset($_POST['date']))
         $selected_minutes = htmlspecialchars($_POST['minutes'], ENT_QUOTES, 'UTF-8');
         $selected_seconds = htmlspecialchars($_POST['secondes'], ENT_QUOTES, 'UTF-8');
       } else {
-        // Gestion d'une erreur si la valeur sélectionnée n'est pas valide
+        // Handling an error if the selected value is invalid
         echo "Sélection de date non valide";
         exit();
       }
     }
 
     if ($selected_choice == 1) {
-        // end date of each phase of the competition
+        // End date of each phase of the competition
         $date = "$selected_year-$selected_month-$selected_day $selected_hours:$selected_minutes:$selected_seconds";
         $bdd = getPDO();
         $sql = "UPDATE dates SET fin_envoi = :date_choisie WHERE id = 1";
@@ -311,7 +311,7 @@ if (isset($_POST['date']))
         $req->execute();
         $req->closeCursor();
     }elseif ($selected_choice == 2) {
-        // end date of each phase of the competition
+        // End date of each phase of the competition
         $date = "$selected_year-$selected_month-$selected_day $selected_hours:$selected_minutes:$selected_seconds";
         $bdd = getPDO();
         $sql = "UPDATE dates SET debut_vote = :date_choisie WHERE id = 1";
@@ -320,7 +320,7 @@ if (isset($_POST['date']))
         $req->execute();
         $req->closeCursor();
     }elseif ($selected_choice == 3) {
-        // end date of each phase of the competition
+        // End date of each phase of the competition
         $date = "$selected_year-$selected_month-$selected_day $selected_hours:$selected_minutes:$selected_seconds";
         $bdd = getPDO();
         $sql = "UPDATE dates SET fin_vote = :date_choisie WHERE id = 1";
