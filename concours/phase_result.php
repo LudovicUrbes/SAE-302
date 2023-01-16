@@ -148,7 +148,7 @@ if ($time != 4)
                             $req->closeCursor();                           
                         ?>
 
-                        <!-- Table containing image table information to give information to administrators -->
+                        <!-- Table containing image table information to give information to users -->
 
                         <thead>
                             <tr>
